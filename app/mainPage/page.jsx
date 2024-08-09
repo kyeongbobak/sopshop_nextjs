@@ -1,3 +1,9 @@
+import TopNavBar from "../../components/TopNavBar";
+
 export default function mainPage() {
-  return <div>mainPage</div>;
+  return (
+    <div>
+      <TopNavBar />
+    </div>
+  );
 }
