@@ -1,4 +1,4 @@
-import TopNavBar from "../components/TopNavBar";
+import TopNavBar from "../components/TopNavBar/TopNavBar";
 import "../styles/global.css";
 
 export const metadata = {

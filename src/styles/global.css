@@ -29,56 +29,56 @@
 @font-face {
   font-family: "GmarketSans";
   font-weight: 300;
-  src: url("../public/assets/font/GmarketSansLight.otf") format("opentype");
+  src: url("../../public/font/GmarketSansLight.otf") format("opentype");
   font-display: swap;
 }
 
 @font-face {
   font-family: "GmarketSans";
   font-weight: 500;
-  src: url("../public/assets/font/GmarketSansMedium.otf") format("opentype");
+  src: url("../../public/font/GmarketSansMedium.otf") format("opentype");
   font-display: swap;
 }
 
 @font-face {
   font-family: "GmarketSans";
   font-weight: 700;
-  src: url("../public/assets/font/GmarketSansBold.otf") format("opentype");
+  src: url("../../public/font/GmarketSansBold.otf") format("opentype");
   font-display: swap;
 }
 
 @font-face {
   font-family: "Pretendard";
   font-weight: 100;
-  src: url("../public/assets/font/Pretendard-Thin.otf") format("opentype");
+  src: url("../../public/font/Pretendard-Thin.otf") format("opentype");
   font-display: swap;
 }
 
 @font-face {
   font-family: "Pretendard";
   font-weight: 200;
-  src: url("../public/assets/font/Pretendard-ExtraLight.otf") format("opentype");
+  src: url("../../public/font/Pretendard-ExtraLight.otf") format("opentype");
   font-display: swap;
 }
 
 @font-face {
   font-family: "Pretendard";
   font-weight: 300;
-  src: url("../public/assets/font/Pretendard-Light.otf") format("opentype");
+  src: url("../../public/font/Pretendard-Light.otf") format("opentype");
   font-display: swap;
 }
 
 @font-face {
   font-family: "Pretendard";
   font-weight: 400;
-  src: url("../public/assets/font/Pretendard-Regular.otf") format("opentype");
+  src: url("../../public/font/Pretendard-Regular.otf") format("opentype");
   font-display: swap;
 }
 
 @font-face {
   font-family: "Pretendard";
   font-weight: 600;
-  src: url("../public/assets/font/Pretendard-SemiBold.otf") format("opentype");
+  src: url("../../public/font/Pretendard-SemiBold.otf") format("opentype");
   font-display: swap;
 }
 
