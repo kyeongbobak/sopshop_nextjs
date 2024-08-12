@@ -1,4 +1,5 @@
 import TopNavBar from "../components/TopNavBar";
+import "../styles/global.css";
 
 export const metadata = {
   title: "Next.js",

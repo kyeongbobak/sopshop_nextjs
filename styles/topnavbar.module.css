@@ -1,7 +1,28 @@
-.image {
+.wrapper {
+  padding: 150px 70px;
+}
+
+.logoImage {
   position: absolute;
   top: 100px;
   left: 0;
   right: 0;
   margin: 0 auto;
+}
+
+.navBar {
+  display: flex;
+  gap: 30px;
+  position: absolute;
+  top: 110px;
+  right: 90px;
+  vertical-align: top;
+  align-items: center;
+  font-size: var(--font-lg-size);
+  font-weight: var(--font-light);
+}
+
+.menuBtnImage {
+  width: 32px;
+  height: 32px;
 }
