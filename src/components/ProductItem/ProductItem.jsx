@@ -6,11 +6,13 @@ export default function ProductItem({ productId, productImage, productBrandName,
   return (
     <li>
       <StyledLink href={`products/${productId}`}>
-        <Image src={productImage} width={320} height={380} />
-        <p className={styles.brandName}>{productBrandName}</p>
-        <p className={styles.productName}>{productName}</p>
-        <p className={styles.productPrice}>{productPrice}</p>
+        <Image className={styles.productImage} src={productImage} alt="productImg" width={320} height={380} />
       </StyledLink>
+      <p className={styles.brandName}>{productBrandName}</p>
+      <StyledLink href={`products/${productId}`}>
+        <p className={styles.productName}>{productName}</p>
+      </StyledLink>
+      <p className={styles.productPrice}>{productPrice}</p>
     </li>
   );
 }

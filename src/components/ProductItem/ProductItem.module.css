@@ -1,8 +1,24 @@
+.productImage {
+  object-fit: cover;
+}
+
 .brandName {
+  margin-top: 17px;
+  font-size: var(--font-min-size);
+  font-weight: var(--font-medium);
+  color: var(--box-black-color);
 }
 
 .productName {
+  display: inline-block;
+  margin-top: 15px;
+  font-family: "Pretendard";
+  font-size: var(--font-sm-size);
+  font-weight: var(--font-thin);
 }
 
 .productPrice {
+  margin-top: 15px;
+  font-family: "Pretendard";
+  font-size: var(--font-md-size);
 }

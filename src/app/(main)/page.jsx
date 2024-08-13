@@ -1,6 +1,6 @@
-import TopNavBar from "../../components/TopNavBar/TopNavBar";
 import ProductItem from "../../components/ProductItem/ProductItem";
 import { getProducts } from "../../api/Product";
+import styles from "./main.module.css";
 
 export default async function main() {
   const products = await getProducts();
@@ -8,8 +8,7 @@ export default async function main() {
 
   return (
     <div>
-      <TopNavBar />
-      <ul>
+      <ul className={styles.productList}>
         {product.map((product) => (
           <ProductItem key={product.id} productId={product.id} productImage={product.image} productBrandName={product.store_name} productName={product.product_name} productPrice={product.price} />
         ))}
