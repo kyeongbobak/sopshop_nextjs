@@ -1,0 +1,52 @@
+.wrapper {
+  margin: 0 40px 0;
+  font-family: "Pretendard";
+  font-size: var(--font-sm-size);
+}
+
+.topSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 200px 0 22px;
+}
+
+.snsLinksWrapper a {
+  margin-right: 10px;
+}
+
+.topSection ul {
+  display: flex;
+}
+
+.topSection li {
+  cursor: pointer;
+}
+
+.topSection li + li::before {
+  content: "|";
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 10px;
+}
+
+.snsIconImage {
+  width: 32px;
+}
+
+.bottomSection {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0px 30px;
+  border-top: 1px solid var(--gray-color);
+  line-height: 30px;
+}
+
+.bottomSection strong {
+  font-weight: var(--font-extra-bold);
+  font-family: "Pretendard";
+}
+
+.bottomSection p {
+  font-family: "Pretendard";
+}

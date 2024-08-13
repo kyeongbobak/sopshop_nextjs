@@ -10,7 +10,7 @@ export default async function main() {
     <div>
       <ul className={styles.productList}>
         {product.map((product) => (
-          <ProductItem key={product.id} productId={product.id} productImage={product.image} productBrandName={product.store_name} productName={product.product_name} productPrice={product.price} />
+          <ProductItem key={product.id} productId={product.product_id} productImage={product.image} productBrandName={product.store_name} productName={product.product_name} productPrice={product.price} />
         ))}
       </ul>
     </div>
