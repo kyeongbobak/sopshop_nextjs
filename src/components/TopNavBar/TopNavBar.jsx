@@ -1,5 +1,4 @@
 "use client";
-
 import StyledLink from "next/link";
 import Image from "next/image";
 import logoImage from "../../../public/img/Logo-SopShop.png";

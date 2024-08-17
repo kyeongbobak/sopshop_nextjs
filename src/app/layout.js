@@ -1,4 +1,5 @@
 import TopNavBar from "../components/TopNavBar/TopNavBar";
+import SideBar from "../components/SideBar/SideBar";
 import Footer from "../components/Footer/Footer";
 import "../styles/global.css";
 
@@ -12,6 +13,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <TopNavBar />
+        <SideBar />
         {children}
         <Footer />
       </body>

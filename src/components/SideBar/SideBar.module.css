@@ -1,0 +1,37 @@
+.wrapper {
+  width: 170px;
+  margin-left: 1%;
+  position: fixed;
+  font-size: var(--font-md-size);
+}
+
+.sideMenu {
+  font-size: var(--font-md-size);
+  padding-left: 70px;
+}
+
+.sideMenuItem {
+  margin-top: 15px;
+  font-weight: var(--font-light);
+}
+
+.sideMenuItemWrapper {
+  margin-top: 80px;
+}
+
+.brandSidedMenu {
+  margin: 40px 0 0 25px;
+}
+
+.brandSideMenuItem {
+  margin-top: 15px;
+}
+
+.brandSideMenuItemLink {
+  color: var(--black-color);
+  margin-top: 15px;
+}
+
+.active {
+  color: var(--main-color);
+}
