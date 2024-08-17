@@ -27,25 +27,25 @@ export default function TopNavBar() {
       </ul>
       {slideState && (
         <>
-          <div className={`${styles.sideNavBarOverLay} ${styles[slideState]}`} onClick={() => setSlideState("slideOut")}></div>
-          <div className={`${styles.sideNavBar} ${styles[slideState]}`}>
-            <ul>
-              <li>
+          <div className={`${styles.sideMenuOverLay} ${styles[slideState]}`} onClick={() => setSlideState("slideOut")}></div>
+          <div className={`${styles.sideMenu} ${styles[slideState]}`}>
+            <ul className={styles.sideMenuInner}>
+              <li className={styles.sideMenuItem}>
                 <button>
                   <StyledLink href={""}>Login</StyledLink>
                 </button>
               </li>
-              <li>
+              <li className={styles.sideMenuItem}>
                 <button>
                   <StyledLink href={""}>Join</StyledLink>
                 </button>
               </li>
-              <li>
+              <li className={styles.sideMenuItem}>
                 <button>
-                  <StyledLink href={""}>My</StyledLink>
+                  <StyledLink href={""}>My Page</StyledLink>
                 </button>
               </li>
-              <li>
+              <li className={styles.sideMenuItem}>
                 <button>
                   <StyledLink href={""}>Order</StyledLink>
                 </button>
