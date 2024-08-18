@@ -10,3 +10,14 @@ export const getProducts = async () => {
     console.log(error);
   }
 };
+
+// 상품 검색하기
+export const search = async (searchKeyword) => {
+  try {
+    const res = await Instance.get(`/api/v1/products/?search=${searchKeyword}`);
+
+    return res.data;
+  } catch (error) {
+    console.error(error);
+  }
+};

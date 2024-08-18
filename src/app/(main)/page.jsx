@@ -4,13 +4,14 @@ import styles from "./main.module.css";
 
 export default async function main() {
   const products = await getProducts();
+
   const product = products.results || [];
 
   return (
     <div>
       <ul className={styles.productList}>
-        {product.map((product) => (
-          <ProductItem key={product.id} productId={product.product_id} productImage={product.image} productBrandName={product.store_name} productName={product.product_name} productPrice={product.price} />
+        {product.map((product, index) => (
+          <ProductItem key={index} productId={product.product_id} productImage={product.image} productBrandName={product.store_name} productName={product.product_name} productPrice={product.price} />
         ))}
       </ul>
     </div>
