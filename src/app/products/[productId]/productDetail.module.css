@@ -1,0 +1,48 @@
+.wrapper {
+  width: 1400px;
+  margin: 0 auto;
+  padding-left: 11.5%;
+  display: flex;
+  gap: 50px;
+}
+
+.productDetailWrapper {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+.productImage {
+  object-fit: cover;
+}
+
+.productBrandName {
+  margin-bottom: 16px;
+  font-size: var(--font-md-size);
+  font-weight: var(--font-bold);
+}
+
+.productName {
+  font-family: "Pretendard";
+  font-size: var(--font-max-size);
+  font-weight: var(--font-extra-light);
+}
+
+.productPrice {
+  margin-top: 20px;
+  font-size: var(--font-max-size);
+}
+
+.productPrice span {
+  font-size: var(--font-lg-size);
+  font-weight: var(--font-light);
+}
+
+.productShippingInfo {
+  padding-bottom: 20px;
+  margin-top: 138px;
+  border-bottom: 1px solid var(--gray-color);
+  font-family: "Pretendard";
+  font-size: var(--font-md-size);
+  color: var(--black-color);
+}

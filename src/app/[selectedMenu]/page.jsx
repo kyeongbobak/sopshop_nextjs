@@ -4,6 +4,7 @@ import styles from "./selectedMenu.module.css";
 
 export default async function selectedMenu({ params }) {
   const { selectedMenu } = params;
+  console.log(params);
   const brandProducts = await getProducts();
   const decodedString = selectedMenu.replace(/%20/g, " ");
   const selectedBrandProducts = brandProducts.results.filter((i) => i.store_name === decodedString);
