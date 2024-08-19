@@ -12,7 +12,7 @@ export default function ProductItem({ productId, productImage, productBrandName,
       <StyledLink href={`products/${productId}`}>
         <p className={styles.productName}>{productName}</p>
       </StyledLink>
-      <p className={styles.productPrice}>{productPrice}</p>
+      <p className={styles.productPrice}>{productPrice.toLocaleString()}</p>
     </li>
   );
 }

@@ -10,37 +10,37 @@ export default function SideBar() {
     <div className={styles.wrapper}>
       <ul className={styles.sideMenu}>
         <li className={styles.sideMenuItem}>
-          <StyledLink href={"/"}>About</StyledLink>
+          <StyledLink href={"/About"}>About</StyledLink>
         </li>
         <li className={styles.sideMenuItem}>
-          <StyledLink href={"/"}>Shop</StyledLink>
+          <StyledLink href={"/Shop"}>Shop</StyledLink>
         </li>
         <div className={styles.brandSidedMenu}>
           <li className={styles.brandSideMenuItem}>
-            <StyledLink className={`${selected === "FLOPS" ? styles.active : styles.brandSideMenuItemLInk} `} href={"/"} onClick={() => setSelected("FLOPS")}>
+            <StyledLink href={"/FLOPS"} className={`${selected === "FLOPS" ? styles.active : styles.brandSideMenuItemLInk} `} onClick={() => setSelected("FLOPS")}>
               FLOPS
             </StyledLink>
           </li>
           <li className={styles.brandSideMenuItem}>
-            <StyledLink className={`${selected === "Ditto" ? styles.active : styles.brandSideMenuItemLink} `} href={"/"} onClick={() => setSelected("Ditto")}>
+            <StyledLink href={"/Ditto"} className={`${selected === "Ditto" ? styles.active : styles.brandSideMenuItemLink} `} onClick={() => setSelected("Ditto")}>
               Ditto
             </StyledLink>
           </li>
           <li className={styles.brandSideMenuItem}>
-            <StyledLink className={`${selected === "Too_much_shop" ? styles.active : styles.brandSideMenuItemLink} `} href={"/"} onClick={() => setSelected("Too_much_shop")}>
+            <StyledLink href={"/Too_much_shop"} className={`${selected === "Too_much_shop" ? styles.active : styles.brandSideMenuItemLink} `} onClick={() => setSelected("Too_much_shop")}>
               Too_much_shop
             </StyledLink>
           </li>
         </div>
         <div className={styles.sideMenuItemWrapper}>
           <li className={styles.sideMenuItem}>
-            <StyledLink href={"/"}>Notice</StyledLink>
+            <StyledLink href={"/Notice"}>Notice</StyledLink>
           </li>
           <li className={styles.sideMenuItem}>
-            <StyledLink href={"/"}>Q & A</StyledLink>
+            <StyledLink href={"/Q and A"}>Q & A</StyledLink>
           </li>
           <li className={styles.sideMenuItem}>
-            <StyledLink href={"/"}>Review</StyledLink>
+            <StyledLink href={"/Review"}>Review</StyledLink>
           </li>
         </div>
       </ul>

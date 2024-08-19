@@ -1,0 +1,27 @@
+.wrapper {
+  width: 1280px;
+  margin: 0 auto;
+  padding-left: 11.2%;
+}
+
+.selectedMenuName {
+  font-size: var(--font-md-size);
+}
+
+.contents {
+  width: 100%;
+  height: 300px;
+  margin-top: 10%;
+
+  color: var(--gray-color);
+  font-size: var(--font-md-size);
+  font-weight: var(--font-medium);
+  text-align: center;
+}
+
+.brandProductsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  margin-top: 50px;
+}
