@@ -1,16 +1,16 @@
-.wrapper {
-  padding: 30px 0;
+.productDetailsWrapper {
 }
 
-.countControlInner {
+.countControlWrapper {
   width: 150px;
   display: flex;
   align-items: center;
   text-align: center;
+  margin: 30px 0;
   border: 1px solid var(--gray-color);
 }
 
-.countControlInner p {
+.countControlWrapper p {
   width: 50px;
   padding: 15px 0;
   border-left: 1px solid var(--gray-color);
@@ -24,13 +24,9 @@
 
 .totalProductPriceWrapper {
   display: flex;
-  justify-content: space-between;
-  padding-top: 30px;
-}
-
-.totalProductPriceWrapper p {
   font-family: "Pretendard";
   font-size: var(--font-lg-size);
+  justify-content: space-between;
   margin-top: 210px;
 }
 
@@ -38,14 +34,13 @@
   display: flex;
 }
 
-.totalProductPriceInner strong {
-  font-weight: var(--font-extra-light);
+.totalProductPriceWrapper p {
+  font-family: "Pretendard";
+  font-size: var(--font-lg-size);
 }
 
-.totalProductCount {
-}
-
-.totalProductPriceCal {
+.totalProductPriceInner {
+  display: flex;
 }
 
 .totalProductPriceCal::before {

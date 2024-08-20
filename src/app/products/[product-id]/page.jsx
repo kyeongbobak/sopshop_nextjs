@@ -1,5 +1,5 @@
 import { getProductDetail } from "../../../api/Product";
-import CountControl from "../../../components/CountControl/CountControl";
+import ProductDetails from "../../../components/ProductDetails/ProductDetails";
 import Image from "next/image";
 import styles from "./product-detail.module.css";
 
@@ -18,7 +18,7 @@ export default async function productDetail({ params }) {
           {productInfo.price.toLocaleString()} <span>원</span>
         </p>
         <p className={styles.productShippingInfo}>{productInfo.shipping_method}</p>
-        <CountControl stock={productInfo.stock} price={productInfo.price} />
+        <ProductDetails stock={productInfo.stock} price={productInfo.price} />
       </div>
     </div>
   );
