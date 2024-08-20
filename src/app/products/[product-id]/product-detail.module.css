@@ -2,11 +2,15 @@
   width: 1400px;
   margin: 0 auto;
   padding-left: 11.5%;
+}
+
+.productDetailWrapper {
+  width: 100%;
   display: flex;
   gap: 50px;
 }
 
-.productDetailWrapper {
+.productDetailInner {
   width: 600px;
   display: flex;
   flex-direction: column;
@@ -45,4 +49,8 @@
   font-family: "Pretendard";
   font-size: var(--font-md-size);
   color: var(--black-color);
+}
+
+.productOrderSummery {
+  margin-top: auto;
 }

@@ -1,11 +1,12 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import minusIcon from "../../../public/img/icon-minus-line.png";
-import plusIcon from "../../../public/img/icon-plus-line.png";
-import styles from "./ProductDetails.module.css";
+import minusIcon from "../../../../public/img/icon-minus-line.png";
+import plusIcon from "../../../../public/img/icon-plus-line.png";
+import styles from "./ProductDetailsPanel.module.css";
 
-function CountControl({ stock, count, setCount }) {
+export function CountControl({ stock }) {
+  const [count, setCount] = useState(1);
   const handleOnCount = (increment) => {
     const newCount = count + increment;
     if (newCount < 1) {
@@ -30,10 +31,10 @@ function CountControl({ stock, count, setCount }) {
   );
 }
 
-function TotalProductPrice({ count, price }) {
+export function TotalProductPrice({ count, price }) {
   return (
     <div className={styles.totalProductPriceWrapper}>
-      <p>총 상품 금액</p>
+      <p>Total Price</p>
       <div className={styles.totalProductPriceInner}>
         <p>
           총 수량 <strong>{count}</strong> 개
@@ -46,16 +47,15 @@ function TotalProductPrice({ count, price }) {
   );
 }
 
-function ProductDetails({ stock, price }) {
+function ProductDetailsPanel({ stock, price }) {
   const [count, setCount] = useState(1);
-  console.log(stock);
-  console.log(price);
+
   return (
-    <div className={styles.ProductDetailsWrapper}>
+    <div>
       <CountControl stock={stock} count={count} setCount={setCount} />
       <TotalProductPrice price={price} count={count} />
     </div>
   );
 }
 
-export default ProductDetails;
+export default ProductDetailsPanel;
