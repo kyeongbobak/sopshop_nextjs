@@ -3,7 +3,7 @@ import StyledLink from "next/link";
 import Image from "next/image";
 import logoImage from "../../../public/img/Logo-SopShop.png";
 import menuBtnImage from "../../../public/img/menu_icon.png";
-import styles from "../TopNavBar/TopNavBar.module.css";
+import styles from "./TopNavBar.module.css";
 import { useState } from "react";
 
 export default function TopNavBar() {

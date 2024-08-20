@@ -1,9 +1,10 @@
 import { search } from "../../../api/Product";
 import ProductItem from "../../../components/ProductItem/ProductItem";
-import styles from "./searchResults.module.css";
+import styles from "./search-results.module.css";
 
-export default async function searchResults({ params }) {
-  const { searchKeyword } = params;
+export default async function SearchResults({ params }) {
+  console.log(params);
+  const { "search-keyword": searchKeyword } = params;
 
   const decodedString = searchKeyword.replace(/%20/g, " ");
   const searchResults = await search(decodedString);

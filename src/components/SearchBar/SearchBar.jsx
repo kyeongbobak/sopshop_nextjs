@@ -15,7 +15,7 @@ export default function SearchBar() {
 
   const onSearchHandle = (e) => {
     e.preventDefault();
-    router.push(`/searchResults/${searchKeyword}`);
+    router.push(`/search-results/${searchKeyword}`);
   };
 
   return (
