@@ -1,5 +1,5 @@
-import ProductItem from "../../components/ProductItem/ProductItem";
-import { getProducts } from "../../api/Product";
+import ProductItem from "../../../components/ProductItem/ProductItem";
+import { getProducts } from "../../../api/Product";
 import styles from "./main.module.css";
 
 export default async function main() {

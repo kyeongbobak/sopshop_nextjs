@@ -31,7 +31,7 @@ export default function TopNavBar() {
             <ul className={styles.sideMenuInner}>
               <li className={styles.sideMenuItem}>
                 <button>
-                  <StyledLink href={""}>Login</StyledLink>
+                  <StyledLink href={"/login"}>Login</StyledLink>
                 </button>
               </li>
               <li className={styles.sideMenuItem}>

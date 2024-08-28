@@ -1,5 +1,5 @@
-import { getProducts } from "../../api/Product";
-import ProductItem from "../../components/ProductItem/ProductItem";
+import { getProducts } from "../../../api/Product";
+import ProductItem from "../../../components/ProductItem/ProductItem";
 import styles from "./selected-menu.module.css";
 
 export default async function SelectedMenu({ params }) {

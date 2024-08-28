@@ -1,5 +1,5 @@
-import { search } from "../../../api/Product";
-import ProductItem from "../../../components/ProductItem/ProductItem";
+import { search } from "../../../../api/Product";
+import ProductItem from "../../../../components/ProductItem/ProductItem";
 import styles from "./search-results.module.css";
 
 export default async function SearchResults({ params }) {

@@ -1,10 +1,10 @@
-import { getProductDetail } from "../../../api/Product";
-import ProductDetailsPanel from "../../../components/ProductDetails/ProductDetailsPanel/ProductDetailsPanel";
-import ProductDetailButtonActions from "../../../components/ProductDetails/ProductDetailsButtonActions/ProductDetailButtonActions";
+import { getProductDetail } from "../../../../api/Product";
+import ProductDetailsPanel from "../../../../components/ProductDetails/ProductDetailsPanel/ProductDetailsPanel";
+import ProductDetailButtonActions from "../../../../components/ProductDetails/ProductDetailsButtonActions/ProductDetailButtonActions";
 
 import Image from "next/image";
 import styles from "./product-detail.module.css";
-import ProductDetailsTabs from "../../../components/ProductDetails/ProductDetailsTabs/ProductDetailsTabs";
+import ProductDetailsTabs from "../../../../components/ProductDetails/ProductDetailsTabs/ProductDetailsTabs";
 
 export default async function productDetail({ params }) {
   const { "product-id": productId } = params;
