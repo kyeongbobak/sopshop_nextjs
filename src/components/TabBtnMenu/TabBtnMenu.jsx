@@ -1,13 +1,17 @@
 import styles from "./TabBtnMenu.module.css";
 
-export default function TabBtnMenu() {
+export default function TabBtnMenu({ isBuyer, setIsBuyer, content }) {
   return (
     <ul className={styles.tabMenuBtns}>
       <li className={styles.tabMenuBtnsItem}>
-        <button className={styles.tabBtn}>구매회원</button>
+        <button className={`${styles.tabBtn} ${isBuyer ? styles.active : ""}`} onClick={() => setIsBuyer(true)}>
+          구매회원 {content}
+        </button>
       </li>
       <li>
-        <button className={styles.tabBtn}>판매회원</button>
+        <button className={`${styles.tabBtn} ${isBuyer ? "" : styles.active}`} onClick={() => setIsBuyer(false)}>
+          판매회원 {content}
+        </button>
       </li>
     </ul>
   );

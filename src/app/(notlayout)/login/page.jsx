@@ -1,13 +1,21 @@
+"use client";
+
 import Image from "next/image";
+import StyledLink from "next/link";
 import logoImage from "../../../../public/img/Logo-SopShop.png";
 import TabBtnMenu from "../../../components/TabBtnMenu/TabBtnMenu";
 import styles from "./login.module.css";
+import { useState } from "react";
 
-export default async function login() {
+export default function login() {
+  const [isBuyer, setIsBuyer] = useState(true);
+
   return (
     <div className={styles.wrapper}>
-      <Image className={styles.logoImage} src={logoImage} />
-      <TabBtnMenu></TabBtnMenu>
+      <StyledLink className={styles.logoImage} href={"/"}>
+        <Image src={logoImage} />
+      </StyledLink>
+      <TabBtnMenu isBuyer={isBuyer} setIsBuyer={setIsBuyer} content={"로그인"} />
       <form className={styles.loginForm}>
         <label className="a11y-hidden" htmlFor="id">
           아이디
