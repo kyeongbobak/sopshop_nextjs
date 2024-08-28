@@ -107,12 +107,7 @@ a {
 
 ul,
 li {
-  padding: unset;
-  list-style: none;
-}
-
-ul,
-li {
+  margin: unset;
   padding: unset;
   list-style: none;
 }
