@@ -9,3 +9,13 @@ export const apiGet = async (url) => {
     console.log(error);
   }
 };
+
+export const apiPost = async (url, body) => {
+  try {
+    const res = await Instance.post(url, body);
+    console.log(res);
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
