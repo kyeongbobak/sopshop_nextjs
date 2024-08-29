@@ -6,6 +6,8 @@ export default async function SearchResults({ params }) {
   console.log(params);
   const { "search-keyword": searchKeyword } = params;
 
+  console.log(params);
+
   const decodedString = searchKeyword.replace(/%20/g, " ");
   const searchResults = await search(decodedString);
   const product = searchResults.results || [];
