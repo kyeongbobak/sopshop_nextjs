@@ -1,23 +1,23 @@
 "use client";
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import { userToken, isLogin, userType } from "../../../recoil/atoms";
-import { userLogin } from "../../../api/LoginOut";
-import Image from "next/image";
-import StyledLink from "next/link";
-import logoImage from "../../../../public/img/Logo-SopShop.png";
-import TabBtnMenu from "../../../components/TabBtnMenu/TabBtnMenu";
-import styles from "./login.module.css";
-import { useState } from "react";
+import { userToken, isLogin, userType } from "../../recoil/atoms";
 import { useSetRecoilState } from "recoil";
+import { userLogin } from "../../api/LoginOut";
+import { useRouter } from "next/navigation";
+import TabBtnMenu from "../TabBtnMenu/TabBtnMenu";
+import styles from "./LoginForm.module.css";
 
-export default function loginForm() {
+export default function LoginForm() {
   const [isBuyer, setIsBuyer] = useState(true);
 
   const setUserToken = useSetRecoilState(userToken);
   const setIsLogin = useSetRecoilState(isLogin);
   const setUserType = useSetRecoilState(userType);
+
+  const router = useRouter();
 
   const {
     register,
@@ -31,9 +31,7 @@ export default function loginForm() {
       setUserToken(data.token);
       setIsLogin(true);
       setUserType(data.login_type);
-    },
-    onError: (error) => {
-      console.log(error);
+      router.push(`/`);
     },
   });
 
@@ -43,10 +41,7 @@ export default function loginForm() {
   };
 
   return (
-    <div className={styles.wrapper}>
-      <StyledLink className={styles.logoImage} href={"/"}>
-        <Image src={logoImage} alt="logoImage" priority />
-      </StyledLink>
+    <>
       <TabBtnMenu isBuyer={isBuyer} setIsBuyer={setIsBuyer} content={"로그인"} />
       <form className={styles.loginForm} onSubmit={handleSubmit(handleOnLogin)}>
         <label className="a11y-hidden" htmlFor="username">
@@ -74,9 +69,9 @@ export default function loginForm() {
         />
         {errors.userPassword && <p className={styles.errorMessage}>{errors.userPassword.message}</p>}
         <button className={styles.LoginBtn} type="submit">
-          Login
+          LOGIN
         </button>
       </form>
-    </div>
+    </>
   );
 }

@@ -1,0 +1,47 @@
+.wrapper {
+  width: 550px;
+  margin: 200px auto;
+}
+
+.logoImage {
+  display: block;
+  text-align: center;
+  margin-bottom: 70px;
+  cursor: pointer;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  width: 552px;
+  border: 1px solid var(--gray-color);
+  border-top: none;
+  padding: 35px;
+  margin-top: -1px;
+  box-sizing: border-box;
+  font-family: "Pretendard";
+}
+
+.styledInput {
+  border-bottom: 1px solid var(--gray-color);
+  margin-bottom: 13px;
+  padding: 20px 0;
+  font-size: var(--font-md-size);
+}
+
+.LoginBtn {
+  margin-top: 20px;
+  padding: 20px 213px;
+  background-color: var(--black-color);
+  color: white;
+  font-family: "GmarketSans";
+  font-size: var(--font-min-size);
+  font-weight: var(--font-bold);
+}
+
+.errorMessage {
+  color: red;
+  font-family: "Pretendard";
+  font-weight: var(--font-medium);
+  font-size: var(--font-sm-size);
+}
