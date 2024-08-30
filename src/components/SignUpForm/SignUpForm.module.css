@@ -1,0 +1,88 @@
+.signupForm {
+  display: flex;
+  flex-direction: column;
+  width: 552px;
+  border: 1px solid var(--gray-color);
+
+  padding: 35px;
+  margin-top: -1px;
+  box-sizing: border-box;
+  font-family: "Pretendard";
+}
+
+.sellerSignUpForm {
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.styleLabel {
+  padding: 12px 0;
+  font-size: var(--font-md-size);
+}
+
+.userIdWrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.styleInput {
+  height: 54px;
+  border: 1px solid var(--gray-color);
+  border-radius: 2px;
+  margin-bottom: 13px;
+}
+
+.userIdInput {
+  flex-grow: 1;
+  font-size: var(--font-md-size);
+}
+
+.confirmBtn {
+  height: 57px;
+  padding: 0px 37px;
+  border-radius: 5px;
+  background-color: var(--main-color);
+
+  font-size: var(--font-md-size);
+  color: var(--white-color);
+  text-align: center;
+}
+
+.phoneNumberWrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.phoneNumberInput {
+  width: 150px;
+  text-align: center;
+  font-size: var(--font-md-size);
+}
+
+.frontNumberInput {
+}
+
+.agreementWrapper {
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+  gap: 5px;
+  font-family: "Pretendard";
+  font-size: var(--font-min-size);
+  font-weight: var(--font-extra-light);
+}
+
+.agreementText span {
+  font-weight: var(--font-regular);
+}
+
+.signBtn {
+  margin-top: 20px;
+  padding: 20px 213px;
+  background-color: var(--black-color);
+  color: white;
+  font-family: "GmarketSans";
+  font-size: var(--font-min-size);
+  font-weight: var(--font-bold);
+}

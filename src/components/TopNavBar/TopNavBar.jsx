@@ -25,7 +25,7 @@ export default function TopNavBar() {
     onSuccess: () => {
       setIsLogin(false);
       localStorage.clear();
-      router.push(`/login`);
+      router.push(`/accountsetup/loginout`);
     },
     onError: () => {
       console.log(error);
@@ -59,19 +59,19 @@ export default function TopNavBar() {
               <li className={styles.sideMenuItem}>
                 {isLoginState ? (
                   <button>
-                    <StyledLink href={"/login"} onClick={() => handleOnLogout()}>
+                    <StyledLink href={"/accountsetup/loginout"} onClick={() => handleOnLogout()}>
                       Logout
                     </StyledLink>
                   </button>
                 ) : (
                   <button>
-                    <StyledLink href={"/login"}>Login</StyledLink>
+                    <StyledLink href={"/accountsetup/loginout"}>Login</StyledLink>
                   </button>
                 )}
               </li>
               <li className={styles.sideMenuItem}>
                 <button>
-                  <StyledLink href={""}>Join</StyledLink>
+                  <StyledLink href={"/accountsetup/signup"}>Join</StyledLink>
                 </button>
               </li>
               <li className={styles.sideMenuItem}>
