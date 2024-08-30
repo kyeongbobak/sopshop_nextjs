@@ -82,3 +82,23 @@
     transform: translateX(100%);
   }
 }
+
+.sellerCenterNavigateBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 140px;
+  padding: 10px;
+  background-color: var(--main-color);
+}
+
+.sellerCenterNavigateBtn span {
+  color: white;
+  font-family: "Pretendard";
+  font-size: var(--font-md-size);
+  font-weight: var(--font-light);
+}
+
+.LoginOutNavigateBtn {
+}
