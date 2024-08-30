@@ -12,7 +12,6 @@ import styles from "./TopNavBar.module.css";
 export default function TopNavBar() {
   const [slideState, setSlideState] = useState(null);
   const isLoginState = useRecoilValue(isLogin);
-  console.log(isLoginState);
 
   return (
     <div className={styles.wrapper}>
@@ -35,9 +34,15 @@ export default function TopNavBar() {
           <div className={`${styles.sideMenu} ${styles[slideState]}`}>
             <ul className={styles.sideMenuInner}>
               <li className={styles.sideMenuItem}>
-                <button>
-                  <StyledLink href={"/login"}>Login</StyledLink>
-                </button>
+                {isLoginState ? (
+                  <button>
+                    <StyledLink href={"/login"}>Logout</StyledLink>
+                  </button>
+                ) : (
+                  <button>
+                    <StyledLink href={"/login"}>Login</StyledLink>
+                  </button>
+                )}
               </li>
               <li className={styles.sideMenuItem}>
                 <button>
