@@ -45,3 +45,9 @@
   font-weight: var(--font-medium);
   font-size: var(--font-sm-size);
 }
+
+.signUpNavigateBtn span {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}

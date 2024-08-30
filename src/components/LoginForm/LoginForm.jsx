@@ -7,6 +7,7 @@ import { userToken, isLogin, userType } from "../../recoil/atoms";
 import { useSetRecoilState } from "recoil";
 import { userLogin } from "../../api/LoginOut";
 import { useRouter } from "next/navigation";
+import StyledLink from "next/link";
 import TabBtnMenu from "../TabBtnMenu/TabBtnMenu";
 import styles from "./LoginForm.module.css";
 
@@ -72,6 +73,11 @@ export default function LoginForm() {
           LOGIN
         </button>
       </form>
+      <div className={styles.signUpNavigateBtn}>
+        <StyledLink href={`/accountsetup/signup`}>
+          <span>CREATE ACCOUNT</span>
+        </StyledLink>
+      </div>
     </>
   );
 }
