@@ -1,8 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { useRecoilValue } from "recoil";
-import { isLogin } from "../../recoil/atoms";
+import { useMutation } from "@tanstack/react-query";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { isLogin, userToken } from "../../recoil/atoms";
+import { userLogout } from "../../api/LoginOut";
+import { useRouter } from "next/navigation";
 import StyledLink from "next/link";
 import Image from "next/image";
 import logoImage from "../../../public/img/Logo-SopShop.png";
@@ -12,6 +15,26 @@ import styles from "./TopNavBar.module.css";
 export default function TopNavBar() {
   const [slideState, setSlideState] = useState(null);
   const isLoginState = useRecoilValue(isLogin);
+
+  const setIsLogin = useSetRecoilState(isLogin);
+  const token = useRecoilValue(userToken);
+  const router = useRouter();
+
+  const logoutMutation = useMutation({
+    mutationFn: userLogout,
+    onSuccess: () => {
+      setIsLogin(false);
+      localStorage.clear();
+      router.push(`/login`);
+    },
+    onError: () => {
+      console.log(error);
+    },
+  });
+
+  const handleOnLogout = () => {
+    logoutMutation.mutate(token);
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -36,7 +59,9 @@ export default function TopNavBar() {
               <li className={styles.sideMenuItem}>
                 {isLoginState ? (
                   <button>
-                    <StyledLink href={"/login"}>Logout</StyledLink>
+                    <StyledLink href={"/login"} onClick={() => handleOnLogout()}>
+                      Logout
+                    </StyledLink>
                   </button>
                 ) : (
                   <button>

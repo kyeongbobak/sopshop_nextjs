@@ -10,9 +10,16 @@ export const apiGet = async (url) => {
   }
 };
 
-export const apiPost = async (url, body) => {
+export const apiPost = async (url, body, token) => {
   try {
-    const res = await Instance.post(url, body);
+    const config = token
+      ? {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      : undefined;
+    const res = await Instance.post(url, body, config);
     console.log(res);
     return res.data;
   } catch (error) {
