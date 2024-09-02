@@ -47,7 +47,7 @@
 }
 
 .signUpNavigateBtn span {
-  display: flex;
-  justify-content: center;
+  display: block;
+  text-align: center;
   margin-top: 20px;
 }

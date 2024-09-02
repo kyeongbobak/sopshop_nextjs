@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { isLogin, userToken, userType } from "../../recoil/atoms";
@@ -14,6 +14,7 @@ import shoppingBagIcon from "../../../public/img/icon-shopping-bag.png";
 import styles from "./TopNavBar.module.css";
 
 export default function TopNavBar() {
+  const [hasMounted, setHasMounted] = useState(false);
   const [slideState, setSlideState] = useState(null);
   const isLoginState = useRecoilValue(isLogin);
 
@@ -38,12 +39,19 @@ export default function TopNavBar() {
     logoutMutation.mutate(token);
   };
 
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  if (!hasMounted) {
+    return null;
+  }
+
   return (
     <div className={styles.wrapper}>
       <StyledLink href={"/"}>
         <Image className={styles.logoImage} src={logoImage} alt="Logo" priority />
       </StyledLink>
-
       {userTypeState === "BUYER" ? (
         <>
           <ul className={styles.navBar}>
@@ -99,7 +107,7 @@ export default function TopNavBar() {
           <ul className={styles.navBar}>
             <li>
               <button className={styles.sellerCenterNavigateBtn}>
-                <Image src={shoppingBagIcon} alt="shoppingBagIcon" width={24} />
+                <Image src={shoppingBagIcon} alt="shoppingBagIcon" width={24} priority />
                 <StyledLink href={"/"}>
                   <span>판매자 센터</span>
                 </StyledLink>
