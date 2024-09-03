@@ -44,6 +44,7 @@ export default function TopNavBar() {
 
   useEffect(() => {
     setHasMounted(true);
+    d;
   }, []);
 
   if (!hasMounted) {
@@ -69,7 +70,7 @@ export default function TopNavBar() {
             <li>
               {isLoginState ? (
                 <button>
-                  <StyledLink href={"/accountsetup/loginout"}>Logout</StyledLink>
+                  <StyledLink href={"/accountsetup/l새oginout"}>Logout</StyledLink>
                 </button>
               ) : (
                 <button>

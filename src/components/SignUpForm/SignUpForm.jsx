@@ -35,7 +35,7 @@ export default function SignUpForm() {
 
   // 비밀번호 유효성 검사
   useEffect(() => {
-    if (userPassword && userPasswordConfirm) {
+    if (userPassword && userPassword) {
       if (userPassword !== userPasswordConfirm) {
         setError("passwordConfirm", {
           type: "password-mismatch",
@@ -56,9 +56,9 @@ export default function SignUpForm() {
           type: "password-Pattern",
           message: "비밀번호는 한 개 이상의 숫자가 필수적으로 들어가야 합니다.",
         });
-      } else {
-        clearErrors("passwordConfirm");
       }
+    } else {
+      clearErrors("passwordConfirm");
     }
   }, [setError, clearErrors, userPassword, userPasswordConfirm]);
 
@@ -102,7 +102,7 @@ export default function SignUpForm() {
           비밀번호
         </label>
         <input
-          type="text"
+          type="password"
           {...register("password", {
             required: "비밀번호를 입력해주세요.",
           })}
@@ -112,7 +112,7 @@ export default function SignUpForm() {
         <label className={styles.styledLabel} htmlFor="">
           비밀번호 재확인
         </label>
-        <input type="text" {...register("passwordConfirm")} className={styles.styledInput} />
+        <input type="password" {...register("passwordConfirm")} className={styles.styledInput} />
         {errors.passwordConfirm && <p className={styles.errorMessage}>{errors.passwordConfirm.message}</p>}
         <label className={styles.styledLabel} htmlFor="">
           이름
