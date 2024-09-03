@@ -35,11 +35,11 @@ export default function SignUpForm() {
 
   // 비밀번호 유효성 검사
   useEffect(() => {
-    if (userPassword || userPasswordConfirm) {
+    if (userPassword && userPasswordConfirm) {
       if (userPassword !== userPasswordConfirm) {
         setError("passwordConfirm", {
           type: "password-mismatch",
-          message: "비밀번호가 일치하지 않습니다.",
+          message: "비밀번호가 일치하지 않습니다",
         });
       } else if (userPassword.length < 8) {
         setError("passwordConfirm", {
@@ -48,19 +48,19 @@ export default function SignUpForm() {
         });
       } else if (userPassword.search(/[a-z]/gi) < 0) {
         setError("passwordConfirm", {
-          type: "password-pattern",
+          type: "password-Pattern",
           message: "비밀번호는 한 개 이상의 영소문자가 필수적으로 들어가야 합니다.",
         });
       } else if (userPassword.search(/[0-9]/gi) < 0) {
         setError("passwordConfirm", {
-          type: "password-pattern",
+          type: "password-Pattern",
           message: "비밀번호는 한 개 이상의 숫자가 필수적으로 들어가야 합니다.",
         });
       } else {
-        clearErrors("");
+        clearErrors("passwordConfirm");
       }
     }
-  }, [setError, userPassword, userPasswordConfirm]);
+  }, [setError, clearErrors, userPassword, userPasswordConfirm]);
 
   const verifyUserName = async () => {
     const body = {
@@ -112,14 +112,8 @@ export default function SignUpForm() {
         <label className={styles.styledLabel} htmlFor="">
           비밀번호 재확인
         </label>
-        <input
-          type="text"
-          {...register("passwordConfirm", {
-            required: "비밀번호를 입력해주세요.",
-          })}
-          className={styles.styledInput}
-        />
-        {errors.passwordConfirm && <p className={styles.errorMessage}>{errors.passwordConfirm?.message}</p>}
+        <input type="text" {...register("passwordConfirm")} className={styles.styledInput} />
+        {errors.passwordConfirm && <p className={styles.errorMessage}>{errors.passwordConfirm.message}</p>}
         <label className={styles.styledLabel} htmlFor="">
           이름
         </label>

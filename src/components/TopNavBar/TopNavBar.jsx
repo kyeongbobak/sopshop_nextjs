@@ -16,12 +16,15 @@ import styles from "./TopNavBar.module.css";
 export default function TopNavBar() {
   const [hasMounted, setHasMounted] = useState(false);
   const [slideState, setSlideState] = useState(null);
-  const isLoginState = useRecoilValue(isLogin);
 
+  const isLoginState = useRecoilValue(isLogin);
   const setIsLogin = useSetRecoilState(isLogin);
   const token = useRecoilValue(userToken);
   const userTypeState = useRecoilValue(userType);
   const router = useRouter();
+
+  console.log(isLoginState);
+  console.log(userTypeState);
 
   const logoutMutation = useMutation({
     mutationFn: userLogout,
@@ -52,7 +55,31 @@ export default function TopNavBar() {
       <StyledLink href={"/"}>
         <Image className={styles.logoImage} src={logoImage} alt="Logo" priority />
       </StyledLink>
-      {userTypeState === "BUYER" ? (
+      {userTypeState === "SELLER" ? (
+        <>
+          <ul className={styles.navBar}>
+            <li>
+              <button className={styles.navBtn}>
+                <Image src={shoppingBagIcon} alt="shoppingBagIcon" width={24} priority />
+                <StyledLink href={"/"}>
+                  <span>판매자 센터</span>
+                </StyledLink>
+              </button>
+            </li>
+            <li>
+              {isLoginState ? (
+                <button>
+                  <StyledLink href={"/accountsetup/loginout"}>Logout</StyledLink>
+                </button>
+              ) : (
+                <button>
+                  <StyledLink href={"/accountsetup/loginout"}>Login</StyledLink>
+                </button>
+              )}
+            </li>
+          </ul>
+        </>
+      ) : (
         <>
           <ul className={styles.navBar}>
             <li>
@@ -101,30 +128,6 @@ export default function TopNavBar() {
               </div>
             </>
           )}
-        </>
-      ) : (
-        <>
-          <ul className={styles.navBar}>
-            <li>
-              <button className={styles.navBtn}>
-                <Image src={shoppingBagIcon} alt="shoppingBagIcon" width={24} priority />
-                <StyledLink href={"/"}>
-                  <span>판매자 센터</span>
-                </StyledLink>
-              </button>
-            </li>
-            <li>
-              {isLoginState ? (
-                <button>
-                  <StyledLink href={"/accountsetup/loginout"}>Logout</StyledLink>
-                </button>
-              ) : (
-                <button>
-                  <StyledLink href={"/accountsetup/loginout"}>Login</StyledLink>
-                </button>
-              )}
-            </li>
-          </ul>
         </>
       )}
     </div>
