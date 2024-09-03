@@ -83,7 +83,7 @@
   }
 }
 
-.sellerCenterNavigateBtn {
+.navBtn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -93,12 +93,9 @@
   background-color: var(--main-color);
 }
 
-.sellerCenterNavigateBtn span {
+.navBtn span {
   color: white;
   font-family: "Pretendard";
   font-size: var(--font-md-size);
   font-weight: var(--font-light);
-}
-
-.LoginOutNavigateBtn {
 }

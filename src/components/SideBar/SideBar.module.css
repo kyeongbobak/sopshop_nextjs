@@ -19,15 +19,15 @@
   margin-top: 80px;
 }
 
-.brandSidedMenu {
+.brandMenu {
   margin: 40px 0 0 25px;
 }
 
-.brandSideMenuItem {
+.brandMenuItem {
   margin-top: 15px;
 }
 
-.brandSideMenuItemLink {
+.brandMenuItemLink {
   color: var(--black-color);
   margin-top: 15px;
 }

@@ -11,6 +11,7 @@ export const apiGet = async (url) => {
 };
 
 export const apiPost = async (url, body, token) => {
+  console.log(body);
   try {
     const config = token
       ? {

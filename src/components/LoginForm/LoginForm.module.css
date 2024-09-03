@@ -10,7 +10,7 @@
   cursor: pointer;
 }
 
-.loginForm {
+.form {
   display: flex;
   flex-direction: column;
   width: 552px;
@@ -29,7 +29,7 @@
   font-size: var(--font-md-size);
 }
 
-.LoginBtn {
+.submitBtn {
   margin-top: 20px;
   padding: 20px 213px;
   background-color: var(--black-color);
@@ -46,7 +46,7 @@
   font-size: var(--font-sm-size);
 }
 
-.signUpNavigateBtn span {
+.navigationBtn span {
   display: block;
   text-align: center;
   margin-top: 20px;

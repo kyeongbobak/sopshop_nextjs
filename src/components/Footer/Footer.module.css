@@ -11,18 +11,6 @@
   margin: 200px 0 22px;
 }
 
-.snsLinksWrapper a {
-  margin-right: 10px;
-}
-
-.topSection ul {
-  display: flex;
-}
-
-.topSection li {
-  cursor: pointer;
-}
-
 .topSection li + li::before {
   content: "|";
   display: inline-block;
@@ -30,7 +18,19 @@
   padding: 0 10px;
 }
 
-.snsIconImage {
+.navList {
+  display: flex;
+}
+
+.navList li {
+  cursor: pointer;
+}
+
+.IconList a {
+  margin-right: 10px;
+}
+
+.IconList img {
   width: 32px;
 }
 

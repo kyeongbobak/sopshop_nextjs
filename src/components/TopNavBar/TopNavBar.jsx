@@ -106,20 +106,20 @@ export default function TopNavBar() {
         <>
           <ul className={styles.navBar}>
             <li>
-              <button className={styles.sellerCenterNavigateBtn}>
+              <button className={styles.navBtn}>
                 <Image src={shoppingBagIcon} alt="shoppingBagIcon" width={24} priority />
                 <StyledLink href={"/"}>
                   <span>판매자 센터</span>
                 </StyledLink>
               </button>
             </li>
-            <li className={styles.NavBarItem}>
+            <li>
               {isLoginState ? (
-                <button className={styles.LoginOutNavigateBtn}>
+                <button>
                   <StyledLink href={"/accountsetup/loginout"}>Logout</StyledLink>
                 </button>
               ) : (
-                <button className={styles.LoginOutNavigateBtn}>
+                <button>
                   <StyledLink href={"/accountsetup/loginout"}>Login</StyledLink>
                 </button>
               )}

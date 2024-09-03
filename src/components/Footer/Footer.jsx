@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <div className={styles.wrapper}>
       <section className={styles.topSection}>
-        <ul className={styles.footerLinksWrapper}>
+        <ul className={styles.navList}>
           <li>
             <StyledLink href="">회사소개</StyledLink>
           </li>
@@ -29,15 +29,15 @@ export default function Footer() {
             <StyledLink href="">제휴문의</StyledLink>
           </li>
         </ul>
-        <ul className={styles.snsLinksWrapper}>
+        <ul className={styles.IconList}>
           <StyledLink href="">
-            <Image src={instaIcon} className={styles.snsIconImage} alt="instaIcon" />
+            <Image src={instaIcon} className={styles.snsIconImage} alt="instaIcon" priority />
           </StyledLink>
           <StyledLink href="">
-            <Image src={fbIcon} className={styles.snsIconImage} alt="fbIcon" />
+            <Image src={fbIcon} className={styles.snsIconImage} alt="fbIcon" priority />
           </StyledLink>
           <StyledLink href="">
-            <Image src={ytIcon} className={styles.snsIconImage} alt="tyIcon" />
+            <Image src={ytIcon} className={styles.snsIconImage} alt="tyIcon" priority />
           </StyledLink>
         </ul>
       </section>

@@ -21,11 +21,11 @@ export function CountControl({ stock }) {
   return (
     <div className={styles.countControlWrapper}>
       <button className={styles.countControlBtn} onClick={() => handleOnCount(-1)}>
-        <Image src={minusIcon} alt="minus-icon" />
+        <Image src={minusIcon} alt="minus-icon" priority />
       </button>
       <p className={styles.count}>{count}</p>
       <button className={styles.countControlBtn} onClick={() => handleOnCount(+1)}>
-        <Image src={plusIcon} alt="plus-icon" />
+        <Image src={plusIcon} alt="plus-icon" priority />
       </button>
     </div>
   );

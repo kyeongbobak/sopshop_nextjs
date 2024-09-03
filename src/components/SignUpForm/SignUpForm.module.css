@@ -1,4 +1,4 @@
-.signupForm {
+.form {
   display: flex;
   flex-direction: column;
   width: 552px;
@@ -16,7 +16,7 @@
   flex-direction: column;
 }
 
-.styleLabel {
+.styledLabel {
   padding: 12px 0;
   font-size: var(--font-md-size);
 }
@@ -26,7 +26,7 @@
   gap: 8px;
 }
 
-.styleInput {
+.styledInput {
   height: 54px;
   border: 1px solid var(--gray-color);
   border-radius: 2px;
@@ -38,12 +38,18 @@
   font-size: var(--font-md-size);
 }
 
-.confirmBtn {
+.errorMessage {
+  color: red;
+  font-family: "Pretendard";
+  font-weight: var(--font-medium);
+  font-size: var(--font-sm-size);
+}
+
+.actionBtn {
   height: 57px;
   padding: 0px 37px;
   border-radius: 5px;
   background-color: var(--main-color);
-
   font-size: var(--font-md-size);
   color: var(--white-color);
   text-align: center;
@@ -60,10 +66,50 @@
   font-size: var(--font-md-size);
 }
 
-.frontNumberInput {
+.selectBtn {
+  position: relative;
 }
 
-.agreementWrapper {
+.selectBtn img {
+  position: absolute;
+  margin-left: -28px;
+  margin-top: -13px;
+}
+
+.dropDownMenu {
+  width: 155px;
+  height: 150px;
+  border: 1px solid var(--gray-color);
+  border-radius: 5px;
+  font-size: var(--font-md-size);
+  overflow-y: auto;
+  position: absolute;
+  background-color: white;
+}
+
+.dropDownMenu::-webkit-scrollbar {
+  width: 12px;
+}
+
+.dropDownMenu::-webkit-scrollbar-track {
+  background: var(--light-gray-color);
+}
+
+.dropDownMenu::-webkit-scrollbar-thumb {
+  background: var(--gray-color);
+  border: 3px solid transparent;
+  border-radius: 10px;
+  background-clip: padding-box;
+}
+
+.dropDownMenu li {
+  text-align: center;
+  cursor: pointer;
+  padding: 10px 0px;
+  margin-left: 10px;
+}
+
+.otherSectionWrapper {
   display: flex;
   align-items: center;
   padding-top: 20px;

@@ -44,7 +44,7 @@ export default function LoginForm() {
   return (
     <>
       <TabBtnMenu isBuyer={isBuyer} setIsBuyer={setIsBuyer} content={"로그인"} />
-      <form className={styles.loginForm} onSubmit={handleSubmit(handleOnLogin)}>
+      <form className={styles.form} onSubmit={handleSubmit(handleOnLogin)}>
         <label className="a11y-hidden" htmlFor="username">
           아이디
         </label>
@@ -69,11 +69,11 @@ export default function LoginForm() {
           })}
         />
         {errors.userPassword && <p className={styles.errorMessage}>{errors.userPassword.message}</p>}
-        <button className={styles.LoginBtn} type="submit">
+        <button className={styles.submitBtn} type="submit">
           LOGIN
         </button>
       </form>
-      <div className={styles.signUpNavigateBtn}>
+      <div className={styles.navigationBtn}>
         <StyledLink href={`/accountsetup/signup`}>
           <span>CREATE ACCOUNT</span>
         </StyledLink>

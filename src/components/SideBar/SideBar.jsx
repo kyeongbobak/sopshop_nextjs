@@ -15,19 +15,19 @@ export default function SideBar() {
         <li className={styles.sideMenuItem}>
           <StyledLink href={"/Shop"}>Shop</StyledLink>
         </li>
-        <div className={styles.brandSidedMenu}>
-          <li className={styles.brandSideMenuItem}>
-            <StyledLink href={"/FLOPS"} className={`${selected === "FLOPS" ? styles.active : styles.brandSideMenuItemLInk} `} onClick={() => setSelected("FLOPS")}>
+        <div className={styles.brandMenu}>
+          <li className={styles.brandMenuItem}>
+            <StyledLink href={"/FLOPS"} className={`${selected === "FLOPS" ? styles.active : styles.brandMenuItemLInk} `} onClick={() => setSelected("FLOPS")}>
               FLOPS
             </StyledLink>
           </li>
-          <li className={styles.brandSideMenuItem}>
-            <StyledLink href={"/Ditto"} className={`${selected === "Ditto" ? styles.active : styles.brandSideMenuItemLink} `} onClick={() => setSelected("Ditto")}>
+          <li className={styles.brandMenuItem}>
+            <StyledLink href={"/Ditto"} className={`${selected === "Ditto" ? styles.active : styles.brandMenuItemLink} `} onClick={() => setSelected("Ditto")}>
               Ditto
             </StyledLink>
           </li>
-          <li className={styles.brandSideMenuItem}>
-            <StyledLink href={"/Too_much_shop"} className={`${selected === "Too_much_shop" ? styles.active : styles.brandSideMenuItemLink} `} onClick={() => setSelected("Too_much_shop")}>
+          <li className={styles.brandMenuItem}>
+            <StyledLink href={"/Too_much_shop"} className={`${selected === "Too_much_shop" ? styles.active : styles.brandMenuItemLink} `} onClick={() => setSelected("Too_much_shop")}>
               Too_much_shop
             </StyledLink>
           </li>

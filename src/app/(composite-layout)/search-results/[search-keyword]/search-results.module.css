@@ -4,15 +4,15 @@
   padding-left: 11.2%;
 }
 
-.searchResultCount {
+.searchResultSummary {
   font-size: var(--font-sm-size);
 }
 
-.searchResultCount strong {
+.searchResultSummary strong {
   font-weight: var(--font-regular);
 }
 
-.searchResultCount span {
+.searchResultSummary span {
   font-weight: var(--font-light);
 }
 

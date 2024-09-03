@@ -11,7 +11,7 @@ export default async function SearchResults({ params }) {
 
   return (
     <div className={styles.wrapper}>
-      <p className={styles.searchResultCount}>
+      <p className={styles.searchResultSummary}>
         <strong>{product.length}</strong>
         <span> 개의 검색 결과</span>
       </p>
