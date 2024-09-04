@@ -15,10 +15,9 @@ import styles from "./SignUpForm.module.css";
 export default function SignUpForm() {
   const [isBuyer, setIsBuyer] = useState(true);
   const [activeOption, setActiveOption] = useState(false);
+  const [validationMessage, setValidationMessage] = useState("");
 
   const token = useRecoilValue(userToken);
-
-  const frontNumberList = ["010", "011", "016", "017", "018", "019"];
 
   const {
     register,
@@ -31,43 +30,35 @@ export default function SignUpForm() {
     formState: { errors },
   } = useForm();
 
-  const userPassword = watch("password", "");
-  const userPasswordConfirm = watch("passwordConfirm", "");
   const userName = watch("username", "");
   const userFrontNumber = watch("frontNumber", "");
   const userMiddleNumber = watch("middleNumber", "");
   const userEndNumber = watch("endNumber", "");
 
+  const frontNumberList = ["010", "011", "016", "017", "018", "019"];
   const phoneNumber = [userFrontNumber, userMiddleNumber, userEndNumber].join("");
 
-  // 비밀번호 유효성 검사
-  useEffect(() => {
-    if (userPassword && userPassword) {
-      if (userPassword !== userPasswordConfirm) {
-        setError("passwordConfirm", {
-          type: "password-mismatch",
-          message: "비밀번호가 일치하지 않습니다",
-        });
-      } else if (userPassword.length < 8) {
-        setError("passwordConfirm", {
-          type: "password-maxlength",
-          message: "비밀번호는 8자 이상이어야 합니다.",
-        });
-      } else if (userPassword.search(/[a-z]/gi) < 0) {
-        setError("passwordConfirm", {
-          type: "password-Pattern",
-          message: "비밀번호는 한 개 이상의 영소문자가 필수적으로 들어가야 합니다.",
-        });
-      } else if (userPassword.search(/[0-9]/gi) < 0) {
-        setError("passwordConfirm", {
-          type: "password-Pattern",
-          message: "비밀번호는 한 개 이상의 숫자가 필수적으로 들어가야 합니다.",
-        });
+  // 게정 검증하기
+  const validateAccountMutation = useMutation({
+    mutationFn: validateAccount,
+    onSuccess: (data) => {
+      if (data.Success) {
+        setValidationMessage(data.Success);
+      } else if (data.FAIL_Message) {
+        setValidationMessage(data.FAIL_Message);
       }
-    } else {
-      clearErrors("passwordConfirm");
-    }
-  }, [setError, clearErrors, userPassword, userPasswordConfirm]);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  const verifyUserName = () => {
+    const body = {
+      username: `${userName}`,
+    };
+    validateAccountMutation.mutate(body, token);
+  };
 
   // 휴대폰 번호 유효성 검사
   useEffect(() => {
@@ -82,24 +73,6 @@ export default function SignUpForm() {
       }
     }
   }, [setError, clearErrors, phoneNumber, userMiddleNumber, userEndNumber]);
-
-  // 게정 검증하기
-  const validateAccountMutation = useMutation({
-    mutationFn: validateAccount,
-    onSuccess: (data) => {
-      console.log(data);
-    },
-    onError: (error) => {
-      console.log(error);
-    },
-  });
-
-  const verifyUserName = () => {
-    const body = {
-      username: `${userName}`,
-    };
-    validateAccountMutation.mutate(body, token);
-  };
 
   // 사업자 등록번호 검증하기
   const verifyCompanyNumberMutation = useMutation({
@@ -145,6 +118,7 @@ export default function SignUpForm() {
           </button>
         </div>
         {errors.username && <p className={styles.errorMessage}>{errors.username.message}</p>}
+        {validationMessage && <p className={styles.errorMessage}>{validationMessage}</p>}
         <label className={styles.styledLabel} htmlFor="">
           비밀번호
         </label>
@@ -152,6 +126,14 @@ export default function SignUpForm() {
           type="password"
           {...register("password", {
             required: "비밀번호를 입력해주세요.",
+            minLength: {
+              value: 8,
+              message: "비밀번호는 8자 이상이어야 합니다.",
+            },
+            validate: {
+              hasLowCase: (value) => /[a-z]/.test(value) || "비밀번호는 한 개 이상의 영소문자가 포함되어야 합니다.",
+              hasNumber: (value) => /[0-9]/.test(value) || "비밀번호는 한 개 이상의 숫자가 포함되어야 합니다.",
+            },
           })}
           className={styles.styledInput}
         />
@@ -159,7 +141,19 @@ export default function SignUpForm() {
         <label className={styles.styledLabel} htmlFor="">
           비밀번호 재확인
         </label>
-        <input className={styles.styledInput} type="password" {...register("passwordConfirm")} />
+        <input
+          className={styles.styledInput}
+          type="password"
+          {...register("passwordConfirm", {
+            required: "비밀번호를 확인해주세요.",
+            validate: {
+              matchPassword: (value) => {
+                const { password } = getValues();
+                return password === value || "비밀번호가 일치하지 않습니다.";
+              },
+            },
+          })}
+        />
         {errors.passwordConfirm && <p className={styles.errorMessage}>{errors.passwordConfirm.message}</p>}
         <label className={styles.styledLabel} htmlFor="">
           이름

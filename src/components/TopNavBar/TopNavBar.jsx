@@ -44,7 +44,6 @@ export default function TopNavBar() {
 
   useEffect(() => {
     setHasMounted(true);
-    d;
   }, []);
 
   if (!hasMounted) {
