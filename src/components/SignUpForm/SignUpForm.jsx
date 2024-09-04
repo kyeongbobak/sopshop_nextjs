@@ -10,6 +10,8 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import downArrow from "../../../public/img/icon-down-arrow.png";
 import upArrow from "../../../public/img/icon-up-arrow.png";
+import checkOffIcon from "../../../public/img/icon-check-off.png";
+import checkOnIcon from "../../../public/img/icon-check-on.png";
 import TabBtnMenu from "../TabBtnMenu/TabBtnMenu";
 import styles from "./SignUpForm.module.css";
 
@@ -34,6 +36,8 @@ export default function SignUpForm() {
     formState: { errors },
   } = useForm();
 
+  const userPassword = watch("password", "");
+  const userConfirmPassword = watch("password2", "");
   const userName = watch("username", "");
   const userFrontNumber = watch("frontNumber", "");
   const userMiddleNumber = watch("middleNumber", "");
@@ -125,7 +129,7 @@ export default function SignUpForm() {
         <label className={styles.styledLabel} htmlFor="">
           아이디
         </label>
-        <div className={styles.userIdWrapper}>
+        <div className={styles.userIdInputWrapper}>
           <input
             className={`${styles.styledInput} ${styles.userIdInput}`}
             type="text"
@@ -142,38 +146,44 @@ export default function SignUpForm() {
         <label className={styles.styledLabel} htmlFor="">
           비밀번호
         </label>
-        <input
-          type="password"
-          {...register("password", {
-            required: "비밀번호를 입력해주세요.",
-            minLength: {
-              value: 8,
-              message: "비밀번호는 8자 이상이어야 합니다.",
-            },
-            validate: {
-              hasLowCase: (value) => /[a-z]/.test(value) || "비밀번호는 한 개 이상의 영소문자가 포함되어야 합니다.",
-              hasNumber: (value) => /[0-9]/.test(value) || "비밀번호는 한 개 이상의 숫자가 포함되어야 합니다.",
-            },
-          })}
-          className={styles.styledInput}
-        />
+        <div className={styles.passwordInputWrapper}>
+          <input
+            type="password"
+            {...register("password", {
+              required: "비밀번호를 입력해주세요.",
+              minLength: {
+                value: 8,
+                message: "비밀번호는 8자 이상이어야 합니다.",
+              },
+              validate: {
+                hasLowCase: (value) => /[a-z]/.test(value) || "비밀번호는 한 개 이상의 영소문자가 포함되어야 합니다.",
+                hasNumber: (value) => /[0-9]/.test(value) || "비밀번호는 한 개 이상의 숫자가 포함되어야 합니다.",
+              },
+            })}
+            className={styles.styledInput}
+          />
+          {userPassword ? <Image src={checkOnIcon} alt="checkOnIcon" /> : <Image src={checkOffIcon} alt="checkOffIcon" />}
+        </div>
         {errors.password && <p className={styles.errorMessage}>{errors.password.message}</p>}
         <label className={styles.styledLabel} htmlFor="">
           비밀번호 재확인
         </label>
-        <input
-          className={styles.styledInput}
-          type="password"
-          {...register("password2", {
-            required: "비밀번호를 확인해주세요.",
-            validate: {
-              matchPassword: (value) => {
-                const { password } = getValues();
-                return password === value || "비밀번호가 일치하지 않습니다.";
+        <div className={styles.passwordInputWrapper}>
+          <input
+            className={styles.styledInput}
+            type="password"
+            {...register("password2", {
+              required: "비밀번호를 확인해주세요.",
+              validate: {
+                matchPassword: (value) => {
+                  const { password } = getValues();
+                  return password === value || "비밀번호가 일치하지 않습니다.";
+                },
               },
-            },
-          })}
-        />
+            })}
+          />
+          {userConfirmPassword ? <Image src={checkOnIcon} alt="checkOnIcon" /> : <Image src={checkOffIcon} alt="checkOffIcon" />}
+        </div>
         {errors.password2 && <p className={styles.errorMessage}>{errors.password2.message}</p>}
         <label className={styles.styledLabel} htmlFor="">
           이름

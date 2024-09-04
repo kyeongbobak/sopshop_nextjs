@@ -21,9 +21,14 @@
   font-size: var(--font-md-size);
 }
 
-.userIdWrapper {
+.userIdInputWrapper {
   display: flex;
   gap: 8px;
+}
+
+.passwordInputWrapper {
+  display: flex;
+  flex-direction: column;
 }
 
 .styledInput {
@@ -36,6 +41,11 @@
 .userIdInput {
   flex-grow: 1;
   font-size: var(--font-md-size);
+}
+
+.passwordInputWrapper img {
+  position: absolute;
+  margin: 15px 0px 0px 435px;
 }
 
 .errorMessage {
