@@ -129,7 +129,7 @@ export default function SignUpForm() {
         <label className={styles.styledLabel} htmlFor="">
           아이디
         </label>
-        <div className={styles.userIdInputWrapper}>
+        <div className={styles.inputWrapper}>
           <input
             className={`${styles.styledInput} ${styles.userIdInput}`}
             type="text"
@@ -243,7 +243,7 @@ export default function SignUpForm() {
             <label className={styles.styledLabel} htmlFor="">
               사업자 등록번호
             </label>
-            <div className={styles.userIdWrapper}>
+            <div className={styles.inputWrapper}>
               <input
                 className={`${styles.styledInput} ${styles.userIdInput}`}
                 type="text"

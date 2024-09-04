@@ -21,7 +21,7 @@
   font-size: var(--font-md-size);
 }
 
-.userIdInputWrapper {
+.inputWrapper {
   display: flex;
   gap: 8px;
 }
