@@ -3,9 +3,10 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import { validateAccount, validateCompanyNumber } from "../../api/Account";
+import { signUp, validateAccount, validateCompanyNumber } from "../../api/Account";
 import { userToken } from "../../recoil/atoms";
 import { useRecoilValue } from "recoil";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import downArrow from "../../../public/img/icon-down-arrow.png";
 import upArrow from "../../../public/img/icon-up-arrow.png";
@@ -15,9 +16,12 @@ import styles from "./SignUpForm.module.css";
 export default function SignUpForm() {
   const [isBuyer, setIsBuyer] = useState(true);
   const [activeOption, setActiveOption] = useState(false);
+  const [duplicateMessage, setDuplicateMessage] = useState("");
   const [validationMessage, setValidationMessage] = useState("");
 
   const token = useRecoilValue(userToken);
+
+  const router = useRouter();
 
   const {
     register,
@@ -36,16 +40,16 @@ export default function SignUpForm() {
   const userEndNumber = watch("endNumber", "");
 
   const frontNumberList = ["010", "011", "016", "017", "018", "019"];
-  const phoneNumber = [userFrontNumber, userMiddleNumber, userEndNumber].join("");
+  const phone_number = [userFrontNumber, userMiddleNumber, userEndNumber].join("");
 
-  // 게정 검증하기
+  // 계정 검증하기
   const validateAccountMutation = useMutation({
     mutationFn: validateAccount,
     onSuccess: (data) => {
       if (data.Success) {
-        setValidationMessage(data.Success);
+        setDuplicateMessage(data.Success);
       } else if (data.FAIL_Message) {
-        setValidationMessage(data.FAIL_Message);
+        setDuplicateMessage(data.FAIL_Message);
       }
     },
     onError: (error) => {
@@ -63,8 +67,8 @@ export default function SignUpForm() {
   // 휴대폰 번호 유효성 검사
   useEffect(() => {
     if (userMiddleNumber || userEndNumber) {
-      if (!/^\d{11}$/.test(phoneNumber) & phoneNumber) {
-        setError("phoneNumber", {
+      if (!/^\d{11}$/.test(phone_number) & phone_number) {
+        setError("phone_number", {
           type: "phoneNumber-maxlength",
           message: "휴대폰 번호는 10자리 또는 11자리 숫자여야 합니다.",
         });
@@ -72,13 +76,14 @@ export default function SignUpForm() {
         clearErrors("");
       }
     }
-  }, [setError, clearErrors, phoneNumber, userMiddleNumber, userEndNumber]);
+  }, [setError, clearErrors, phone_number, userMiddleNumber, userEndNumber]);
 
   // 사업자 등록번호 검증하기
   const verifyCompanyNumberMutation = useMutation({
     mutationFn: validateCompanyNumber,
     onSuccess: (data) => {
       console.log(data);
+      setValidationMessage(data.Success);
     },
     onError: (error) => {
       console.log(error);
@@ -94,8 +99,23 @@ export default function SignUpForm() {
     verifyCompanyNumberMutation.mutate(body);
   };
 
+  const signUpMutation = useMutation({
+    mutationFn: signUp,
+    onSuccess: (data) => {
+      console.log(data);
+      alert("회원가입에 성공하셨습니다.");
+      router.push(`/accountsetup/loginout`);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  // 회원가입 하기
   const handleOnSignUp = (data) => {
     console.log(data);
+    data.phone_number = phone_number;
+    signUpMutation.mutate(data);
   };
 
   return (
@@ -118,7 +138,7 @@ export default function SignUpForm() {
           </button>
         </div>
         {errors.username && <p className={styles.errorMessage}>{errors.username.message}</p>}
-        {validationMessage && <p className={styles.errorMessage}>{validationMessage}</p>}
+        {duplicateMessage && <p className={styles.errorMessage}>{duplicateMessage}</p>}
         <label className={styles.styledLabel} htmlFor="">
           비밀번호
         </label>
@@ -144,7 +164,7 @@ export default function SignUpForm() {
         <input
           className={styles.styledInput}
           type="password"
-          {...register("passwordConfirm", {
+          {...register("password2", {
             required: "비밀번호를 확인해주세요.",
             validate: {
               matchPassword: (value) => {
@@ -154,7 +174,7 @@ export default function SignUpForm() {
             },
           })}
         />
-        {errors.passwordConfirm && <p className={styles.errorMessage}>{errors.passwordConfirm.message}</p>}
+        {errors.password2 && <p className={styles.errorMessage}>{errors.password2.message}</p>}
         <label className={styles.styledLabel} htmlFor="">
           이름
         </label>
@@ -207,7 +227,7 @@ export default function SignUpForm() {
           />
         </div>
         {(errors.middleNumber || errors.endNumber) && <p className={styles.errorMessage}>{errors.middleNumber?.message || errors.endNumber?.message}</p>}
-        {errors.phoneNumber && <p className={styles.errorMessage}>{errors.phoneNumber.message}</p>}
+        {errors.phone_number && <p className={styles.errorMessage}>{errors.phone_number.message}</p>}
         {!isBuyer && (
           <div className={styles.sellerSignUpForm}>
             <label className={styles.styledLabel} htmlFor="">
@@ -226,6 +246,7 @@ export default function SignUpForm() {
               </button>
             </div>
             {errors.companyNumber && <p className={styles.errorMessage}>{errors.companyNumber.message}</p>}
+            <p className={styles.errorMessage}>{validationMessage}</p>
             <label className={styles.styledLabel} htmlFor="">
               스토어 이름
             </label>
