@@ -69,7 +69,7 @@ export default function TopNavBar() {
             <li>
               {isLoginState ? (
                 <button>
-                  <StyledLink href={"/accountsetup/l새oginout"}>Logout</StyledLink>
+                  <StyledLink href={"/accountsetup/loginout"}>Logout</StyledLink>
                 </button>
               ) : (
                 <button>

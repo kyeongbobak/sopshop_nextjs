@@ -21,7 +21,7 @@ export default async function productDetail({ params }) {
           <p className={styles.productPrice}>
             {productInfo.price.toLocaleString()} <span>원</span>
           </p>
-          <p className={styles.productShippingInfo}>{productInfo.shipping_method}</p>
+          <p className={styles.productShippingInfo}>{productInfo.shipping_method === "PARCEL" ? "택배배송" : "무료배송"}</p>
           <ProductDetailsPanel stock={productInfo.stock} price={productInfo.price} />
           <ProductDetailButtonActions />
         </div>
