@@ -1,0 +1,20 @@
+.countControlWrapper {
+  width: 150px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  border: 1px solid var(--gray-color);
+  margin: 30px 0;
+}
+
+.countControlWrapper p {
+  width: 50px;
+  padding: 15px 0;
+  border-left: 1px solid var(--gray-color);
+  border-right: 1px solid var(--gray-color);
+  font-size: var(--font-sm-size);
+}
+
+.countControlBtn {
+  width: 50px;
+}

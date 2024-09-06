@@ -10,10 +10,10 @@ export default function AlertModal({ modalState }) {
         <p className={styles.contents}>{modalState.content}</p>
         <div className={styles.buttonWrapper}>
           <button className={styles.actionBtn} onClick={modalState.onSubmit}>
-            {modalState.text}
+            {modalState.submitText}
           </button>
           <button className={styles.actionBtn} onClick={modalState.onCancel}>
-            {modalState.otherText}
+            {modalState.cancelText}
           </button>
         </div>
       </div>
