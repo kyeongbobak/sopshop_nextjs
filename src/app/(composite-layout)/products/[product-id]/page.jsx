@@ -2,7 +2,7 @@ import { getProductDetail } from "../../../../api/Product";
 
 import Image from "next/image";
 import styles from "./product-detail.module.css";
-import CountControl from "../../../../components/CountControl/CountControl";
+
 import ProductDetailsTabs from "../../../../components/ProductDetails/ProductDetailsTabs/ProductDetailsTabs";
 import ProductDetailsActions from "../../../../components/ProductDetails/ProductDetailsActions/ProductDetailsActions";
 
@@ -22,8 +22,8 @@ export default async function productDetail({ params }) {
             {productInfo.price.toLocaleString()} <span>원</span>
           </p>
           <p className={styles.productShippingInfo}>{productInfo.shipping_method === "PARCEL" ? "택배배송" : "무료배송"}</p>
-          <CountControl />
-          <ProductDetailsActions />
+
+          <ProductDetailsActions stock={productInfo.stock} productId={productInfo.product_id} price={productInfo.price} />
         </div>
       </div>
       <ProductDetailsTabs />

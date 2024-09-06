@@ -1,58 +1,67 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import useAlertModal from "../../../hook/useAlertModal";
 import { getCartList, addToCart } from "../../../api/Cart";
-import { userToken, isLogin } from "../../../recoil/atoms";
 import { useRecoilValue } from "recoil";
+import { userToken, isLogin, cartItemCount } from "../../../recoil/atoms";
+import useAlertModal from "../../../hook/useAlertModal";
+import CountControl from "../../CountControl/CountControl";
 import AlertModal from "../../Modal/AlertModal.jsx/AlertModal";
+
 import styles from "./ProductDetailsActions.module.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-export default function ProductDetailsActions({ productId }) {
-  console.log(productId);
+export default function ProductDetailsActions({ productId, price, stock }) {
   const { modalState, showModal, closeModal } = useAlertModal();
-  const router = useRouter();
+  const [count, setCount] = useState(1);
+  const [cartList, setCartList] = useState([]);
+  const [isInCart, setIsInCart] = useState(false);
 
+  const router = useRouter();
   const token = useRecoilValue(userToken);
   const isLoginState = useRecoilValue(isLogin);
+  const addToCartItemCount = useRecoilValue(cartItemCount);
+
+  console.log(productId);
+  console.log(price);
+  console.log(stock);
   console.log(isLoginState);
+  console.log(addToCartItemCount);
 
   const getShoppingCartList = async () => {
     const res = await getCartList(token);
-    console.log(res);
+    console.log(res.results);
+    setCartList(res.results);
+    const isInCart = cartList.find((v) => v.product_id === parseInt(productId));
+    setIsInCart(isInCart);
   };
 
   useEffect(() => {
     getShoppingCartList();
   }, [getShoppingCartList]);
 
-  const isInCart = () => {};
-
   const addToShoppingCart = async () => {
     const body = {
       product_id: `${parseInt(productId)}`,
-      quantity: `${count}`,
+      quantity: `${addToCartItemCount}`,
     };
 
     const res = await addToCart(body, token);
     console.log(res);
+    router.push(`/cart`);
   };
 
   return (
     <>
+      <CountControl stock={stock} count={count} setCount={setCount} />
       <div className={styles.totalProductPriceWrapper}>
         <p>Total Price</p>
         <div className={styles.totalProductPriceInner}>
-          {/* <p>
-            총 수량 <strong>{count}</strong> 개
-          </p> */}
           <p>
-            총 수량 <strong></strong> 개
+            총 수량 <strong>{count}</strong> 개
           </p>
-          {/* <p className={styles.totalProductPriceCal}><strong>{(price * count).toLocaleString()}</strong> 원</p> */}
           <p className={styles.totalProductPriceCal}>
-            <strong></strong> 원
+            <strong>{(price * count).toLocaleString()}</strong> 원
           </p>
         </div>
       </div>
@@ -83,20 +92,26 @@ export default function ProductDetailsActions({ productId }) {
             BuyNow
           </button>
         )}
-        <button
-          className={styles.actionBtn}
-          onClick={() =>
-            showModal({
-              submitText: "예",
-              cancelText: "아니오",
-              onCancel: closeModal,
-              onSubmit: () => router.push(`/cart`),
-              content: "장바구니에 담긴 상품입니다. 장바구니로 이동하시겠습니까?",
-            })
-          }
-        >
-          AddToCart
-        </button>
+        {isInCart ? (
+          <button
+            className={styles.actionBtn}
+            onClick={() =>
+              showModal({
+                submitText: "예",
+                cancelText: "아니오",
+                onCancel: closeModal,
+                onSubmit: () => router.push(`/cart`),
+                content: "장바구니에 담긴 상품입니다. 장바구니로 이동하시겠습니까?",
+              })
+            }
+          >
+            AddToCart
+          </button>
+        ) : (
+          <button className={styles.actionBtn} onClick={() => addToShoppingCart()}>
+            Add To Cart
+          </button>
+        )}
       </div>
       <AlertModal modalState={modalState} />
     </>

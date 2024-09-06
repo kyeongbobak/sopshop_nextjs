@@ -125,7 +125,7 @@ select {
   appearance: none;
 }
 
-.a11y-hidden {
+.a11y_hidden {
   clip: rect(1px, 1px, 1px, 1px);
   clip-path: inset(50%);
   width: 1px;

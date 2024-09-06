@@ -1,12 +1,16 @@
 "use client";
-import { useState } from "react";
+import { useSetRecoilState } from "recoil";
+import { cartItemCount } from "../../recoil/atoms";
 import Image from "next/image";
 import minusIcon from "../../../public/img/icon-minus-line.png";
 import plusIcon from "../../../public/img/icon-plus-line.png";
 import styles from "./CountControl.module.css";
 
-export default function CountControl() {
-  const [count, setCount] = useState(1);
+export default function CountControl({ stock, count, setCount }) {
+  console.log(stock);
+
+  const setCartItemCount = useSetRecoilState(cartItemCount);
+
   const handleOnCount = (increment) => {
     const newCount = count + increment;
     if (newCount < 1) {
@@ -16,8 +20,10 @@ export default function CountControl() {
       setCount(stock);
     } else {
       setCount(newCount);
+      setCartItemCount(newCount);
     }
   };
+
   return (
     <div className={styles.countControlWrapper}>
       <button className={styles.countControlBtn} onClick={() => handleOnCount(-1)}>

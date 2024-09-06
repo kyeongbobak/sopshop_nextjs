@@ -20,3 +20,9 @@ export const userType = atom({
   default: "",
   effects_UNSTABLE: [persistAtom],
 });
+
+export const cartItemCount = atom({
+  key: "cartItemCount",
+  default: 1,
+  effects_UNSTABLE: [persistAtom],
+});
