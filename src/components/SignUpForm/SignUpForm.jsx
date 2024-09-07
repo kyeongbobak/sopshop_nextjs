@@ -46,7 +46,7 @@ export default function SignUpForm() {
   const frontNumberList = ["010", "011", "016", "017", "018", "019"];
   const phone_number = [userFrontNumber, userMiddleNumber, userEndNumber].join("");
 
-  // 계정 검증하기
+  // 계정 검증
   const validateAccountMutation = useMutation({
     mutationFn: validateAccount,
     onSuccess: (data) => {
@@ -68,7 +68,7 @@ export default function SignUpForm() {
     validateAccountMutation.mutate(body, token);
   };
 
-  // 휴대폰 번호 유효성 검사
+  // 휴대폰번호 유효성 검사
   useEffect(() => {
     if (userMiddleNumber || userEndNumber) {
       if (!/^\d{11}$/.test(phone_number) & phone_number) {
@@ -82,11 +82,10 @@ export default function SignUpForm() {
     }
   }, [setError, clearErrors, phone_number, userMiddleNumber, userEndNumber]);
 
-  // 사업자 등록번호 검증하기
+  // 사업자 등록번호 검증
   const verifyCompanyNumberMutation = useMutation({
     mutationFn: validateCompanyNumber,
     onSuccess: (data) => {
-      console.log(data);
       setValidationMessage(data.Success);
     },
     onError: (error) => {
@@ -115,9 +114,8 @@ export default function SignUpForm() {
     },
   });
 
-  // 회원가입 하기
+  // 회원가입
   const handleOnSignUp = (data) => {
-    console.log(data);
     data.phone_number = phone_number;
     signUpMutation.mutate(data);
   };

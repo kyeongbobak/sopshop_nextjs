@@ -2,7 +2,6 @@ import { getProductDetail } from "../../../../api/Product";
 
 import Image from "next/image";
 import styles from "./product-detail.module.css";
-
 import ProductDetailsTabs from "../../../../components/ProductDetails/ProductDetailsTabs/ProductDetailsTabs";
 import ProductDetailsActions from "../../../../components/ProductDetails/ProductDetailsActions/ProductDetailsActions";
 

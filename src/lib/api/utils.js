@@ -1,7 +1,6 @@
 import { Instance } from "./Instance";
 
 export const apiGet = async (url, token) => {
-  console.log(url);
   try {
     const config = token
       ? {
@@ -19,7 +18,6 @@ export const apiGet = async (url, token) => {
 };
 
 export const apiPost = async (url, body, token) => {
-  console.log(body);
   try {
     const config = token
       ? {

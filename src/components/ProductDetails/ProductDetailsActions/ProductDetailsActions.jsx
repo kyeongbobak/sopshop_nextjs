@@ -38,7 +38,7 @@ export default function ProductDetailsActions({ productId, price, stock }) {
 
   useEffect(() => {
     getShoppingCartList();
-  }, [getShoppingCartList]);
+  }, [token]);
 
   const addToShoppingCart = async () => {
     const body = {

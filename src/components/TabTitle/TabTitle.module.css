@@ -1,0 +1,23 @@
+.wrapper {
+  width: 1280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 20px 0;
+  border-top: 1px solid var(--black-color);
+  border-bottom: 1px solid var(--black-color);
+  text-align: center;
+}
+
+.checkBox {
+  margin: 0 30px;
+  width: 16px;
+  height: 16px;
+}
+
+.title {
+  width: 300px;
+  font-family: "Pretendard";
+  font-size: var(--font-sm-size);
+}

@@ -7,8 +7,6 @@ import plusIcon from "../../../public/img/icon-plus-line.png";
 import styles from "./CountControl.module.css";
 
 export default function CountControl({ stock, count, setCount }) {
-  console.log(stock);
-
   const setCartItemCount = useSetRecoilState(cartItemCount);
 
   const handleOnCount = (increment) => {
