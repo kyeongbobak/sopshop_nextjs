@@ -7,6 +7,7 @@ export default async function cart() {
 
   return (
     <div>
+      <h1>Cart</h1>
       <TabTitle showCheckBox={true} titles={titles} style={styles} />
       <CartList />
     </div>

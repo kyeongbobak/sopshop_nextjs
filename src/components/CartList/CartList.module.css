@@ -10,3 +10,14 @@
   align-items: center;
   margin: 40px 0;
 }
+
+.totalPriceCal {
+  padding: 30px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid var(--black-color);
+  border-bottom: 1px solid var(--black-color);
+  gap: 10px;
+  font-family: "Pretendard";
+}
