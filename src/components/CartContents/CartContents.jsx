@@ -72,6 +72,29 @@ export default function CartContents() {
     console.log(res);
   };
 
+  const handleCheckBox = async (index) => {
+    setSelected((prevSelected) => {
+      if (!prevSelected.includes(index)) {
+        return [...prevSelected, index];
+      } else {
+        console.log(selected);
+        return prevSelected.filter((i) => i !== index);
+      }
+    });
+  };
+
+  // 개별 삭제
+  const deleteCartList = async () => {
+    const cartItemId = selected.map((index) => cartList[index].cart_item_id);
+    if (cartItemId) {
+      const res = await deleteCartItem(cartItemId, token);
+      if (res) {
+        setSelected([]);
+        getShoppingCartList();
+      }
+    }
+  };
+
   // 전체 삭제
   const deleteAllCartList = async () => {
     console.log(token);
@@ -80,52 +103,43 @@ export default function CartContents() {
     getShoppingCartList();
   };
 
-  const handleCheckBox = (index) => {
-    console.log(index);
-    setSelected((prevSelected) => {
-      if (!prevSelected.includes(index)) {
-        return [...prevSelected, index];
-      } else {
-        return prevSelected.filter((i) => i !== index);
-      }
-    });
-  };
-
-  // 개별 삭제
-  const deleteCartList = async (index) => {
-    const res = await deleteCartItem(cartList[index].cart_item_id, token);
-    console.log(res);
-    getShoppingCartList();
-  };
-
   return (
     <div className={styles.wrapper}>
       {productInfos.map((product, index) => (
         <div className={styles.cartListWrapper} key={index}>
-          <input type="checkbox" checked={selected.includes(index)} onChange={() => handleCheckBox(index)} />
-          <p>{product.store_name}</p>
-          <p>{product.product_name}</p>
-          <p>{product.price}</p>
-          <p>{product.shipping_method === "PARCEL" ? "택배배송" : "무료배송"}</p>
-          <CountControl stock={product.stock} count={count} setCount={setCount} onCountChange={(newCount) => modifyCount(index, newCount)} />
-          <p>{(product.price * count).toLocaleString()} 원</p>
-          <button onClick={() => cartOneOrder(index)}>Order</button>
-          <button
-            onClick={() =>
-              showModal({
-                submitText: "예",
-                cancelText: "아니오",
-                onCancel: closeModal,
-                onSubmit: () => {
-                  closeModal();
-                  deleteCartList(index);
-                },
-                content: "상품을 삭제하시겠습니까?",
-              })
-            }
-          >
-            <Image src={deleteIcon} alt="deleteIcon" />
-          </button>
+          <input className={styles.checkBox} type="checkbox" checked={selected.includes(index)} onChange={() => handleCheckBox(index)} />
+          <div className={styles.productInfoWrapper}>
+            <p className={styles.productStoreName}>{product.store_name}</p>
+            <p>{product.product_name}</p>
+            <p>{product.price}</p>
+            <p>{product.shipping_method === "PARCEL" ? "택배배송" : "무료배송"}</p>
+          </div>
+          <div className={styles.countControlWrapper}>
+            <CountControl stock={product.stock} count={count} setCount={setCount} onCountChange={(newCount) => modifyCount(index, newCount)} />
+          </div>
+          <div className={styles.TotalProductPriceWrapper}>
+            <p className={styles.TotalProductPrice}>{(product.price * count).toLocaleString()} 원</p>
+            <button className={styles.actionBtn} onClick={() => cartOneOrder(index)}>
+              Order
+            </button>
+            <button
+              className={styles.deleteBtn}
+              onClick={() =>
+                showModal({
+                  submitText: "예",
+                  cancelText: "아니오",
+                  onCancel: closeModal,
+                  onSubmit: () => {
+                    closeModal();
+                    deleteCartList();
+                  },
+                  content: "상품을 삭제하시겠습니까?",
+                })
+              }
+            >
+              <Image src={deleteIcon} alt="deleteIcon" priority={true} />
+            </button>
+          </div>
         </div>
       ))}
       <div>

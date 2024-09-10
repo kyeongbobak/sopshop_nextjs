@@ -11,6 +11,67 @@
   margin: 40px 0;
 }
 
+.productInfoWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+}
+
+.countControlWrapper {
+  margin: 0 74px;
+}
+
+.TotalProductPriceWrapper {
+  width: 300px;
+  text-align: center;
+  font-family: "Pretendard";
+  font-size: var(--font-md-size);
+  font-weight: var(--font-semi-bold);
+  margin-bottom: 28px;
+  position: relative;
+}
+
+.checkBox {
+  margin: 0 250px 0 31px;
+  width: 16px;
+  height: 16px;
+}
+
+.productInfoWrapper p {
+  font-family: "Pretendard";
+  font-size: var(--font-md-size);
+  margin-top: 20px;
+}
+
+.productStoreName {
+  font-family: "Pretendard";
+  font-size: var(--font-sm-size);
+  font-weight: var(--font-extra-bold);
+  color: var(--black-color);
+}
+
+.TotalProductPrice {
+  font-family: "Pretendard";
+  font-size: var(--font-md-size);
+  font-weight: var(--font-semi-bold);
+  margin-bottom: 28px;
+}
+
+.actionBtn {
+  font-size: var(--font-sm-size);
+  text-align: center;
+  border: 1px solid #222;
+  background-color: var(--black-color);
+  color: var(--white-color);
+  padding: 10px 30px;
+}
+
+.deleteBtn {
+  position: absolute;
+  top: -15px;
+  right: 20px;
+}
+
 .totalPriceCal {
   padding: 30px 0;
   display: flex;

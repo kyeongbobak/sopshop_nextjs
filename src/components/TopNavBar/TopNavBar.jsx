@@ -53,14 +53,14 @@ export default function TopNavBar() {
   return (
     <div className={styles.wrapper}>
       <StyledLink href={"/"}>
-        <Image className={styles.logoImage} src={logoImage} alt="Logo" />
+        <Image className={styles.logoImage} src={logoImage} alt="Logo" priority={true} />
       </StyledLink>
       {userTypeState === "SELLER" ? (
         <>
           <ul className={styles.navBar}>
             <li>
               <button className={styles.navBtn}>
-                <Image src={shoppingBagIcon} alt="shoppingBagIcon" width={24} />
+                <Image src={shoppingBagIcon} alt="shoppingBagIcon" width={24} priority={true} />
                 <StyledLink href={"/"}>
                   <span>판매자 센터</span>
                 </StyledLink>
@@ -87,7 +87,7 @@ export default function TopNavBar() {
             </li>
             <li>
               <button onClick={() => setSlideState("slideIn")}>
-                <Image className={styles.menuBtnImage} src={menuBtnImage} alt="menuBtnIcon" />
+                <Image className={styles.menuBtnImage} src={menuBtnImage} alt="menuBtnIcon" priority={true} />
               </button>
             </li>
           </ul>

@@ -9,7 +9,7 @@ export default function accountSetup({ params }) {
   return (
     <div className={styles.wrapper}>
       <StyledLink className={styles.logoImage} href={"/"}>
-        <Image src={logoImage} alt="logoImage" />
+        <Image src={logoImage} alt="logoImage" priority={true} />
       </StyledLink>
       {params.actions === "loginout" ? <LoginForm /> : <SignUpForm />}
     </div>

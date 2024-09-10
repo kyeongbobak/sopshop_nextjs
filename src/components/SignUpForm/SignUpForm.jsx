@@ -160,7 +160,7 @@ export default function SignUpForm() {
             })}
             className={styles.styledInput}
           />
-          {userPassword ? <Image src={checkOnIcon} alt="checkOnIcon" /> : <Image src={checkOffIcon} alt="checkOffIcon" />}
+          {userPassword ? <Image src={checkOnIcon} alt="checkOnIcon" priority={true} /> : <Image src={checkOffIcon} alt="checkOffIcon" priority={true} />}
         </div>
         {errors.password && <p className={styles.errorMessage}>{errors.password.message}</p>}
         <label className={styles.styledLabel} htmlFor="">
@@ -180,7 +180,7 @@ export default function SignUpForm() {
               },
             })}
           />
-          {userConfirmPassword ? <Image src={checkOnIcon} alt="checkOnIcon" /> : <Image src={checkOffIcon} alt="checkOffIcon" />}
+          {userConfirmPassword ? <Image src={checkOnIcon} alt="checkOnIcon" /> : <Image src={checkOffIcon} alt="checkOffIcon" priority={true} />}
         </div>
         {errors.password2 && <p className={styles.errorMessage}>{errors.password2.message}</p>}
         <label className={styles.styledLabel} htmlFor="">
@@ -201,7 +201,7 @@ export default function SignUpForm() {
           <div>
             <input className={`${styles.styledInput} ${styles.phoneNumberInput} ${styles.frontNumberInput}`} type="text" {...register("frontNumber")} defaultValue={"010"} />
             <button className={styles.selectBtn} onClick={() => setActiveOption(!activeOption)}>
-              {activeOption ? <Image width={18} src={downArrow} alt="downArrowIcon" /> : <Image width={18} src={upArrow} alt="upArrowIcon" />}
+              {activeOption ? <Image width={18} src={downArrow} alt="downArrowIcon" priority={true} /> : <Image width={18} src={upArrow} alt="upArrowIcon" priority={true} />}
             </button>
             {activeOption && (
               <ul className={styles.dropDownMenu}>

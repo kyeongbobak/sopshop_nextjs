@@ -13,7 +13,7 @@ export default async function productDetail({ params }) {
   return (
     <div className={styles.wrapper}>
       <div className={styles.productDetailWrapper}>
-        <Image className={styles.productImage} src={productInfo.image} width={620} height={720} alt="productImage" />
+        <Image className={styles.productImage} src={productInfo.image} width={620} height={720} alt="productImage" priority={true} />
         <div className={styles.productDetailInner}>
           <p className={styles.productBrandName}>{productInfo.store_name}</p>
           <p className={styles.productName}>{productInfo.product_name}</p>
