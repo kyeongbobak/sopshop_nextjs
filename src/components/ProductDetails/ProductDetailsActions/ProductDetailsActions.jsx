@@ -6,8 +6,7 @@ import { useRecoilValue } from "recoil";
 import { userToken, isLogin, cartItemCount } from "../../../recoil/atoms";
 import useAlertModal from "../../../hook/useAlertModal";
 import CountControl from "../../CountControl/CountControl";
-import AlertModal from "../../Modal/AlertModal.jsx/AlertModal";
-
+import AlertModal from "../../Modal/AlertModal/AlertModal";
 import styles from "./ProductDetailsActions.module.css";
 import { useEffect, useState } from "react";
 

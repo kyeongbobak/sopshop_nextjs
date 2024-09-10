@@ -14,7 +14,7 @@ const useGetCartProducts = (token) => {
     getShoppingCartList();
   }, [token]);
 
-  return { cartList };
+  return { cartList, getShoppingCartList };
 };
 
 export default useGetCartProducts;

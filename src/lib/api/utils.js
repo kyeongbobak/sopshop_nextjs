@@ -1,14 +1,10 @@
 import { Instance } from "./Instance";
 
+const createHeaders = (token) => (token ? { headers: { Authorization: `Bearer ${token}` } } : undefined);
+
 export const apiGet = async (url, token) => {
   try {
-    const config = token
-      ? {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      : undefined;
+    const config = createHeaders(token);
     const res = await Instance.get(url, config);
     console.log(res);
     return res.data;
@@ -19,14 +15,19 @@ export const apiGet = async (url, token) => {
 
 export const apiPost = async (url, body, token) => {
   try {
-    const config = token
-      ? {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      : undefined;
+    const config = createHeaders(token);
     const res = await Instance.post(url, body, config);
+    console.log(res);
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const apiDelete = async (url, token) => {
+  try {
+    const config = createHeaders(token);
+    const res = await Instance.delete(url, config);
     console.log(res);
     return res.data;
   } catch (error) {
