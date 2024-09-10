@@ -31,13 +31,13 @@ export default function Footer() {
         </ul>
         <ul className={styles.IconList}>
           <StyledLink href="">
-            <Image src={instaIcon} className={styles.snsIconImage} alt="instaIcon" priority />
+            <Image src={instaIcon} className={styles.snsIconImage} alt="instaIcon" />
           </StyledLink>
           <StyledLink href="">
-            <Image src={fbIcon} className={styles.snsIconImage} alt="fbIcon" priority />
+            <Image src={fbIcon} className={styles.snsIconImage} alt="fbIcon" />
           </StyledLink>
           <StyledLink href="">
-            <Image src={ytIcon} className={styles.snsIconImage} alt="tyIcon" priority />
+            <Image src={ytIcon} className={styles.snsIconImage} alt="tyIcon" />
           </StyledLink>
         </ul>
       </section>

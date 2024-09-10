@@ -1,7 +1,8 @@
+import { getCartList } from "../../../api/Cart";
 import TabTitle from "../../../components/TabTitle/TabTitle";
-import CartList from "../../../components/CartList/CartList";
+import CartContents from "../../../components/CartContents/CartContents";
 
-export default async function cart() {
+export default function cart() {
   const titles = ["상품정보", "수량", "상품금액"];
   const styles = [{ width: 600 }];
 
@@ -9,7 +10,7 @@ export default async function cart() {
     <div>
       <h1>Cart</h1>
       <TabTitle showCheckBox={true} titles={titles} style={styles} />
-      <CartList />
+      <CartContents />
     </div>
   );
 }

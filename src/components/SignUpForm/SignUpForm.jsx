@@ -201,7 +201,7 @@ export default function SignUpForm() {
           <div>
             <input className={`${styles.styledInput} ${styles.phoneNumberInput} ${styles.frontNumberInput}`} type="text" {...register("frontNumber")} defaultValue={"010"} />
             <button className={styles.selectBtn} onClick={() => setActiveOption(!activeOption)}>
-              {activeOption ? <Image width={18} src={downArrow} alt="downArrowIcon" priority /> : <Image width={18} src={upArrow} alt="upArrowIcon" priority />}
+              {activeOption ? <Image width={18} src={downArrow} alt="downArrowIcon" /> : <Image width={18} src={upArrow} alt="upArrowIcon" />}
             </button>
             {activeOption && (
               <ul className={styles.dropDownMenu}>

@@ -3,29 +3,34 @@
 import { userToken } from "../../recoil/atoms";
 import { useMemo, useState } from "react";
 import { useRecoilValue } from "recoil";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import useGetCartProducts from "../../hook/useGetCartProducts";
 import useProductInfos from "../../hook/useProductInfos";
 import { deleteAllCartItem, deleteCartItem, modifyCartCount } from "../../api/Cart";
 import AlertModal from "../Modal/AlertModal/AlertModal";
 import CountControl from "../CountControl/CountControl";
-import styles from "./CartList.module.css";
 import useAlertModal from "../../hook/useAlertModal";
 import deleteIcon from "../../../public/img/icon-delete.png";
+import styles from "./CartContents.module.css";
 
-export default function CartList() {
+export default function CartContents() {
   const [count, setCount] = useState(1);
   const [selected, setSelected] = useState([]);
 
   const token = useRecoilValue(userToken);
 
   const { cartList, getShoppingCartList } = useGetCartProducts(token);
+
+  console.log(cartList);
   const productsInTheCart = useMemo(() => cartList.map((v) => v.product_id), [cartList]);
   const { productInfos } = useProductInfos(token, productsInTheCart);
   const { modalState, showModal, closeModal } = useAlertModal();
 
   const sumProductPrice = productInfos.map((product) => product.price).reduce((acc, cur) => acc + cur, 0);
   const sumShippingPrice = productInfos.map((product) => product.shipping_fee).reduce((acc, cur) => acc + cur, 0);
+
+  const router = useRouter();
 
   // 수량 수정하기
   const modifyCount = async (index, newCount) => {
@@ -41,8 +46,31 @@ export default function CartList() {
   };
 
   // 개별 구매하기
+  const cartOneOrder = async (index) => {
+    const body = {
+      product_id: `${cartList[index].product_id}`,
+      quantity: `${cartList[index].quantity}`,
+      is_active: true,
+    };
+    const res = await modifyCartCount(cartList[index].cart_item_id, body, token);
+    console.log(res);
+    router.push(`/order`);
+  };
 
   // 전체 구매하기
+  const cartAllOrder = async () => {
+    const promises = cartList.map((list) => {
+      const body = {
+        product_id: `${list.product_id}`,
+        quantity: `${list.quantity}`,
+        is_active: true,
+      };
+      return modifyCartCount(list.cart_item_id, body, token);
+    });
+
+    const res = await Promise.all(promises);
+    console.log(res);
+  };
 
   // 전체 삭제
   const deleteAllCartList = async () => {
@@ -81,7 +109,7 @@ export default function CartList() {
           <p>{product.shipping_method === "PARCEL" ? "택배배송" : "무료배송"}</p>
           <CountControl stock={product.stock} count={count} setCount={setCount} onCountChange={(newCount) => modifyCount(index, newCount)} />
           <p>{(product.price * count).toLocaleString()} 원</p>
-          <button>Order</button>
+          <button onClick={() => cartOneOrder(index)}>Order</button>
           <button
             onClick={() =>
               showModal({
@@ -128,7 +156,7 @@ export default function CartList() {
         <p>{sumProductPrice + sumShippingPrice}</p>
       </div>
       <div>
-        <button>All Order</button>
+        <button onClick={() => cartAllOrder()}>All Order</button>
         <button>Go To Shopping</button>
       </div>
     </div>
