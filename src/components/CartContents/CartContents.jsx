@@ -113,90 +113,103 @@ export default function CartContents() {
   };
 
   return (
-    <div className={styles.wrapper}>
-      {productInfos.map((product, index) => (
-        <div className={styles.cartListWrapper} key={index}>
-          <input className={styles.checkBox} type="checkbox" checked={selected.includes(index)} onChange={() => handleCheckBox(index)} />
-          <div className={styles.productInfoWrapper}>
-            <p className={styles.productStoreName}>{product.store_name}</p>
-            <p>{product.product_name}</p>
-            <p className={styles.productPrice}>{product.price.toLocaleString()} 원</p>
-            <p className={styles.shippingMethod}>{product.shipping_method === "PARCEL" ? "택배배송" : "무료배송"}</p>
+    <>
+      {cartList.length === 0 ? (
+        <>
+          <div className={styles.contentsWrapper}>
+            <div className={styles.contents}>Empty</div>
+            <button onClick={() => router.push(`/`)}>Go Shopping</button>
           </div>
-          <div className={styles.countControlWrapper}>
-            <CountControl key={index} stock={product.stock} count={count[index]} onCountChange={(newCount) => handleCountChange(index, newCount)} />
-          </div>
-          <div className={styles.TotalPriceWrapper}>
-            <p className={styles.TotalPrice}>{(product.price * count[index]).toLocaleString()} 원</p>
-            <button className={styles.oneOrderBtn} onClick={() => cartOneOrder(index)}>
-              Order
-            </button>
+        </>
+      ) : (
+        <>
+          <div className={styles.wrapper}>
+            {productInfos.map((product, index) => (
+              <div className={styles.cartListWrapper} key={index}>
+                <input className={styles.checkBox} type="checkbox" checked={selected.includes(index)} onChange={() => handleCheckBox(index)} />
+                <div className={styles.productInfoWrapper}>
+                  <p className={styles.productStoreName}>{product.store_name}</p>
+                  <p>{product.product_name}</p>
+                  <p className={styles.productPrice}>{product.price.toLocaleString()} 원</p>
+                  <p className={styles.shippingMethod}>{product.shipping_method === "PARCEL" ? "택배배송" : "무료배송"}</p>
+                </div>
+                <div className={styles.countControlWrapper}>
+                  <CountControl key={index} stock={product.stock} count={count[index]} onCountChange={(newCount) => handleCountChange(index, newCount)} />
+                </div>
+                <div className={styles.TotalPriceWrapper}>
+                  <p className={styles.TotalPrice}>{(product.price * count[index]).toLocaleString()} 원</p>
+                  <button className={styles.oneOrderBtn} onClick={() => cartOneOrder(index)}>
+                    Order
+                  </button>
+                  <button
+                    className={styles.removeBtn}
+                    onClick={() =>
+                      showModal({
+                        submitText: "예",
+                        cancelText: "아니오",
+                        onCancel: closeModal,
+                        onSubmit: () => {
+                          closeModal();
+                          deleteCartList();
+                        },
+                        content: "상품을 삭제하시겠습니까?",
+                      })
+                    }
+                  >
+                    <Image src={deleteIcon} alt="deleteIcon" priority={true} />
+                  </button>
+                </div>
+              </div>
+            ))}
             <button
-              className={styles.removeBtn}
+              className={styles.emptyBtn}
               onClick={() =>
                 showModal({
                   submitText: "예",
                   cancelText: "아니오",
                   onCancel: closeModal,
                   onSubmit: () => {
+                    deleteAllCartList();
                     closeModal();
-                    deleteCartList();
                   },
-                  content: "상품을 삭제하시겠습니까?",
+                  content: "장바구니를 비우시겠습니까?",
                 })
               }
             >
-              <Image src={deleteIcon} alt="deleteIcon" priority={true} />
+              Empty
             </button>
+            <AlertModal modalState={modalState} />
+            <div className={styles.totalPriceCal}>
+              <span>Sub Total</span>
+              <p>{sumProductPrice.toLocaleString()} 원</p>
+              <span>Shipping</span>
+              <p>{sumShippingPrice.toLocaleString()} 원</p>
+              <span>Total</span>
+              <p>{(sumProductPrice + sumShippingPrice).toLocaleString()} 원 </p>
+            </div>
+            <div className={styles.actionBtnWrapper}>
+              <button
+                className={isActive === "allOrderBtn" ? styles.active : ""}
+                onClick={() => {
+                  cartAllOrder();
+                  setIsActive("allOrderBtn");
+                }}
+              >
+                All Order
+              </button>
+              <button
+                className={isActive === "navigationBtn" ? styles.active : ""}
+                onClick={() => {
+                  setIsActive("navigationBtn");
+                  router.push(`/`);
+                }}
+              >
+                Go To Shopping
+              </button>
+            </div>
           </div>
-        </div>
-      ))}
-      <button
-        className={styles.emptyBtn}
-        onClick={() =>
-          showModal({
-            submitText: "예",
-            cancelText: "아니오",
-            onCancel: closeModal,
-            onSubmit: () => {
-              deleteAllCartList();
-              closeModal();
-            },
-            content: "장바구니를 비우시겠습니까?",
-          })
-        }
-      >
-        Empty
-      </button>
-      <AlertModal modalState={modalState} />
-      <div className={styles.totalPriceCal}>
-        <span>Sub Total</span>
-        <p>{sumProductPrice.toLocaleString()} 원</p>
-        <span>Shipping</span>
-        <p>{sumShippingPrice.toLocaleString()} 원</p>
-        <span>Total</span>
-        <p>{(sumProductPrice + sumShippingPrice).toLocaleString()} 원 </p>
-      </div>
-      <div className={styles.actionBtnWrapper}>
-        <button
-          className={isActive === "allOrderBtn" ? styles.active : ""}
-          onClick={() => {
-            cartAllOrder();
-            setIsActive("allOrderBtn");
-          }}
-        >
-          All Order
-        </button>
-        <button
-          className={isActive === "navigationBtn" ? styles.active : ""}
-          onClick={() => {
-            setIsActive("navigationBtn");
-            router.push(`/`);
-          }}
-        >
-          Go To Shopping
-        </button>
-      </div>
-    </div>
+        </>
+      )}
+    </>
   );
 }

@@ -5,6 +5,10 @@
   margin: 0 auto;
 }
 
+.contentsWrapper {
+  text-align: center;
+}
+
 .cartListWrapper {
   display: flex;
   align-items: center;
@@ -35,6 +39,21 @@
   justify-content: center;
   gap: 10px;
   padding-top: 50px;
+}
+
+.contents {
+  margin: 200px 0 30px 0;
+  text-align: center;
+  font-size: var(--font-md-size);
+  color: var(--gray-color);
+}
+
+.contentsWrapper button {
+  margin-bottom: 300px;
+  padding: 15px 30px;
+  border: 1px solid #222;
+  font-size: var(--font-sm-size);
+  font-weight: var(--font-medium);
 }
 
 .checkBox {
