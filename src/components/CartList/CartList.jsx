@@ -3,13 +3,15 @@
 import { userToken } from "../../recoil/atoms";
 import { useMemo, useState } from "react";
 import { useRecoilValue } from "recoil";
+import Image from "next/image";
 import useGetCartProducts from "../../hook/useGetCartProducts";
 import useProductInfos from "../../hook/useProductInfos";
-import { deleteAllCartItem, deleteCartItem } from "../../api/Cart";
+import { deleteAllCartItem, deleteCartItem, modifyCartCount } from "../../api/Cart";
 import AlertModal from "../Modal/AlertModal/AlertModal";
 import CountControl from "../CountControl/CountControl";
 import styles from "./CartList.module.css";
 import useAlertModal from "../../hook/useAlertModal";
+import deleteIcon from "../../../public/img/icon-delete.png";
 
 export default function CartList() {
   const [count, setCount] = useState(1);
@@ -24,6 +26,23 @@ export default function CartList() {
 
   const sumProductPrice = productInfos.map((product) => product.price).reduce((acc, cur) => acc + cur, 0);
   const sumShippingPrice = productInfos.map((product) => product.shipping_fee).reduce((acc, cur) => acc + cur, 0);
+
+  // 수량 수정하기
+  const modifyCount = async (index, newCount) => {
+    console.log(token);
+    console.log(index);
+    console.log(newCount);
+    const body = {
+      product_id: `${cartList[index].product_id}`,
+      quantity: `${newCount}`,
+    };
+    const res = await modifyCartCount(cartList[index].cart_item_id, body, token);
+    console.log(res);
+  };
+
+  // 개별 구매하기
+
+  // 전체 구매하기
 
   // 전체 삭제
   const deleteAllCartList = async () => {
@@ -60,7 +79,7 @@ export default function CartList() {
           <p>{product.product_name}</p>
           <p>{product.price}</p>
           <p>{product.shipping_method === "PARCEL" ? "택배배송" : "무료배송"}</p>
-          <CountControl stock={product.stock} count={count} setCount={setCount} />
+          <CountControl stock={product.stock} count={count} setCount={setCount} onCountChange={(newCount) => modifyCount(index, newCount)} />
           <p>{(product.price * count).toLocaleString()} 원</p>
           <button>Order</button>
           <button
@@ -77,7 +96,7 @@ export default function CartList() {
               })
             }
           >
-            Delete
+            <Image src={deleteIcon} alt="deleteIcon" />
           </button>
         </div>
       ))}

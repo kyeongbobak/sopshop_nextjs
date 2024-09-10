@@ -34,3 +34,17 @@ export const apiDelete = async (url, token) => {
     console.log(error);
   }
 };
+
+export const apiPut = async (url, body, token) => {
+  console.log(url);
+  console.log(body);
+  console.log(token);
+  try {
+    const config = createHeaders(token);
+    const res = await Instance.put(url, body, config);
+    console.log(res);
+    return res.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
