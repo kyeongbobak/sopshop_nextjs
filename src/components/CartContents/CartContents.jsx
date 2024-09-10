@@ -1,7 +1,7 @@
 "use client";
 
 import { userToken } from "../../recoil/atoms";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -15,8 +15,9 @@ import deleteIcon from "../../../public/img/icon-delete.png";
 import styles from "./CartContents.module.css";
 
 export default function CartContents() {
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState([]);
   const [selected, setSelected] = useState([]);
+  console.log("Is count an array?", Array.isArray(count));
 
   const token = useRecoilValue(userToken);
 
@@ -32,11 +33,22 @@ export default function CartContents() {
 
   const router = useRouter();
 
+  useEffect(() => {
+    const cartListQuantity = cartList.map((list) => list.quantity);
+    setCount(cartListQuantity);
+  }, [cartList]);
+
+  const handleCountChange = (index, newCount) => {
+    setCount((prevCount) => {
+      const updateCount = [...prevCount];
+      updateCount[index] = newCount;
+      modifyCount(index, newCount);
+      return updateCount;
+    });
+  };
+
   // 수량 수정하기
   const modifyCount = async (index, newCount) => {
-    console.log(token);
-    console.log(index);
-    console.log(newCount);
     const body = {
       product_id: `${cartList[index].product_id}`,
       quantity: `${newCount}`,
@@ -115,10 +127,10 @@ export default function CartContents() {
             <p>{product.shipping_method === "PARCEL" ? "택배배송" : "무료배송"}</p>
           </div>
           <div className={styles.countControlWrapper}>
-            <CountControl stock={product.stock} count={count} setCount={setCount} onCountChange={(newCount) => modifyCount(index, newCount)} />
+            <CountControl key={index} stock={product.stock} count={count[index]} onCountChange={(newCount) => handleCountChange(index, newCount)} />
           </div>
           <div className={styles.TotalProductPriceWrapper}>
-            <p className={styles.TotalProductPrice}>{(product.price * count).toLocaleString()} 원</p>
+            <p className={styles.TotalProductPrice}>{(product.price * count[index]).toLocaleString()} 원</p>
             <button className={styles.actionBtn} onClick={() => cartOneOrder(index)}>
               Order
             </button>

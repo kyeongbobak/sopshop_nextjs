@@ -6,7 +6,7 @@ import minusIcon from "../../../public/img/icon-minus-line.png";
 import plusIcon from "../../../public/img/icon-plus-line.png";
 import styles from "./CountControl.module.css";
 
-export default function CountControl({ stock, count, setCount, onCountChange }) {
+export default function CountControl({ stock, count, onCountChange }) {
   const setCartItemCount = useSetRecoilState(cartItemCount);
 
   const handleOnCount = (increment) => {
@@ -17,7 +17,6 @@ export default function CountControl({ stock, count, setCount, onCountChange }) 
       alert(`이 제품의 최대 구매 가능한 수량은 ${stock}개 입니다.`);
       setCount(stock);
     } else {
-      setCount(newCount);
       setCartItemCount(newCount);
       onCountChange(newCount);
     }
