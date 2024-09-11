@@ -6,7 +6,6 @@ export const apiGet = async (url, token) => {
   try {
     const config = createHeaders(token);
     const res = await Instance.get(url, config);
-    console.log(res);
     return res.data;
   } catch (error) {
     console.log(error);

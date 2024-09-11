@@ -19,9 +19,8 @@ export default function CartContents() {
   const [selected, setSelected] = useState([]);
   const [isActive, setIsActive] = useState("");
   const token = useRecoilValue(userToken);
-  const { cartList, getShoppingCartList } = useGetCartProducts(token);
-  const productsInTheCart = useMemo(() => cartList.map((v) => v.product_id), [cartList]);
-  const { productInfos } = useProductInfos(token, productsInTheCart);
+  const { cartList, getShoppingCartList, productIds } = useGetCartProducts(token);
+  const { productInfos } = useProductInfos(token, productIds);
   const { modalState, showModal, closeModal } = useAlertModal();
 
   const sumProductPrice = productInfos.map((product) => product.price).reduce((acc, cur) => acc + cur, 0);

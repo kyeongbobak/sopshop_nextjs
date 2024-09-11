@@ -23,9 +23,6 @@ export default function TopNavBar() {
   const userTypeState = useRecoilValue(userType);
   const router = useRouter();
 
-  console.log(isLoginState);
-  console.log(userTypeState);
-
   const logoutMutation = useMutation({
     mutationFn: userLogout,
     onSuccess: () => {
@@ -121,7 +118,7 @@ export default function TopNavBar() {
                   </li>
                   <li className={styles.sideMenuItem}>
                     <button>
-                      <StyledLink href={""}>Order</StyledLink>
+                      <StyledLink href={"/order"}>Order</StyledLink>
                     </button>
                   </li>
                 </ul>
