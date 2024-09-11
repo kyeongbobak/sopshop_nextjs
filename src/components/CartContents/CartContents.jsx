@@ -23,8 +23,10 @@ export default function CartContents() {
   const { productInfos } = useProductInfos(token, productIds);
   const { modalState, showModal, closeModal } = useAlertModal();
 
-  const sumProductPrice = productInfos.map((product) => product.price).reduce((acc, cur) => acc + cur, 0);
-  const sumShippingPrice = productInfos.map((product) => product.shipping_fee).reduce((acc, cur) => acc + cur, 0);
+  const sumProductPrice = productInfos.reduce((acc, cur, index) => {
+    return acc + cur.price * cartList[index].quantity;
+  }, 0);
+  const sumShippingPrice = productInfos.reduce((acc, cur) => acc + cur.shipping_fee, 0);
 
   const router = useRouter();
 
@@ -49,7 +51,8 @@ export default function CartContents() {
       quantity: `${newCount}`,
     };
     const res = await modifyCartCount(cartList[index].cart_item_id, body, token);
-    console.log(res);
+    getShoppingCartList();
+    return res;
   };
 
   // 개별 구매하기
@@ -113,7 +116,7 @@ export default function CartContents() {
 
   return (
     <>
-      {cartList.length === 0 ? (
+      {productInfos.length === 0 ? (
         <>
           <div className={styles.contentsWrapper}>
             <div className={styles.contents}>Empty</div>
