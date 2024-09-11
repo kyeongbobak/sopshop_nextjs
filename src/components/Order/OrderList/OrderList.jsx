@@ -4,6 +4,7 @@ import { userToken } from "../../../recoil/atoms";
 import { useRecoilValue } from "recoil";
 import useGetCartProducts from "../../../hook/useGetCartProducts";
 import useProductInfos from "../../../hook/useProductInfos";
+import { totalProductPrice, totalShippingPrice } from "../../../lib/utils/calculate";
 import Image from "next/image";
 import styles from "./OrderList.module.css";
 
@@ -13,10 +14,8 @@ export default function OrderList() {
   const { cartList, productIds } = useGetCartProducts(token);
   const { productInfos } = useProductInfos(token, productIds);
 
-  const sumProductPrice = productInfos.reduce((acc, cur, index) => {
-    return acc + cur.price * cartList[index].quantity;
-  }, 0);
-  const sumShippingPrice = productInfos.reduce((acc, cur) => acc + cur.shipping_fee, 0);
+  const sumProductPrice = totalProductPrice(productInfos, cartList);
+  const sumShippingPrice = totalShippingPrice(productInfos);
 
   return (
     <>

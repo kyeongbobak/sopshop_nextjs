@@ -1,4 +1,4 @@
-import { apiGet } from "../lib/api/utils";
+import { apiGet } from "../lib/api/commonApi";
 
 // 전체 상품 리스트 불러오기
 export const getProducts = () => apiGet(`api/v1/products/`);

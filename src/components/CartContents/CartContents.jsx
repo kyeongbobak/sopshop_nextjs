@@ -8,6 +8,7 @@ import Image from "next/image";
 import useGetCartProducts from "../../hook/useGetCartProducts";
 import useProductInfos from "../../hook/useProductInfos";
 import { deleteAllCartItem, deleteCartItem, modifyCartCount } from "../../api/Cart";
+import { totalProductPrice, totalShippingPrice } from "../../lib/utils/calculate";
 import AlertModal from "../Modal/AlertModal/AlertModal";
 import CountControl from "../CountControl/CountControl";
 import useAlertModal from "../../hook/useAlertModal";
@@ -23,11 +24,8 @@ export default function CartContents() {
   const { productInfos } = useProductInfos(token, productIds);
   const { modalState, showModal, closeModal } = useAlertModal();
 
-  const sumProductPrice = productInfos.reduce((acc, cur, index) => {
-    return acc + cur.price * cartList[index].quantity;
-  }, 0);
-  const sumShippingPrice = productInfos.reduce((acc, cur) => acc + cur.shipping_fee, 0);
-
+  const sumProductPrice = totalProductPrice(productInfos, cartList);
+  const sumShippingPrice = totalShippingPrice(productInfos);
   const router = useRouter();
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { apiPost } from "../lib/api/utils";
+import { apiPost } from "../lib/api/commonApi";
 
 // 회원가입
 export const signUp = (body) => apiPost(`api/v1/accounts/signup/`, body);

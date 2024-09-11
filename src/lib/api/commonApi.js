@@ -35,9 +35,6 @@ export const apiDelete = async (url, token) => {
 };
 
 export const apiPut = async (url, body, token) => {
-  console.log(url);
-  console.log(body);
-  console.log(token);
   try {
     const config = createHeaders(token);
     const res = await Instance.put(url, body, config);

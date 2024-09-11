@@ -1,4 +1,4 @@
-import { apiPost } from "../lib/api/utils";
+import { apiPost } from "../lib/api/commonApi";
 
 // 로그인
 export const userLogin = (body) => apiPost(`/api/v1/accounts/login`, body);
