@@ -1,5 +1,6 @@
 import TabTitle from "../../../components/TabTitle/TabTitle";
 import OrderList from "../../../components/Order/OrderList/OrderList";
+import OrderForm from "../../../components/Order/OrderForm/OrderForm";
 import styles from "../cart/cart.module.css";
 
 export default function order() {
@@ -11,6 +12,7 @@ export default function order() {
       <h1 className={styles.title}>Order</h1>
       <TabTitle titles={titles} style={styling} />
       <OrderList />
+      <OrderForm />
     </div>
   );
 }

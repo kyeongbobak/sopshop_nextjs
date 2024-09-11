@@ -1,0 +1,161 @@
+.wrapper {
+  width: 1280px;
+  margin: 100px auto;
+  font-family: "Pretendard";
+}
+
+.infoDetailsWrapper {
+  border-bottom: 1px solid var(--black-color);
+  padding: 10px;
+}
+
+.phoneInfoWrapper {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--black-color);
+  padding: 10px;
+}
+
+.deliveryInfoWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.paymentInfoWrapper {
+  display: flex;
+  margin-top: 108px;
+  justify-content: center;
+  gap: 40px;
+}
+
+.paymentMethodWrapper {
+  width: 710px;
+}
+
+.paymentDetailsWrapper {
+  width: 480px;
+}
+
+.agreementWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--font-md-size);
+  margin-top: 50px;
+}
+
+.subTitle {
+  border-bottom: 1px solid var(--black-color);
+  font-size: var(--font-max-size);
+  padding-bottom: 18px;
+}
+
+.sectionTitle {
+  margin-top: 40px;
+  border-bottom: 1px solid var(--black-color);
+  font-size: var(--font-lg-size);
+  padding: 18px 0;
+}
+
+.styledLabel {
+  display: inline-block;
+  width: 80px;
+  padding-right: 15px;
+  font-size: var(--font-md-size);
+}
+
+.styledInput {
+  width: 334px;
+  height: 40px;
+  box-sizing: border-box;
+  border: 1px solid var(--black-color);
+  font-size: var(--font-md-size);
+}
+
+.phoneNumberInputWrapper input {
+  height: 40px;
+  border: 1px solid var(--black-color);
+  box-sizing: border-box;
+  font-size: var(--font-md-size);
+}
+
+.phoneNumberInputWrapper span {
+  padding: 0px 9px;
+}
+
+.phoneNumberInputWrapper input {
+  text-align: center;
+}
+
+.FrontNumberInput {
+  width: 80px;
+}
+
+.phoneNumberInput {
+  width: 100px;
+}
+
+.deliveryAddressInput {
+  width: 170px;
+  height: 40px;
+  padding-left: 15px;
+  border: 1px solid var(--black-color);
+  box-sizing: border-box;
+}
+
+.actionBtn {
+  width: 154px;
+  height: 40px;
+  margin-left: 10px;
+  font-size: var(--font-md-size);
+  text-align: center;
+  color: var(--white-color);
+  background-color: var(--black-color);
+}
+
+.payOption {
+  display: flex;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--black-color);
+}
+
+.payOption p {
+  padding: 0 20px 0 10px;
+  font-family: "Pretendard";
+  font-size: var(--font-md-size);
+}
+
+.paymentDetails {
+  margin: 18px 0;
+  padding: 30px;
+  border: 1px solid var(--black-color);
+}
+
+.paymentDetails p {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Pretendard";
+  font-size: var(--font-md-size);
+  padding-bottom: 14px;
+}
+
+.shippingFeeWrapper {
+  border-bottom: 1px solid var(--black-color);
+  margin-bottom: 29px;
+}
+
+.submitBtn {
+  width: 220px;
+  height: 68px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-left: 100px;
+  text-align: center;
+  background-color: var(--black-color);
+  font-size: var(--font-md-size);
+  color: var(--white-color);
+}

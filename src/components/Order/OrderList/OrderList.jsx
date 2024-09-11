@@ -9,13 +9,9 @@ import styles from "./OrderList.module.css";
 
 export default function OrderList() {
   const token = useRecoilValue(userToken);
-  console.log(token);
 
   const { cartList, productIds } = useGetCartProducts(token);
   const { productInfos } = useProductInfos(token, productIds);
-
-  console.log(productInfos);
-  console.log(cartList);
 
   const sumProductPrice = productInfos.reduce((acc, cur, index) => {
     return acc + cur.price * cartList[index].quantity;
