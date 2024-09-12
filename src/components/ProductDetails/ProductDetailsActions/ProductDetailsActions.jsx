@@ -1,41 +1,39 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { getCartList, addToCart } from "../../../api/Cart";
+import { addToCart } from "../../../api/Cart";
 import { useRecoilValue } from "recoil";
 import { userToken, isLogin, cartItemCount } from "../../../recoil/atoms";
+import useGetCartProducts from "../../../hook/useGetCartProducts";
 import useAlertModal from "../../../hook/useAlertModal";
 import CountControl from "../../CountControl/CountControl";
 import AlertModal from "../../Modal/AlertModal/AlertModal";
 import styles from "./ProductDetailsActions.module.css";
-import { useEffect, useState } from "react";
 
 export default function ProductDetailsActions({ productId, price, stock }) {
   const { modalState, showModal, closeModal } = useAlertModal();
   const [count, setCount] = useState(1);
-  const [cartList, setCartList] = useState([]);
   const [isInCart, setIsInCart] = useState(false);
 
   const router = useRouter();
   const token = useRecoilValue(userToken);
   const isLoginState = useRecoilValue(isLogin);
+  const { cartList, productIds } = useGetCartProducts(token);
   const addToCartItemCount = useRecoilValue(cartItemCount);
+
+  console.log(cartList);
 
   const handleCountChange = (newCount) => {
     setCount(newCount);
   };
 
-  const getShoppingCartList = async () => {
-    const res = await getCartList(token);
-    console.log(res.results);
-    setCartList(res.results);
-    const isInCart = cartList.find((v) => v.product_id === parseInt(productId));
-    setIsInCart(isInCart);
-  };
-
   useEffect(() => {
-    getShoppingCartList();
-  }, [token]);
+    if (cartList) {
+      const isInCart = productIds.includes(parseInt(productId));
+      setIsInCart(isInCart);
+    }
+  }, [cartList]);
 
   const addToShoppingCart = async () => {
     console.log(count);
@@ -98,7 +96,7 @@ export default function ProductDetailsActions({ productId, price, stock }) {
                 submitText: "예",
                 cancelText: "아니오",
                 onCancel: closeModal,
-                onSubmit: () => router.push(`/cart`),
+                onSubmit: () => addToShoppingCart(),
                 content: "장바구니에 담긴 상품입니다. 장바구니로 이동하시겠습니까?",
               })
             }
