@@ -21,11 +21,9 @@ export default function ProductDetailsActions({ productId, price, stock }) {
   const isLoginState = useRecoilValue(isLogin);
   const addToCartItemCount = useRecoilValue(cartItemCount);
 
-  console.log(productId);
-  console.log(price);
-  console.log(stock);
-  console.log(isLoginState);
-  console.log(addToCartItemCount);
+  const handleCountChange = (newCount) => {
+    setCount(newCount);
+  };
 
   const getShoppingCartList = async () => {
     const res = await getCartList(token);
@@ -40,6 +38,7 @@ export default function ProductDetailsActions({ productId, price, stock }) {
   }, [token]);
 
   const addToShoppingCart = async () => {
+    console.log(count);
     const body = {
       product_id: `${parseInt(productId)}`,
       quantity: `${addToCartItemCount}`,
@@ -52,7 +51,7 @@ export default function ProductDetailsActions({ productId, price, stock }) {
 
   return (
     <>
-      <CountControl stock={stock} count={count} setCount={setCount} />
+      <CountControl stock={stock} count={count} setCount={setCount} onCountChange={(newCount) => handleCountChange(newCount)} />
       <div className={styles.totalProductPriceWrapper}>
         <p>Total Price</p>
         <div className={styles.totalProductPriceInner}>

@@ -12,7 +12,7 @@ export default function CountControl({ stock, count, onCountChange }) {
   const handleOnCount = (increment) => {
     const newCount = count + increment;
     if (newCount < 1) {
-      setCount(1);
+      setCount(newCount);
     } else if (newCount > stock) {
       alert(`이 제품의 최대 구매 가능한 수량은 ${stock}개 입니다.`);
       setCount(stock);
