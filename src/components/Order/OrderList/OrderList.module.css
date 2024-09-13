@@ -11,6 +11,13 @@
   font-size: var(--font-md-size);
 }
 
+.contents {
+  padding: 150px 0;
+  font-family: "Pretendard";
+  font-size: var(--font-md-size);
+  text-align: center;
+}
+
 .productInfo {
   width: 500px;
   display: flex;

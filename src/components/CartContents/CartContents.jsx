@@ -8,7 +8,7 @@ import Image from "next/image";
 import useGetCartProducts from "../../hook/useGetCartProducts";
 import useProductInfos from "../../hook/useProductInfos";
 import { deleteAllCartItem, deleteCartItem, modifyCartCount } from "../../api/Cart";
-// import { totalProductPrice, totalShippingPrice } from "../../lib/utils/calculate";
+import { totalProductPrice, totalShippingPrice } from "../../lib/utils/calculate";
 import AlertModal from "../Modal/AlertModal/AlertModal";
 import CountControl from "../CountControl/CountControl";
 import useAlertModal from "../../hook/useAlertModal";
@@ -24,8 +24,8 @@ export default function CartContents() {
   const { productInfos } = useProductInfos(token, productIds);
   const { modalState, showModal, closeModal } = useAlertModal();
 
-  // const sumProductPrice = totalProductPrice(productInfos, cartList);
-  // const sumShippingPrice = totalShippingPrice(productInfos);
+  const sumProductPrice = totalProductPrice(productInfos, cartList);
+  const sumShippingPrice = totalShippingPrice(productInfos);
   const router = useRouter();
 
   useEffect(() => {
@@ -183,11 +183,11 @@ export default function CartContents() {
             <AlertModal modalState={modalState} />
             <div className={styles.totalPriceCal}>
               <span>Sub Total</span>
-              {/* <p>{sumProductPrice.toLocaleString()} 원</p> */}
+              <p>{sumProductPrice.toLocaleString()} 원</p>
               <span>Shipping</span>
-              {/* <p>{sumShippingPrice.toLocaleString()} 원</p> */}
+              <p>{sumShippingPrice.toLocaleString()} 원</p>
               <span>Total</span>
-              {/* <p>{(sumProductPrice + sumShippingPrice).toLocaleString()} 원 </p> */}
+              <p>{(sumProductPrice + sumShippingPrice).toLocaleString()} 원 </p>
             </div>
             <div className={styles.actionBtnWrapper}>
               <button

@@ -20,7 +20,7 @@ export default function OrderList() {
   return (
     <>
       {productInfos.length === 0 ? (
-        <div className={styles.contentsWrapper}>
+        <div className={styles.wrapper}>
           <div className={styles.contents}>주문 내역이 없습니다.</div>
         </div>
       ) : (
