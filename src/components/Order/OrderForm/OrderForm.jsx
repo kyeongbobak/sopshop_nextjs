@@ -1,8 +1,37 @@
 "use client";
 
+import { useForm } from "react-hook-form";
+
 import styles from "./OrderForm.module.css";
+import { useEffect } from "react";
 
 export default function OrderForm() {
+  const {
+    register,
+    handleSubmit,
+    setError,
+    clearErrors,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const email = watch("email");
+
+  useEffect(() => {
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setError("email", {
+        type: "emailPattern",
+        message: "이메일 주소에 '@' 기호를 포함시켜 주세요.",
+      });
+    } else {
+      clearErrors("email");
+    }
+  }, [email, setError, clearErrors]);
+
+  const onHandleSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <>
       <div className={styles.wrapper}>
@@ -28,14 +57,17 @@ export default function OrderForm() {
             </div>
           </div>
           <div className={styles.infoDetailsWrapper}>
-            <label className={styles.styledLabel} htmlFor="">
-              이메일
-            </label>
-            <input className={styles.styledInput} type="text" />
+            <div className={styles.emailInputWrapper}>
+              <label className={styles.styledLabel} htmlFor="">
+                이메일
+              </label>
+              <input className={styles.styledInput} {...register("email")} type="text" />
+              {errors.email && <p className={styles.errorMessage}>{errors.email.message}</p>}
+            </div>
           </div>
         </div>
         <h4 className={styles.sectionTitle}>배송지 정보</h4>
-        <form>
+        <form onSubmit={handleSubmit(onHandleSubmit)}>
           <div className={styles.infoDetailsWrapper}>
             <label className={styles.styledLabel} htmlFor="">
               이름

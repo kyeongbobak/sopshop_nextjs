@@ -9,6 +9,11 @@
   padding: 10px;
 }
 
+.emailInputWrapper {
+  display: flex;
+  align-items: center;
+}
+
 .phoneInfoWrapper {
   display: flex;
   align-items: center;
@@ -71,6 +76,14 @@
   box-sizing: border-box;
   border: 1px solid var(--black-color);
   font-size: var(--font-md-size);
+}
+
+.errorMessage {
+  color: red;
+  font-family: "Pretendard";
+  font-weight: var(--font-medium);
+  font-size: var(--font-sm-size);
+  padding-left: 10px;
 }
 
 .phoneNumberInputWrapper input {
