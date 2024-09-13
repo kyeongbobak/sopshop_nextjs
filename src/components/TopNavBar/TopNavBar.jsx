@@ -113,7 +113,7 @@ export default function TopNavBar() {
                   </li>
                   <li className={styles.sideMenuItem}>
                     <button>
-                      <StyledLink href={""}>My Page</StyledLink>
+                      <StyledLink href={"/mypage"}>My Page</StyledLink>
                     </button>
                   </li>
                   <li className={styles.sideMenuItem}>
