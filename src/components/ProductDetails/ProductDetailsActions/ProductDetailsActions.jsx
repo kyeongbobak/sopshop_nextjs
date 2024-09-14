@@ -38,8 +38,7 @@ export default function ProductDetailsActions({ productId, price, stock }) {
     }
   }, [cartList]);
 
-  const addToShoppingCart = async () => {
-    console.log(count);
+  const directOrder = async () => {
     const body = {
       product_id: `${parseInt(productId)}`,
       quantity: `${addToCartItemCount}`,
@@ -49,6 +48,18 @@ export default function ProductDetailsActions({ productId, price, stock }) {
     console.log(res);
     router.push(`/order`);
     setOrderType("direct_order");
+  };
+
+  const addToShoppingCart = async () => {
+    console.log(count);
+    const body = {
+      product_id: `${parseInt(productId)}`,
+      quantity: `${addToCartItemCount}`,
+    };
+
+    const res = await addToCart(body, token);
+    console.log(res);
+    router.push(`/cart`);
   };
 
   return (
@@ -70,7 +81,7 @@ export default function ProductDetailsActions({ productId, price, stock }) {
           <button
             className={styles.primaryActionButton}
             onClick={() => {
-              addToShoppingCart();
+              directOrder();
               router.push(`/order`);
             }}
           >
