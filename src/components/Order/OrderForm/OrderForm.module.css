@@ -63,6 +63,10 @@
   padding: 18px 0;
 }
 
+.wrapper input {
+  padding-left: 15px;
+}
+
 .styledLabel {
   display: inline-block;
   width: 80px;

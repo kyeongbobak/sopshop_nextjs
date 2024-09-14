@@ -3,9 +3,14 @@
 import { useForm } from "react-hook-form";
 
 import styles from "./OrderForm.module.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import ZipCodeSearchModal from "../../Modal/ZipCodeSearchModal/ZipCodeSearchModal";
 
 export default function OrderForm() {
+  const [isVisible, setIsVisible] = useState(false);
+  const [zipCode, setZipCode] = useState("");
+  const [address, setAddress] = useState("");
+
   const {
     register,
     handleSubmit,
@@ -27,6 +32,13 @@ export default function OrderForm() {
       clearErrors("email");
     }
   }, [email, setError, clearErrors]);
+
+  const getZipCode = (data) => {
+    console.log(data);
+    setZipCode(data.zonecode);
+    setAddress(data.address);
+    setIsVisible(false);
+  };
 
   const onHandleSubmit = (data) => {
     console.log(data);
@@ -92,10 +104,13 @@ export default function OrderForm() {
             </label>
             <div className={styles.deliveryInfoWrapper}>
               <div>
-                <input className={styles.deliveryAddressInput} type="text" />
-                <button className={styles.actionBtn}>우편번호 조회</button>
+                <input className={styles.deliveryAddressInput} type="text" value={zipCode} readOnly />
+                <button type="button" className={styles.actionBtn} onClick={() => setIsVisible(true)}>
+                  우편번호 조회
+                </button>
               </div>
-              <input className={styles.styledInput} type="text" />
+              {isVisible && <ZipCodeSearchModal onComplete={getZipCode} />}
+              <input className={styles.styledInput} type="text" value={address} readOnly />
               <input className={styles.styledInput} type="text" />
             </div>
           </div>
