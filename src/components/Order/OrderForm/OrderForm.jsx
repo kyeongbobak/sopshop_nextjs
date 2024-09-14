@@ -17,10 +17,6 @@ export default function OrderForm() {
   const [address, setAddress] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
   const [isSameOrderInfo, setIsSameOrderInfo] = useState(false);
-  const [orderName, setOrderName] = useState("");
-  const [orderFirstNumber, setOrderFirstNumber] = useState("");
-  const [orderSecondNumber, setOrderSecondNumber] = useState("");
-  const [orderLastNumber, setOrderLastNumber] = useState("");
 
   const token = useRecoilValue(userToken);
   const { cartList, productIds } = useGetCartProducts(token);
@@ -35,6 +31,7 @@ export default function OrderForm() {
     setError,
     clearErrors,
     watch,
+    setValue,
     formState: { errors },
   } = useForm();
 
@@ -63,10 +60,10 @@ export default function OrderForm() {
 
   const handleOSameOrderInfo = () => {
     setIsSameOrderInfo(true);
-    setOrderName(name);
-    setOrderFirstNumber(frontNumber);
-    setOrderSecondNumber(secondNumber);
-    setOrderLastNumber(lastNumber);
+    setValue("orderName", name);
+    setValue("orderFirstNumber", frontNumber);
+    setValue("orderSecondNumber", secondNumber);
+    setValue("orderLastNumber", lastNumber);
   };
 
   const onSubmitPayment = (data) => {
@@ -119,18 +116,18 @@ export default function OrderForm() {
             <label className={styles.styledLabel} htmlFor="">
               이름
             </label>
-            <input className={styles.styledInput} type="text" value={orderName} readOnly />
+            <input className={styles.styledInput} type="text" {...register("orderName")} />
           </div>
           <div className={styles.phoneInfoWrapper}>
             <label className={styles.styledLabel} htmlFor="">
               휴대폰
             </label>
             <div className={styles.phoneNumberInputWrapper}>
-              <input className={styles.FrontNumberInput} type="text" maxLength={3} value={orderFirstNumber} readOnly />
+              <input className={styles.FrontNumberInput} type="text" maxLength={3} {...register("orderFirstNumber")} />
               <span> - </span>
-              <input className={styles.phoneNumberInput} type="text" maxLength={4} value={orderSecondNumber} readOnly />
+              <input className={styles.phoneNumberInput} type="text" maxLength={4} {...register("orderSecondNumber")} />
               <span> - </span>
-              <input className={styles.phoneNumberInput} type="text" maxLength={4} value={orderLastNumber} readOnly />
+              <input className={styles.phoneNumberInput} type="text" maxLength={4} {...register("orderLastNumber")} />
             </div>
           </div>
           <div className={styles.phoneInfoWrapper}>
