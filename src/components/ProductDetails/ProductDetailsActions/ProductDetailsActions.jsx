@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { addToCart } from "../../../api/Cart";
-import { useRecoilValue } from "recoil";
-import { userToken, isLogin, cartItemCount } from "../../../recoil/atoms";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { userToken, isLogin, cartItemCount, orderType } from "../../../recoil/atoms";
 import useGetCartProducts from "../../../hook/useGetCartProducts";
 import useAlertModal from "../../../hook/useAlertModal";
 import CountControl from "../../CountControl/CountControl";
@@ -17,12 +17,15 @@ export default function ProductDetailsActions({ productId, price, stock }) {
   const [isInCart, setIsInCart] = useState(false);
 
   const router = useRouter();
-  const token = useRecoilValue(userToken);
-  const isLoginState = useRecoilValue(isLogin);
-  const { cartList, productIds } = useGetCartProducts(token);
-  const addToCartItemCount = useRecoilValue(cartItemCount);
 
-  console.log(cartList);
+  const token = useRecoilValue(userToken);
+  const setOrderType = useSetRecoilState(orderType);
+
+  const isLoginState = useRecoilValue(isLogin);
+
+  const { cartList, productIds } = useGetCartProducts(token);
+
+  const addToCartItemCount = useRecoilValue(cartItemCount);
 
   const handleCountChange = (newCount) => {
     setCount(newCount);
@@ -44,7 +47,8 @@ export default function ProductDetailsActions({ productId, price, stock }) {
 
     const res = await addToCart(body, token);
     console.log(res);
-    router.push(`/cart`);
+    router.push(`/order`);
+    setOrderType("direct_order");
   };
 
   return (
@@ -66,7 +70,7 @@ export default function ProductDetailsActions({ productId, price, stock }) {
           <button
             className={styles.primaryActionButton}
             onClick={() => {
-              addToCart();
+              addToShoppingCart();
               router.push(`/order`);
             }}
           >

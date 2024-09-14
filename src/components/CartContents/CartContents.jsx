@@ -1,8 +1,8 @@
 "use client";
 
-import { userToken } from "../../recoil/atoms";
-import { useEffect, useMemo, useState } from "react";
-import { useRecoilValue } from "recoil";
+import { useEffect, useState } from "react";
+import { orderType, userToken } from "../../recoil/atoms";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import useGetCartProducts from "../../hook/useGetCartProducts";
@@ -24,8 +24,11 @@ export default function CartContents() {
   const { productInfos } = useProductInfos(token, productIds);
   const { modalState, showModal, closeModal } = useAlertModal();
 
+  const setOrderType = useSetRecoilState(orderType);
+
   const sumProductPrice = totalProductPrice(productInfos, cartList);
   const sumShippingPrice = totalShippingPrice(productInfos);
+
   const router = useRouter();
 
   useEffect(() => {
@@ -63,6 +66,7 @@ export default function CartContents() {
     const res = await modifyCartCount(cartList[index].cart_item_id, body, token);
     console.log(res);
     router.push(`/order`);
+    setOrderType("cart_one_order");
   };
 
   // 전체 구매하기
@@ -79,6 +83,7 @@ export default function CartContents() {
     const res = await Promise.all(promises);
     console.log(res);
     router.push(`/order`);
+    setOrderType("cart_order");
   };
 
   const handleCheckBox = async (index) => {

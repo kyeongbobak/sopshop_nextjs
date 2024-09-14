@@ -26,3 +26,9 @@ export const cartItemCount = atom({
   default: 1,
   effects_UNSTABLE: [persistAtom],
 });
+
+export const orderType = atom({
+  key: "orderType",
+  default: "",
+  effects_UNSTABLE: [persistAtom],
+});

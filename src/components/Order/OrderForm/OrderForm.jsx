@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import styles from "./OrderForm.module.css";
 import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
-import { userToken } from "../../../recoil/atoms";
+import { orderType, userToken } from "../../../recoil/atoms";
 import { totalProductPrice, totalShippingPrice } from "../../../lib/utils/calculate";
 import ZipCodeSearchModal from "../../Modal/ZipCodeSearchModal/ZipCodeSearchModal";
 import useGetCartProducts from "../../../hook/useGetCartProducts";
@@ -19,6 +19,10 @@ export default function OrderForm() {
   const [isSameOrderInfo, setIsSameOrderInfo] = useState(false);
 
   const token = useRecoilValue(userToken);
+  const orderState = useRecoilValue(orderType);
+
+  console.log(orderState);
+
   const { cartList, productIds } = useGetCartProducts(token);
   const { productInfos } = useProductInfos(token, productIds);
 
@@ -32,6 +36,7 @@ export default function OrderForm() {
     clearErrors,
     watch,
     setValue,
+    getValues,
     formState: { errors },
   } = useForm();
 
@@ -67,7 +72,18 @@ export default function OrderForm() {
   };
 
   const onSubmitPayment = (data) => {
-    console.log(data);
+    const {} = getValues();
+    const body = {
+      payment_method: "string",
+      order_kind: "string",
+      product_id: 1,
+      quantity: 2147483647,
+      receiver: "string",
+      receiver_phone_number: "0103423655",
+      address: "string",
+      address_message: "string",
+      total_price: 2147483647,
+    };
   };
 
   return (
