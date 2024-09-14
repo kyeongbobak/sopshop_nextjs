@@ -6,6 +6,7 @@ import styles from "./OrderForm.module.css";
 import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { orderType, userToken } from "../../../recoil/atoms";
+import { order } from "../../../api/Order";
 import { totalProductPrice, totalShippingPrice } from "../../../lib/utils/calculate";
 import ZipCodeSearchModal from "../../Modal/ZipCodeSearchModal/ZipCodeSearchModal";
 import useGetCartProducts from "../../../hook/useGetCartProducts";
@@ -13,8 +14,6 @@ import useProductInfos from "../../../hook/useProductInfos";
 
 export default function OrderForm() {
   const [isVisible, setIsVisible] = useState(false);
-  const [zipCode, setZipCode] = useState("");
-  const [address, setAddress] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
   const [isSameOrderInfo, setIsSameOrderInfo] = useState(false);
 
@@ -23,8 +22,11 @@ export default function OrderForm() {
 
   console.log(orderState);
 
-  const { cartList, productIds } = useGetCartProducts(token);
+  const { cartList, productIds, cartListCount } = useGetCartProducts(token);
   const { productInfos } = useProductInfos(token, productIds);
+
+  console.log(productIds);
+  console.log(cartListCount);
 
   const sumProductPrice = totalProductPrice(productInfos, cartList);
   const sumShippingPrice = totalShippingPrice(productInfos);
@@ -58,9 +60,9 @@ export default function OrderForm() {
   }, [email, setError, clearErrors]);
 
   const getZipCode = (data) => {
-    setZipCode(data.zonecode);
-    setAddress(data.address);
     setIsVisible(false);
+    setValue("postCode", data.zonecode);
+    setValue("address", data.address);
   };
 
   const handleOSameOrderInfo = () => {
@@ -71,19 +73,26 @@ export default function OrderForm() {
     setValue("orderLastNumber", lastNumber);
   };
 
-  const onSubmitPayment = (data) => {
-    const {} = getValues();
+  const onSubmitPayment = async (data) => {
+    console.log(data);
+    const { orderName, frontNumber, secondNumber, lastNumber, postCode, address, additionalAddress, addressMessage } = getValues();
+    const phoneNumber = [...frontNumber, secondNumber, lastNumber].join("");
+    const deliveryAddress = [...postCode, address, additionalAddress].join("");
+    console.log(phoneNumber);
     const body = {
-      payment_method: "string",
-      order_kind: "string",
-      product_id: 1,
-      quantity: 2147483647,
-      receiver: "string",
-      receiver_phone_number: "0103423655",
-      address: "string",
-      address_message: "string",
-      total_price: 2147483647,
+      payment_method: `${selectedOption}`,
+      order_kind: `${orderState}`,
+      product_id: `${productIds}`,
+      quantity: `${cartListCount}`,
+      receiver: `${orderName}`,
+      receiver_phone_number: `${phoneNumber}`,
+      address: `${deliveryAddress}`,
+      address_message: `${addressMessage}`,
+      total_price: `${sumProductPrice + sumShippingPrice}`,
     };
+
+    const res = await order(body, token);
+    console.log(res);
   };
 
   return (
@@ -152,21 +161,21 @@ export default function OrderForm() {
             </label>
             <div className={styles.deliveryInfoWrapper}>
               <div>
-                <input className={styles.deliveryAddressInput} type="text" value={zipCode} readOnly />
+                <input className={styles.deliveryAddressInput} type="text" {...register("postCode")} readOnly />
                 <button type="button" className={styles.actionBtn} onClick={() => setIsVisible(true)}>
                   우편번호 조회
                 </button>
               </div>
               {isVisible && <ZipCodeSearchModal onComplete={getZipCode} />}
-              <input className={styles.styledInput} type="text" value={address} readOnly />
-              <input className={styles.styledInput} type="text" />
+              <input className={styles.styledInput} type="text" {...register("address")} />
+              <input className={styles.styledInput} type="text" {...register("additionalAddress")} />
             </div>
           </div>
           <div className={styles.infoDetailsWrapper}>
             <label className={styles.styledLabel} htmlFor="">
               배송메세지
             </label>
-            <input className={styles.styledInput} type="text" />
+            <input className={styles.styledInput} type="text" {...register("addressMessage")} />
           </div>
 
           <div className={styles.paymentInfoWrapper}>
