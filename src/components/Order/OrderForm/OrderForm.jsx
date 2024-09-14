@@ -4,12 +4,30 @@ import { useForm } from "react-hook-form";
 
 import styles from "./OrderForm.module.css";
 import { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
+import { userToken } from "../../../recoil/atoms";
+import { totalProductPrice, totalShippingPrice } from "../../../lib/utils/calculate";
 import ZipCodeSearchModal from "../../Modal/ZipCodeSearchModal/ZipCodeSearchModal";
+import useGetCartProducts from "../../../hook/useGetCartProducts";
+import useProductInfos from "../../../hook/useProductInfos";
 
 export default function OrderForm() {
   const [isVisible, setIsVisible] = useState(false);
   const [zipCode, setZipCode] = useState("");
   const [address, setAddress] = useState("");
+  const [selectedOption, setSelectedOption] = useState("");
+  const [isSameOrderInfo, setIsSameOrderInfo] = useState(false);
+  const [orderName, setOrderName] = useState("");
+  const [orderFirstNumber, setOrderFirstNumber] = useState("");
+  const [orderSecondNumber, setOrderSecondNumber] = useState("");
+  const [orderLastNumber, setOrderLastNumber] = useState("");
+
+  const token = useRecoilValue(userToken);
+  const { cartList, productIds } = useGetCartProducts(token);
+  const { productInfos } = useProductInfos(token, productIds);
+
+  const sumProductPrice = totalProductPrice(productInfos, cartList);
+  const sumShippingPrice = totalShippingPrice(productInfos);
 
   const {
     register,
@@ -21,6 +39,10 @@ export default function OrderForm() {
   } = useForm();
 
   const email = watch("email");
+  const name = watch("name");
+  const frontNumber = watch("frontNumber");
+  const secondNumber = watch("secondNumber");
+  const lastNumber = watch("lastNumber");
 
   useEffect(() => {
     if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -34,13 +56,20 @@ export default function OrderForm() {
   }, [email, setError, clearErrors]);
 
   const getZipCode = (data) => {
-    console.log(data);
     setZipCode(data.zonecode);
     setAddress(data.address);
     setIsVisible(false);
   };
 
-  const onHandleSubmit = (data) => {
+  const handleOSameOrderInfo = () => {
+    setIsSameOrderInfo(true);
+    setOrderName(name);
+    setOrderFirstNumber(frontNumber);
+    setOrderSecondNumber(secondNumber);
+    setOrderLastNumber(lastNumber);
+  };
+
+  const onSubmitPayment = (data) => {
     console.log(data);
   };
 
@@ -49,23 +78,23 @@ export default function OrderForm() {
       <div className={styles.wrapper}>
         <h2 className={styles.subTitle}>배송정보</h2>
         <h3 className={styles.sectionTitle}>주문자 정보</h3>
-        <div className={styles.infoWrapper}>
+        <div>
           <div className={styles.infoDetailsWrapper}>
             <label className={styles.styledLabel} htmlFor="">
               이름
             </label>
-            <input className={styles.styledInput} type="text" />
+            <input className={styles.styledInput} type="text" {...register("name")} />
           </div>
           <div className={styles.phoneInfoWrapper}>
             <label className={styles.styledLabel} htmlFor="">
               휴대폰
             </label>
             <div className={styles.phoneNumberInputWrapper}>
-              <input className={styles.FrontNumberInput} type="text" />
+              <input className={styles.FrontNumberInput} type="text" maxLength={3} {...register("frontNumber")} />
               <span> - </span>
-              <input className={styles.phoneNumberInput} type="text" />
+              <input className={styles.phoneNumberInput} type="text" maxLength={4} {...register("secondNumber")} />
               <span> - </span>
-              <input className={styles.phoneNumberInput} type="text" />
+              <input className={styles.phoneNumberInput} type="text" maxLength={4} {...register("lastNumber")} />
             </div>
           </div>
           <div className={styles.infoDetailsWrapper}>
@@ -78,24 +107,30 @@ export default function OrderForm() {
             </div>
           </div>
         </div>
-        <h4 className={styles.sectionTitle}>배송지 정보</h4>
-        <form onSubmit={handleSubmit(onHandleSubmit)}>
+        <div className={styles.deliveryInfoHeaderWrapper}>
+          <h4>배송지 정보</h4>
+          <div className={styles.deliveryInfoHeaderDetails}>
+            <input type="radio" onClick={() => handleOSameOrderInfo()} checked={isSameOrderInfo === true} readOnly />
+            <p>주문자 정보와 동일</p>
+          </div>
+        </div>
+        <form onSubmit={handleSubmit(onSubmitPayment)}>
           <div className={styles.infoDetailsWrapper}>
             <label className={styles.styledLabel} htmlFor="">
               이름
             </label>
-            <input className={styles.styledInput} type="text" />
+            <input className={styles.styledInput} type="text" value={orderName} readOnly />
           </div>
           <div className={styles.phoneInfoWrapper}>
             <label className={styles.styledLabel} htmlFor="">
               휴대폰
             </label>
             <div className={styles.phoneNumberInputWrapper}>
-              <input className={styles.FrontNumberInput} type="text" />
+              <input className={styles.FrontNumberInput} type="text" maxLength={3} value={orderFirstNumber} readOnly />
               <span> - </span>
-              <input className={styles.phoneNumberInput} type="text" />
+              <input className={styles.phoneNumberInput} type="text" maxLength={4} value={orderSecondNumber} readOnly />
               <span> - </span>
-              <input className={styles.phoneNumberInput} type="text" />
+              <input className={styles.phoneNumberInput} type="text" maxLength={4} value={orderLastNumber} readOnly />
             </div>
           </div>
           <div className={styles.phoneInfoWrapper}>
@@ -125,15 +160,15 @@ export default function OrderForm() {
             <div className={styles.paymentMethodWrapper}>
               <div className={styles.sectionTitle}>결제 수단</div>
               <div className={styles.payOption}>
-                <input className={styles.checkedInput} type="radio" />
+                <input className={styles.checkedInput} type="radio" onClick={() => setSelectedOption("신용체크카드")} checked={selectedOption === "신용체크카드"} readOnly />
                 <p>신용 / 체크카드</p>
-                <input className={styles.checkedInput} type="radio" />
+                <input className={styles.checkedInput} type="radio" onClick={() => setSelectedOption("무통장입금")} checked={selectedOption === "무통장입금"} readOnly />
                 <p>무통장 입금</p>
-                <input className={styles.checkedInput} type="radio" />
+                <input className={styles.checkedInput} type="radio" onClick={() => setSelectedOption("휴대폰결제")} checked={selectedOption === "휴대폰결제"} readOnly />
                 <p>휴대폰 결제</p>
-                <input className={styles.checkedInput} type="radio" />
+                <input className={styles.checkedInput} type="radio" onClick={() => setSelectedOption("네이버페이")} checked={selectedOption === "네이버페이"} readOnly />
                 <p>네이버페이</p>
-                <input className={styles.checkedInput} type="radio" />
+                <input className={styles.checkedInput} type="radio" onClick={() => setSelectedOption("카카오페이")} checked={selectedOption === "카카오페이"} readOnly />
                 <p>카카오페이</p>
               </div>
             </div>
@@ -143,7 +178,7 @@ export default function OrderForm() {
               <div className={styles.paymentDetails}>
                 <p>
                   - 상품 금액
-                  <span>원</span>
+                  <span>{sumProductPrice.toLocaleString()}원</span>
                 </p>
                 <p>
                   - 할인 금액
@@ -152,15 +187,15 @@ export default function OrderForm() {
                 <div className={styles.shippingFeeWrapper}>
                   <p>
                     - 배송비
-                    <span> 원</span>
+                    <span>{sumShippingPrice.toLocaleString()} 원</span>
                   </p>
                 </div>
                 <p>
                   - 결제
-                  <span> 원</span>
+                  <span className={styles.totalPrice}>{(sumProductPrice + sumShippingPrice).toLocaleString()} 원</span>
                 </p>
                 <div className={styles.agreementWrapper}>
-                  <input className={styles.checkedInput} type="checkbox" />
+                  <input className={styles.checkedInput} type="checkbox" required />
                   <span>주문 내용을 확인하였으며, 정보 제공 등에 동의합니다.</span>
                 </div>
                 <button className={styles.submitBtn} type="submit">
