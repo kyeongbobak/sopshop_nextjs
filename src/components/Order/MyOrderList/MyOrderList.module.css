@@ -1,0 +1,44 @@
+.wrapper {
+  width: 800px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  border-top: 1px solid var(--black-color);
+  border-bottom: 1px solid var(--black-color);
+  padding: 30px 0;
+}
+
+.detailsWrapper {
+  border-bottom: 1px solid #d4d7da;
+  padding: 20px 0;
+}
+
+.detailsTitle {
+  font-size: var(--font-lg-size);
+  font-weight: var(--font-medium);
+}
+
+.productImage {
+  object-fit: cover;
+}
+
+.detailsWrapper p {
+  font-family: "Pretendard";
+  padding: 3px 0;
+  font-size: var(--font-lg-size);
+}
+
+.productPriceWrapper p {
+  font-family: "Pretendard";
+  padding: 20px 0;
+  font-size: var(--font-lg-size);
+  margin-bottom: 25px;
+}
+
+.deliveryDetailsWrapper p {
+  font-family: "Pretendard";
+  padding: 20px 0;
+  font-size: var(--font-lg-size);
+}

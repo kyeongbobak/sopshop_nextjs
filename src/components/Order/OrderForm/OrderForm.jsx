@@ -1,8 +1,6 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-
-import styles from "./OrderForm.module.css";
 import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { orderType, userToken } from "../../../recoil/atoms";
@@ -11,6 +9,7 @@ import { totalProductPrice, totalShippingPrice } from "../../../lib/utils/calcul
 import ZipCodeSearchModal from "../../Modal/ZipCodeSearchModal/ZipCodeSearchModal";
 import useGetCartProducts from "../../../hook/useGetCartProducts";
 import useProductInfos from "../../../hook/useProductInfos";
+import styles from "./OrderForm.module.css";
 
 export default function OrderForm() {
   const [isVisible, setIsVisible] = useState(false);
