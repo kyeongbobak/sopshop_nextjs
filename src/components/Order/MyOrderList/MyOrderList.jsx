@@ -1,35 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { userToken } from "../../../recoil/atoms";
-import { orderList } from "../../../api/Order";
-import Image from "next/image";
+import useGetOrderList from "../../../hook/useGetOrderList";
 import useProductInfos from "../../../hook/useProductInfos";
+import Image from "next/image";
 import styles from "./MyOrderList.module.css";
 
 export default function MyOrderList() {
-  const [orderItems, setOrderItems] = useState([]);
-  const [productIds, setProductIds] = useState([]);
-
   const token = useRecoilValue(userToken);
 
-  console.log(orderItems);
-
-  const getOrderList = async () => {
-    const res = await orderList(token);
-    setOrderItems(res.results.slice(0, 1));
-    const orderProducts = res.results.map((i) => i.order_items);
-    setProductIds(orderProducts);
-    console.log(res.results);
-  };
+  const { orderItems, productIds } = useGetOrderList(token);
 
   const { productInfos } = useProductInfos(token, productIds);
   console.log(productInfos);
-
-  useEffect(() => {
-    getOrderList();
-  }, [token]);
 
   return (
     <>
