@@ -10,14 +10,12 @@ import styles from "./MyOrderList.module.css";
 export default function MyOrderList() {
   const token = useRecoilValue(userToken);
 
-  const { orderItems, productIds } = useGetOrderList(token);
-
-  const { productInfos } = useProductInfos(token, productIds);
-  console.log(productInfos);
+  const { orderItem, productId } = useGetOrderList(token);
+  const { productInfos } = useProductInfos(token, productId);
 
   return (
     <>
-      {orderItems.map((item, index) => (
+      {orderItem.map((item, index) => (
         <div className={styles.wrapper} key={index}>
           {productInfos[index] && <Image className={styles.productImage} src={productInfos[index].image} width={400} height={480} alt="productImage" priority={true} />}
           <div>
