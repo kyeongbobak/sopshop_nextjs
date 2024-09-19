@@ -6,6 +6,7 @@ import useGetOrderList from "../../hook/useGetOrderList";
 import useProductInfos from "../../hook/useProductInfos";
 import Image from "next/image";
 import styles from "./MyPageContents.module.css";
+import { order } from "../../api/Order";
 
 export default function MyPageContents() {
   const token = useRecoilValue(userToken);
@@ -13,52 +14,39 @@ export default function MyPageContents() {
   const { orderItems, productIds } = useGetOrderList(token);
   const { productInfos } = useProductInfos(token, productIds);
 
+  console.log(orderItems);
+
   return (
     <>
-      {orderItems.map((item, index) => (
-        <div className={styles.wrapper} key={index}>
-          {productInfos[index] && <Image className={styles.productImage} src={productInfos[index].image} width={400} height={480} alt="productImage" priority={true} />}
-          <div>
-            <h2 className={styles.detailsTitle}>OrderDetails</h2>
+      <div className={styles.wrapper}>
+        {orderItems.map((item, index) => (
+          <div className={styles.contentsWrapper} key={index}>
             {productInfos[index] && (
               <>
-                <div className={styles.detailsWrapper}>
-                  <p>
-                    <strong>브랜드명 : </strong>
-                    {productInfos[index].store_name}
-                  </p>
-                  <p>
-                    <strong>상품명 : </strong>
-                    {productInfos[index].product_name}
-                  </p>
-                  <p>
-                    <strong>Qty : </strong>
-                    {item.order_quantity}
-                  </p>
+                <div className={styles.productInfoWrapper}>
+                  <Image className={styles.productImage} src={productInfos[index].image} width={150} height={170} alt="productImage" priority={true} />
+                  <div className={styles.productInfoDetailsWrapper}>
+                    <strong>{productInfos[index].store_name}</strong>
+                    <p>{productInfos[index].product_name}</p>
+                    <p>Qty : {item.order_quantity}</p>
+                  </div>
                 </div>
               </>
             )}
-            <div className={styles.productPriceWrapper}>
+            <div className={styles.orderInfoWrapper}>
               <p>
-                <strong>상품 금액 : </strong>
                 <strong>{item.total_price.toLocaleString()}</strong> 원
               </p>
             </div>
-            <h3 className={styles.detailsTitle}>Delivery</h3>
-            <div className={styles.detailsWrapper}>
-              <p>{item.receiver}</p>
-              <p>{item.receiver_phone_number}</p>
-              <p>{item.address}</p>
+            <div className={styles.orderInfoWrapper}>
+              <p>{item.payment_method}</p>
             </div>
-            <div className={styles.deliveryDetailsWrapper}>
-              <p>
-                <strong>배송상태 : </strong>
-                {item.delivery_status}
-              </p>
+            <div className={styles.orderInfoWrapper}>
+              <p className={styles.orderInfoDescription}>{item.delivery_status}</p>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </>
   );
 }
