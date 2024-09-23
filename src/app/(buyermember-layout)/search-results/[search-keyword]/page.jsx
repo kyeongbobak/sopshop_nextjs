@@ -2,7 +2,7 @@ import { search } from "../../../../api/Product";
 import ProductItem from "../../../../components/ProductItem/ProductItem";
 import styles from "./search-results.module.css";
 
-export default async function SearchResults({ params }) {
+export default async function searchResults({ params }) {
   const { "search-keyword": searchKeyword } = params;
 
   const decodedString = searchKeyword.replace(/%20/g, " ");

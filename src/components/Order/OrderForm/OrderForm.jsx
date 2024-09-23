@@ -19,13 +19,8 @@ export default function OrderForm() {
   const token = useRecoilValue(userToken);
   const orderState = useRecoilValue(orderType);
 
-  console.log(orderState);
-
   const { cartList, productIds, cartListCount } = useGetCartProducts(token);
   const { productInfos } = useProductInfos(token, productIds);
-
-  console.log(productIds);
-  console.log(cartListCount);
 
   const sumProductPrice = totalProductPrice(productInfos, cartList);
   const sumShippingPrice = totalShippingPrice(productInfos);
@@ -91,7 +86,7 @@ export default function OrderForm() {
     };
 
     const res = await order(body, token);
-    console.log(res);
+    return res;
   };
 
   return (

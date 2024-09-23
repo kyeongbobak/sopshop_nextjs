@@ -3,12 +3,11 @@ import ProductItem from "../../../components/ProductItem/ProductItem";
 
 import styles from "./selected-menu.module.css";
 
-export default async function SelectedMenu({ params }) {
+export default async function selectedMenu({ params }) {
   const { "selected-menu": selectedMenu } = params;
 
   const brandProducts = await getProducts();
   const decodedString = selectedMenu.replace(/%20/g, " ");
-  console.log(decodedString);
 
   const selectedBrandProducts = brandProducts.results.filter((i) => i.store_name === decodedString);
 

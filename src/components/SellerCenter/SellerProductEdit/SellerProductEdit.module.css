@@ -1,0 +1,58 @@
+.wrapper {
+  width: 1280px;
+  margin: 100px 0 100px 23%;
+}
+
+.sellingProductWrapper {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.sellingProductInfo {
+  width: 800px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  padding-left: 20px;
+  box-sizing: border-box;
+}
+
+.ProductInfoDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.productDetails strong {
+  font-family: "Pretendard";
+  font-size: var(--font-md-size);
+}
+
+.productDetails p {
+  font-family: "Pretendard";
+  font-size: var(--font-md-size);
+}
+
+.sellingProductPrice {
+  width: 300px;
+  text-align: center;
+}
+
+.sellingProductPrice p {
+  text-align: center;
+  font-family: "Pretendard";
+  font-size: var(--font-md-size);
+  font-weight: var(--font-semi-bold);
+}
+
+.sellingProductPrice button {
+  width: 80px;
+  height: 30px;
+  font-family: "Pretendard";
+  font-size: var(--font-sm-size);
+  background-color: var(--black-color);
+  color: white;
+}

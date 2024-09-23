@@ -14,8 +14,6 @@ export default function MyPageContents() {
   const { orderItems, productIds } = useGetOrderList(token);
   const { productInfos } = useProductInfos(token, productIds);
 
-  console.log(orderItems);
-
   return (
     <>
       <div className={styles.wrapper}>

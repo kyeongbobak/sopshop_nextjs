@@ -4,7 +4,6 @@ import styles from "./main.module.css";
 
 export default async function main() {
   const products = await getProducts();
-
   const product = products.results || [];
 
   return (

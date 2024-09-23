@@ -58,7 +58,7 @@ export default function TopNavBar() {
             <li>
               <button className={styles.navBtn}>
                 <Image src={shoppingBagIcon} alt="shoppingBagIcon" width={24} priority={true} />
-                <StyledLink href={"/"}>
+                <StyledLink href={"/seller-dashboard"}>
                   <span>판매자 센터</span>
                 </StyledLink>
               </button>

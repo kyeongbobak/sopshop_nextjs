@@ -3,7 +3,6 @@ import styles from "./ZipCodeSearchModal.module.css";
 
 export default function ZipCodeSerchModal({ onComplete }) {
   const completeHandler = (data) => {
-    console.log(data);
     onComplete(data);
   };
 
