@@ -1,12 +1,12 @@
 .wrapper {
   width: 1280px;
-  height: 884px;
   margin: 100px 0 0 23%;
 }
 
 .productDetailsWrapper {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .formSection {
@@ -29,19 +29,95 @@
   box-sizing: border-box;
 }
 
-.productName {
-  display: flex;
-  flex-direction: column;
-}
-
-.productName span {
+.productDetailsWrapper span {
+  display: block;
   padding-bottom: 6px;
   font-family: "Pretendard";
   font-size: var(--font-sm-size);
+}
+
+.productName {
+  display: flex;
+  flex-direction: column;
 }
 
 .productName input {
   width: 600px;
   height: 35px;
   border: 1px solid var(--gray-color);
+}
+
+.productDetails {
+  display: flex;
+}
+
+.productDetails input {
+  width: 170px;
+  height: 35px;
+  border: 1px solid var(--gray-color);
+  display: flex;
+}
+
+.productDetails strong {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  background-color: var(--gray-color);
+  font-family: "Pretendard";
+  font-size: var(--font-min-size);
+  color: white;
+  text-align: center;
+}
+
+.deliveryMethod button {
+  width: 207px;
+  height: 40px;
+  font-family: "Pretendard";
+  font-size: var(--font-min-size);
+  text-align: center;
+  border: 1px solid var(--gray-color);
+}
+
+.contentsWrapper {
+  font-family: "Pretendard";
+  margin-top: 45px;
+  padding-bottom: 150px;
+}
+
+.contentsWrapper h2 {
+  margin-bottom: 10px;
+  font-size: var(--font-md-size);
+}
+
+.contents {
+  width: 1280px;
+  height: 700px;
+  padding-top: 350px;
+  text-align: center;
+  background-color: var(--light-gray-color);
+  box-sizing: border-box;
+  font-size: var(--font-lg-size);
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: end;
+}
+
+.buttonWrapper button {
+  width: 200px;
+  height: 60px;
+  text-align: center;
+  margin-top: 45px;
+  font-size: var(--font-md-size);
+}
+
+.cancelBtn {
+  border: 1px solid var(--gray-color);
+}
+
+.submitBtn {
+  background-color: var(--main-color);
+  margin-left: 10px;
 }

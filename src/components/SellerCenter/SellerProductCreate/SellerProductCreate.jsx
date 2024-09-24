@@ -44,12 +44,53 @@ export default function SellerProductCreate() {
             <input type="file" ref={fileInputRef} hidden onChange={handleFileChange} />
           </div>
           <div className={styles.productDetailsWrapper}>
-            <div className={styles.productName}>
+            <div>
               <span>상품명</span>
-              <input type="text" />
+              <div className={styles.productName}>
+                <input type="text" />
+              </div>
+            </div>
+            <div>
+              <span>판매가</span>
+              <div className={styles.productDetails}>
+                <input type="text" />
+                <strong>원</strong>
+              </div>
+            </div>
+            <div>
+              <span>배송방법</span>
+              <div className={styles.deliveryMethod}>
+                <button>택배</button>
+              </div>
+            </div>
+            <div>
+              <span>기본 배송비</span>
+              <div className={styles.productDetails}>
+                <input type="text" />
+                <strong>원</strong>
+              </div>
+            </div>
+            <div>
+              <span>재고</span>
+              <div className={styles.productDetails}>
+                <input type="text" />
+                <strong>원</strong>
+              </div>
             </div>
           </div>
         </form>
+        <div className={styles.contentsWrapper}>
+          <h2>상품 상세 정보</h2>
+          <div className={styles.contents}>Editor</div>
+          <div className={styles.buttonWrapper}>
+            <button type="button" className={styles.cancelBtn}>
+              취소
+            </button>
+            <button type="submit" className={styles.submitBtn}>
+              저장하기
+            </button>
+          </div>
+        </div>
       </div>
     </>
   );
