@@ -2,6 +2,7 @@
 
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useRecoilValue } from "recoil";
 import { orderType, userToken } from "../../../recoil/atoms";
 import { order } from "../../../api/Order";
@@ -18,6 +19,8 @@ export default function OrderForm() {
 
   const token = useRecoilValue(userToken);
   const orderState = useRecoilValue(orderType);
+
+  const router = useRouter();
 
   const { cartList, productIds, cartListCount } = useGetCartProducts(token);
   const { productInfos } = useProductInfos(token, productIds);
@@ -73,7 +76,19 @@ export default function OrderForm() {
     const phoneNumber = [...frontNumber, secondNumber, lastNumber].join("");
     const deliveryAddress = [...postCode, address, additionalAddress].join("");
     console.log(phoneNumber);
-    const body = {
+    console.log(orderState);
+
+    const cartAllOrder = {
+      payment_method: `${selectedOption}`,
+      order_kind: `${orderState}`,
+      receiver: `${orderName}`,
+      receiver_phone_number: `${phoneNumber}`,
+      address: `${deliveryAddress}`,
+      address_message: `${addressMessage}`,
+      total_price: sumProductPrice + sumShippingPrice,
+    };
+
+    const cartOneOrder = {
       payment_method: `${selectedOption}`,
       order_kind: `${orderState}`,
       product_id: `${productIds}`,
@@ -82,10 +97,16 @@ export default function OrderForm() {
       receiver_phone_number: `${phoneNumber}`,
       address: `${deliveryAddress}`,
       address_message: `${addressMessage}`,
-      total_price: `${sumProductPrice + sumShippingPrice}`,
+      total_price: sumProductPrice + sumShippingPrice,
     };
 
+    const body = orderState === "cart_order" ? cartAllOrder : cartOneOrder;
+
     const res = await order(body, token);
+    console.log(res);
+    if (res) {
+      router.push("/order-complete");
+    }
     return res;
   };
 
@@ -176,15 +197,15 @@ export default function OrderForm() {
             <div className={styles.paymentMethodWrapper}>
               <div className={styles.sectionTitle}>결제 수단</div>
               <div className={styles.payOption}>
-                <input className={styles.checkedInput} type="radio" onClick={() => setSelectedOption("신용체크카드")} checked={selectedOption === "신용체크카드"} readOnly />
+                <input className={styles.checkedInput} type="radio" onClick={() => setSelectedOption("CARD")} checked={selectedOption === "CARD"} readOnly />
                 <p>신용 / 체크카드</p>
-                <input className={styles.checkedInput} type="radio" onClick={() => setSelectedOption("무통장입금")} checked={selectedOption === "무통장입금"} readOnly />
+                <input className={styles.checkedInput} type="radio" onClick={() => setSelectedOption("DEPOSIT")} checked={selectedOption === "DEPOSIT"} readOnly />
                 <p>무통장 입금</p>
-                <input className={styles.checkedInput} type="radio" onClick={() => setSelectedOption("휴대폰결제")} checked={selectedOption === "휴대폰결제"} readOnly />
+                <input className={styles.checkedInput} type="radio" onClick={() => setSelectedOption("PHONE_PAYMENT")} checked={selectedOption === "PHONE_PAYMENT"} readOnly />
                 <p>휴대폰 결제</p>
-                <input className={styles.checkedInput} type="radio" onClick={() => setSelectedOption("네이버페이")} checked={selectedOption === "네이버페이"} readOnly />
+                <input className={styles.checkedInput} type="radio" onClick={() => setSelectedOption("NAVERPAY")} checked={selectedOption === "NAVERPAY"} readOnly />
                 <p>네이버페이</p>
-                <input className={styles.checkedInput} type="radio" onClick={() => setSelectedOption("카카오페이")} checked={selectedOption === "카카오페이"} readOnly />
+                <input className={styles.checkedInput} type="radio" onClick={() => setSelectedOption("KAKAOPAY")} checked={selectedOption === "KAKAOPAY"} readOnly />
                 <p>카카오페이</p>
               </div>
             </div>
