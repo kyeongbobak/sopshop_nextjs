@@ -26,7 +26,7 @@ export default function SellerCenterSideBar() {
           <StyledLink href={""}>스토어 설정</StyledLink>
         </li>
         <li className={`${styles.sidebarItem} ${selected === "상품 등록" ? styles.active : ""}`} onClick={() => setSelected("상품 등록")}>
-          <StyledLink href={""}>상품 등록</StyledLink>
+          <StyledLink href={"/seller-create"}>상품 등록</StyledLink>
         </li>
       </ul>
     </>

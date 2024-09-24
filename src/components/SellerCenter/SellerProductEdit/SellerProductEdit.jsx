@@ -34,18 +34,18 @@ export default function SellerProductEdit() {
           <div key={index} className={styles.sellingProductWrapper}>
             <div className={styles.sellingProductInfo}>
               <Image src={list.image} alt="sellingProductImage" width={130} height={130} priority={true} />
-              <div className={styles.ProductInfoDetails}>
-                <strong>{list.product_name}</strong>
+              <div className={styles.productInfoDetails}>
+                <p className={styles.productName}>{list.product_name}</p>
                 <p>Qty : {list.stock}</p>
               </div>
             </div>
             <div className={styles.sellingProductPrice}>
               <p>{list.price.toLocaleString()} 원</p>
             </div>
-            <div className={styles.sellingProductPrice}>
+            <div className={styles.actionButtonWrapper}>
               <button className={styles.actionBtn}>수정</button>
             </div>
-            <div className={styles.sellingProductPrice}>
+            <div className={styles.actionButtonWrapper}>
               <button className={styles.actionBtn}>삭제</button>
             </div>
           </div>

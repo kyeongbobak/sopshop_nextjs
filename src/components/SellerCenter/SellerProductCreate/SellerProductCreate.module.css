@@ -1,0 +1,47 @@
+.wrapper {
+  width: 1280px;
+  height: 884px;
+  margin: 100px 0 0 23%;
+}
+
+.productDetailsWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.formSection {
+  display: flex;
+  gap: 40px;
+}
+
+.productImage {
+  width: 454px;
+  height: 454px;
+  object-fit: cover;
+}
+
+.previewImage {
+  width: 454px;
+  height: 454px;
+  background-color: var(--gray-color);
+  text-align: center;
+  padding-top: 202px;
+  box-sizing: border-box;
+}
+
+.productName {
+  display: flex;
+  flex-direction: column;
+}
+
+.productName span {
+  padding-bottom: 6px;
+  font-family: "Pretendard";
+  font-size: var(--font-sm-size);
+}
+
+.productName input {
+  width: 600px;
+  height: 35px;
+  border: 1px solid var(--gray-color);
+}
