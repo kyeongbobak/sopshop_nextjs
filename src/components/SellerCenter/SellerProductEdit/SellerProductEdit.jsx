@@ -1,10 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { userToken } from "../../../recoil/atoms";
 import { useRecoilValue } from "recoil";
-import { sellerGetProductList, sellerModifyProduct } from "../../../api/Seller";
+import { sellerDeleteProduct, sellerGetProductList, sellerModifyProduct } from "../../../api/Seller";
 import Image from "next/image";
 import TabTitle from "../../../components/TabTitle/TabTitle";
 import styles from "./SellerProductEdit.module.css";
@@ -15,7 +14,6 @@ export default function SellerProductEdit() {
   const styling = [{ width: 800 }];
 
   const token = useRecoilValue(userToken);
-  const router = useRouter();
 
   const sellerProductList = async () => {
     const res = await sellerGetProductList(token);
@@ -46,6 +44,15 @@ export default function SellerProductEdit() {
     }
   };
 
+  const handleDeleteProduct = async (index) => {
+    const res = await sellerDeleteProduct(token, sellingProductList[index].product_id);
+    if (res.status === 200) {
+      await sellerProductList();
+    }
+    console.log(res);
+    return res;
+  };
+
   return (
     <>
       <div className={styles.wrapper}>
@@ -64,12 +71,14 @@ export default function SellerProductEdit() {
               <p>{list.price.toLocaleString()} 원</p>
             </div>
             <div className={styles.actionButtonWrapper}>
-              <button className={styles.actionBtn} onClick={() => handleModifyProduct(index)}>
+              <button type="button" className={styles.actionBtn} onClick={() => handleModifyProduct(index)}>
                 수정
               </button>
             </div>
             <div className={styles.actionButtonWrapper}>
-              <button className={styles.actionBtn}>삭제</button>
+              <button type="button" className={styles.actionBtn} onClick={() => handleDeleteProduct(index)}>
+                삭제
+              </button>
             </div>
           </div>
         ))}

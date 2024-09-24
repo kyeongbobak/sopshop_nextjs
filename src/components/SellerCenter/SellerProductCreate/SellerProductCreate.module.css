@@ -9,7 +9,12 @@
   justify-content: space-between;
 }
 
-.formSection {
+.productForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.formInputWrapper {
   display: flex;
   gap: 40px;
 }
@@ -77,6 +82,11 @@
   font-size: var(--font-min-size);
   text-align: center;
   border: 1px solid var(--gray-color);
+}
+
+.active {
+  background-color: var(--black-color);
+  color: white;
 }
 
 .contentsWrapper {
