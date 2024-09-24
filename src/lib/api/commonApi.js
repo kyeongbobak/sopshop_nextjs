@@ -1,6 +1,12 @@
 import { Instance } from "./Instance";
 
-const createHeaders = (token) => (token ? { headers: { Authorization: `Bearer ${token}` } } : undefined);
+const createHeaders = (token, isFormData = false) => {
+  const headers = token ? { Authorization: `Bearer ${token}` } : {};
+  if (isFormData) {
+    return { headers: { ...headers, "Content-Type": "multipart/form-data" } };
+  }
+  return { headers };
+};
 
 export const apiGet = async (url, token) => {
   try {
@@ -12,10 +18,9 @@ export const apiGet = async (url, token) => {
   }
 };
 
-export const apiPost = async (url, body, token) => {
-  console.log;
+export const apiPost = async (url, body, token, isFormData = false) => {
   try {
-    const config = createHeaders(token);
+    const config = createHeaders(token, isFormData);
     const res = await Instance.post(url, body, config);
     return res.data;
   } catch (error) {
@@ -33,9 +38,9 @@ export const apiDelete = async (url, token) => {
   }
 };
 
-export const apiPut = async (url, body, token) => {
+export const apiPut = async (url, body, token, isFormData = false) => {
   try {
-    const config = createHeaders(token);
+    const config = createHeaders(token, isFormData);
     const res = await Instance.put(url, body, config);
     return res.data;
   } catch (error) {
