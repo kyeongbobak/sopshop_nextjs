@@ -71,12 +71,12 @@ export default function SellerProductEdit() {
               <p>{list.price.toLocaleString()} 원</p>
             </div>
             <div className={styles.actionButtonWrapper}>
-              <button type="button" className={styles.actionBtn} onClick={() => handleModifyProduct(index)}>
+              <button type="button" className={styles.modifyBtn} onClick={() => handleModifyProduct(index)}>
                 수정
               </button>
             </div>
             <div className={styles.actionButtonWrapper}>
-              <button type="button" className={styles.actionBtn} onClick={() => handleDeleteProduct(index)}>
+              <button type="button" className={styles.deleteBtn} onClick={() => handleDeleteProduct(index)}>
                 삭제
               </button>
             </div>
