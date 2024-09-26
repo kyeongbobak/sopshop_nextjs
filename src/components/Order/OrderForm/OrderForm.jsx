@@ -75,8 +75,6 @@ export default function OrderForm() {
     const { orderName, frontNumber, secondNumber, lastNumber, postCode, address, additionalAddress, addressMessage } = getValues();
     const phoneNumber = [...frontNumber, secondNumber, lastNumber].join("");
     const deliveryAddress = [...postCode, address, additionalAddress].join("");
-    console.log(phoneNumber);
-    console.log(orderState);
 
     const cartAllOrder = {
       payment_method: `${selectedOption}`,

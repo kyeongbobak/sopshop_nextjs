@@ -1,0 +1,48 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  display: block;
+  margin-bottom: 10px;
+  font-family: "Pretendard";
+  font-size: var(--font-md-size);
+}
+
+.noticeTitle input {
+  display: inline-block;
+  width: 800px;
+  height: 30px;
+  margin-right: 10px;
+  border: 1px solid var(--gray-color);
+}
+
+.noticeDescription {
+  margin-top: 20px;
+}
+
+.noticeDescription input {
+  width: 800px;
+  height: 300px;
+  display: block;
+  border: 1px solid var(--gray-color);
+}
+
+.submitBtnWrapper {
+  width: 800px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submitBtnWrapper button {
+  width: 200px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 45px;
+  font-family: "Pretendard";
+  font-size: var(--font-md-size);
+  background-color: var(--main-color);
+}

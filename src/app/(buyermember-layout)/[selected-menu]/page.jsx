@@ -6,6 +6,8 @@ import styles from "./selected-menu.module.css";
 export default async function selectedMenu({ params }) {
   const { "selected-menu": selectedMenu } = params;
 
+  console.log(selectedMenu);
+
   const brandProducts = await getProducts();
   const decodedString = selectedMenu.replace(/%20/g, " ");
 

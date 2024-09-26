@@ -64,15 +64,11 @@ export default function TopNavBar() {
               </button>
             </li>
             <li>
-              {isLoginState ? (
-                <button>
-                  <StyledLink href={"/accountsetup/loginout"}>Logout</StyledLink>
-                </button>
-              ) : (
-                <button>
-                  <StyledLink href={"/accountsetup/loginout"}>Login</StyledLink>
-                </button>
-              )}
+              <button>
+                <StyledLink href={"/accountsetup/loginout"} onClick={() => handleOnLogout()}>
+                  Logout
+                </StyledLink>
+              </button>
             </li>
           </ul>
         </>

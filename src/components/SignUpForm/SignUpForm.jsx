@@ -22,6 +22,7 @@ export default function SignUpForm() {
   const [validationMessage, setValidationMessage] = useState("");
 
   const token = useRecoilValue(userToken);
+  console.log(token);
 
   const router = useRouter();
 

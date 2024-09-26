@@ -13,10 +13,19 @@
   text-align: center;
 }
 
-.sidebarItem:nth-child(1) {
-}
-
 .active {
   background-color: var(--main-color);
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.submenuWrapper {
+  width: 100%;
+  background-color: var(--gray-color);
+}
+
+.submenu {
+  padding: 15px 0;
+  text-align: center;
+  font-family: "Pretendard";
+  font-size: var(--font-lg-size);
 }

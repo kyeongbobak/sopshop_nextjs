@@ -33,6 +33,7 @@ export default function LoginForm() {
       setIsLogin(true);
       setUserType(data.login_type);
       router.push(`/`);
+      console.log(token);
     },
   });
 

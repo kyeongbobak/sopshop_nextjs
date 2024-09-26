@@ -7,7 +7,6 @@ import styles from "./SellerCenterSideBar.module.css";
 
 export default function SellerCenterSideBar() {
   const [selected, setSelected] = useState();
-
   const pathname = usePathname();
 
   useEffect(() => {
@@ -37,11 +36,27 @@ export default function SellerCenterSideBar() {
           통계
         </Link>
       </li>
-      <li className={`${styles.sidebarItem} ${selected === "/settings" ? styles.active : ""}`}>
-        <Link href="/seller-center/settings" onClick={() => setSelected("/settings")}>
+      <li className={`${styles.sidebarItem} ${selected === "/seller-setting" ? styles.active : ""}`}>
+        <Link
+          href="/seller-setting"
+          onClick={() => {
+            setSelected("/seller-setting");
+          }}
+        >
           스토어 설정
         </Link>
       </li>
+      <li className={`${styles.sidebarItem} ${selected === "/seller-setting/notice-setting" ? styles.active : ""}`}>
+        <Link
+          href={"/seller-setting/notice-setting"}
+          onClick={() => {
+            setSelected("/seller-setting/notice-setting");
+          }}
+        >
+          공지사항 관리
+        </Link>
+      </li>
+
       <li className={`${styles.sidebarItem} ${selected === "/seller-create" ? styles.active : ""}`}>
         <Link href="/seller-create" onClick={() => setSelected("/seller-create")}>
           상품 등록
