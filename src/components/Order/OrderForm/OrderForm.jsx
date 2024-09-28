@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useRecoilValue } from "recoil";
 import { orderType, userToken } from "../../../recoil/atoms";
 import { order } from "../../../api/Order";
+import { deleteAllCartItem } from "../../../api/Cart";
 import { totalProductPrice, totalShippingPrice } from "../../../lib/utils/calculate";
 import ZipCodeSearchModal from "../../Modal/ZipCodeSearchModal/ZipCodeSearchModal";
 import useGetCartProducts from "../../../hook/useGetCartProducts";
@@ -101,9 +102,10 @@ export default function OrderForm() {
     const body = orderState === "cart_order" ? cartAllOrder : cartOneOrder;
 
     const res = await order(body, token);
-    console.log(res);
+
     if (res) {
       router.push("/order-complete");
+      deleteAllCartItem(token);
     }
     return res;
   };
