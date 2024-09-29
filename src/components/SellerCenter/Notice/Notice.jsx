@@ -3,7 +3,6 @@
 import { useForm } from "react-hook-form";
 import { userToken } from "../../../recoil/atoms";
 import { useRecoilValue } from "recoil";
-import { sellerPostNotice } from "../../../api/Seller";
 import styles from "./Notice.module.css";
 
 export default function noticeSetting() {
@@ -15,16 +14,24 @@ export default function noticeSetting() {
 
   const noticePost = async () => {
     const { noticeTitle, noticeDescription } = getValues();
-    console.log(noticeTitle);
-    console.log(noticeDescription);
-
     const body = {
       title: noticeTitle,
       description: noticeDescription,
     };
 
-    const res = await sellerPostNotice(body, token);
-    console.log(res);
+    const res = await fetch(`/api/notices`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (res.ok) {
+      console.log(res);
+    } else {
+      console.error("Failed to add notice");
+    }
   };
 
   return (

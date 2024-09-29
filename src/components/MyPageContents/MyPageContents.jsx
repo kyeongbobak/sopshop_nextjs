@@ -6,7 +6,6 @@ import useGetOrderList from "../../hook/useGetOrderList";
 import useProductInfos from "../../hook/useProductInfos";
 import Image from "next/image";
 import styles from "./MyPageContents.module.css";
-import { order } from "../../api/Order";
 
 export default function MyPageContents() {
   const token = useRecoilValue(userToken);
