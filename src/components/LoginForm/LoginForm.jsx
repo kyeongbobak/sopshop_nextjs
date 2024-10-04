@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import { userToken, isLogin, userType } from "../../recoil/atoms";
+import { userToken, isLogin, userType, userId } from "../../recoil/atoms";
 import { useSetRecoilState } from "recoil";
 import { userLogin } from "../../api/LoginOut";
 import { useRouter } from "next/navigation";
@@ -17,12 +17,14 @@ export default function LoginForm() {
   const setUserToken = useSetRecoilState(userToken);
   const setIsLogin = useSetRecoilState(isLogin);
   const setUserType = useSetRecoilState(userType);
+  const setUserId = useSetRecoilState(userId);
 
   const router = useRouter();
 
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm();
 
@@ -38,6 +40,7 @@ export default function LoginForm() {
   });
 
   const handleOnLogin = (data) => {
+    setUserId(data.username);
     data.login_type = isBuyer ? "BUYER" : "SELLER";
     loginMutation.mutate(data);
   };

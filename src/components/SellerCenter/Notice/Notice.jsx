@@ -1,21 +1,26 @@
 "use client";
 
 import axios from "axios";
-import { useForm } from "react-hook-form";
-import { userType } from "../../../recoil/atoms";
+import { userId } from "../../../recoil/atoms";
 import { useRecoilValue } from "recoil";
+import { useForm } from "react-hook-form";
 import styles from "./Notice.module.css";
 
 export default function noticeSetting() {
   const { register, getValues, handleSubmit } = useForm();
 
-  const userTypeState = useRecoilValue(userType);
+  const userName = useRecoilValue(userId);
 
   const noticePost = async () => {
     const { noticeTitle, noticeDescription } = getValues();
+
+    const currentDate = new Date().toISOString().split("T")[0];
+
     const body = {
       title: noticeTitle,
       description: noticeDescription,
+      writer: userName,
+      date: currentDate,
     };
 
     try {
@@ -25,7 +30,7 @@ export default function noticeSetting() {
         },
       });
 
-      console.log(res);
+      return res.data;
     } catch (error) {
       console.error("Error posting notice:", error);
     }

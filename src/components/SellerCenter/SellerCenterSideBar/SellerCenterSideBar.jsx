@@ -38,9 +38,9 @@ export default function SellerCenterSideBar() {
       </li>
       <li className={`${styles.sidebarItem} ${selected === "/seller-setting" ? styles.active : ""}`}>
         <Link
-          href="/seller-setting"
+          href="/seller-center/seller-setting"
           onClick={() => {
-            setSelected("/seller-setting");
+            setSelected("/seller-center/seller-setting");
           }}
         >
           스토어 설정
