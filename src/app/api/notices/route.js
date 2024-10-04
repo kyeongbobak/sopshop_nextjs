@@ -32,7 +32,7 @@ export async function getNotices() {
     const jsonData = fs.readFileSync(filePath, "utf-8");
 
     const notices = JSON.parse(jsonData);
-    return notices; // 공지 사항 반환
+    return notices;
   } catch (error) {
     console.error("Error reading file:", error);
     return [];

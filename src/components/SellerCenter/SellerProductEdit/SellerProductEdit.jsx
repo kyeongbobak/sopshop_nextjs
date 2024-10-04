@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { userToken } from "../../../recoil/atoms";
 import { useRecoilValue } from "recoil";
-import { sellerDeleteProduct, sellerGetProductList, sellerModifyProduct } from "../../../api/Seller";
+import { sellerDeleteProduct, sellerGetProductList, sellerModifyProduct } from "../../../api/SellerFunction";
 import Image from "next/image";
 import TabTitle from "../../../components/TabTitle/TabTitle";
 import styles from "./SellerProductEdit.module.css";
@@ -26,7 +26,6 @@ export default function SellerProductEdit() {
   }, [token]);
 
   const handleModifyProduct = async (index) => {
-    console.log(index);
     const product = sellingProductList[index];
 
     const formData = new FormData();

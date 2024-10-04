@@ -1,16 +1,15 @@
 "use client";
 
+import axios from "axios";
 import { useForm } from "react-hook-form";
-import { userToken } from "../../../recoil/atoms";
+import { userType } from "../../../recoil/atoms";
 import { useRecoilValue } from "recoil";
 import styles from "./Notice.module.css";
 
 export default function noticeSetting() {
   const { register, getValues, handleSubmit } = useForm();
 
-  const token = useRecoilValue(userToken);
-
-  console.log(token);
+  const userTypeState = useRecoilValue(userType);
 
   const noticePost = async () => {
     const { noticeTitle, noticeDescription } = getValues();
@@ -19,18 +18,16 @@ export default function noticeSetting() {
       description: noticeDescription,
     };
 
-    const res = await fetch(`/api/notices`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
+    try {
+      const res = await axios.post("/api/notices", body, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
-    if (res.ok) {
       console.log(res);
-    } else {
-      console.error("Failed to add notice");
+    } catch (error) {
+      console.error("Error posting notice:", error);
     }
   };
 

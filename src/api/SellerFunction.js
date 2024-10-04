@@ -11,6 +11,3 @@ export const sellerMakeProduct = (token, formData, isFormData = true) => apiPost
 
 // 상품 삭제하기
 export const sellerDeleteProduct = (token, productId) => apiDelete(`/api/v1/products/${productId}`, token);
-
-// 공지사항 등록하기
-export const sellerPostNotice = (body, token) => apiPost(`/api/v1/notices`, body, token);

@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import uploadImage from "../../../../public/img/image.png";
 import styles from "./SellerProductCreate.module.css";
-import { sellerMakeProduct } from "../../../api/Seller";
+import { sellerMakeProduct } from "../../../api/SellerFunction";
 
 export default function SellerProductCreate() {
   const [productPreviewImage, setProductPreviewImage] = useState("");
