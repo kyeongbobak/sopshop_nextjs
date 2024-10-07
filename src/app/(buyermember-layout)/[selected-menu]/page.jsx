@@ -8,8 +8,8 @@ import styles from "./selected-menu.module.css";
 export default async function selectedMenu({ params }) {
   const { "selected-menu": selectedMenu } = params;
 
-  const titles = ["Subject", "Writer", "Date"];
-  const styling = [{ flexGrow: 1 }];
+  const titles = ["No", "Subject", "Writer", "Date"];
+  const styling = [{ width: 280 }, { width: 400 }];
 
   const brandProducts = await getProducts();
   const decodedString = selectedMenu.replace(/%20/g, " ");
@@ -30,7 +30,8 @@ export default async function selectedMenu({ params }) {
                 <ul className={styles.noticeList}>
                   {notices.map((notice, index) => (
                     <li className={styles.noticeItem} key={index}>
-                      <Link className={styles.noticeItemLink} href={"/notice-detail"}>
+                      <p className={styles.noticeNumber}>{index}</p>
+                      <Link className={styles.noticeItemLink} href={`notice-detail/${index}`}>
                         {notice.title}
                       </Link>
                       <p className={styles.noticeInfo}>{notice.writer}</p>

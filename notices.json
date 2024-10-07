@@ -4,5 +4,11 @@
     "description": "d",
     "writer": "seller1",
     "date": "2024-10-04"
+  },
+  {
+    "title": "배송공지",
+    "description": "조금 천천히 진행되는 발송 시스템으로 변경된 만큼 더 정확하고 안전한 발송이 진행되도록 노력하겠습니다.",
+    "writer": "seller1",
+    "date": "2024-10-07"
   }
 ]

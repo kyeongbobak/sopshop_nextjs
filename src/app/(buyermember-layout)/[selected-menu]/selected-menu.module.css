@@ -12,9 +12,6 @@
   margin-top: 50px;
 }
 
-.noticeList {
-}
-
 .noticeItem {
   display: flex;
   text-align: center;
@@ -29,6 +26,10 @@
 
 .noticeItemLink {
   flex-grow: 1;
+}
+
+.noticeNumber {
+  width: 280px;
 }
 
 .noticeInfo {
