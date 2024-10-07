@@ -2,10 +2,12 @@
 
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import styles from "./Notice.module.css";
+import { useRouter } from "next/navigation";
+import styles from "./NoticeCreate.module.css";
 
 export default function noticeSetting() {
   const { register, getValues, handleSubmit } = useForm();
+  const router = useRouter();
 
   const noticePost = async () => {
     const { noticeTitle, noticeDescription } = getValues();
@@ -25,7 +27,7 @@ export default function noticeSetting() {
           "Content-Type": "application/json",
         },
       });
-
+      router.push(`/Notice`);
       return res.data;
     } catch (error) {
       console.error("Error posting notice:", error);

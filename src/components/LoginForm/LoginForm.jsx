@@ -13,6 +13,7 @@ import styles from "./LoginForm.module.css";
 
 export default function LoginForm() {
   const [isBuyer, setIsBuyer] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const setUserToken = useSetRecoilState(userToken);
   const setIsLogin = useSetRecoilState(isLogin);
@@ -33,7 +34,12 @@ export default function LoginForm() {
       setIsLogin(true);
       setUserType(data.login_type);
       router.push(`/`);
-      console.log(token);
+      console.log(data);
+    },
+    onError: (error) => {
+      if (error) {
+        setErrorMessage("비밀번호가 일치하지 않습니다.");
+      }
     },
   });
 
@@ -70,6 +76,7 @@ export default function LoginForm() {
           })}
         />
         {errors.userPassword && <p className={styles.errorMessage}>{errors.userPassword.message}</p>}
+        {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
         <button className={styles.submitBtn} type="submit">
           LOGIN
         </button>

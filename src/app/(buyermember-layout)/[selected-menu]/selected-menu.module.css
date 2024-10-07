@@ -1,6 +1,6 @@
 .wrapper {
   width: 1280px;
-  margin: 0 auto;
+  margin: 15px auto;
   padding-left: 11.2%;
 }
 
@@ -9,7 +9,7 @@
 }
 
 .noticeWrapper {
-  margin-top: 50px;
+  margin: 50px 0 300px;
 }
 
 .noticeItem {
