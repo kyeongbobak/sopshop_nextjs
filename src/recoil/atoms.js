@@ -32,9 +32,3 @@ export const orderType = atom({
   default: "",
   effects_UNSTABLE: [persistAtom],
 });
-
-export const userId = atom({
-  key: "userId",
-  default: "",
-  effects_UNSTABLE: [persistAtom],
-});

@@ -1,15 +1,11 @@
 "use client";
 
 import axios from "axios";
-import { userId } from "../../../recoil/atoms";
-import { useRecoilValue } from "recoil";
 import { useForm } from "react-hook-form";
 import styles from "./Notice.module.css";
 
 export default function noticeSetting() {
   const { register, getValues, handleSubmit } = useForm();
-
-  const userName = useRecoilValue(userId);
 
   const noticePost = async () => {
     const { noticeTitle, noticeDescription } = getValues();
@@ -19,7 +15,7 @@ export default function noticeSetting() {
     const body = {
       title: noticeTitle,
       description: noticeDescription,
-      writer: userName,
+      writer: "SopShop",
       date: currentDate,
     };
 
