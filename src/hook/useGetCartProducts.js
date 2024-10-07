@@ -12,7 +12,8 @@ const useGetCartProducts = (token) => {
   console.log(userState);
 
   const getShoppingCartList = async () => {
-    if (userState === "SELLER") {
+    if (userState === "SELLER" || !token) {
+      setCartList([]);
     } else {
       const res = await getCartList(token);
       setCartList(res.results);

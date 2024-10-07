@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { userToken } from "../../recoil/atoms";
 import { useRecoilValue } from "recoil";
 import useGetOrderList from "../../hook/useGetOrderList";
@@ -13,10 +14,12 @@ export default function MyPageContents() {
   const { orderItems, productIds } = useGetOrderList(token);
   const { productInfos } = useProductInfos(token, productIds);
 
+  const orderProduct = orderItems.slice(0, 5);
+
   return (
     <>
       <div className={styles.wrapper}>
-        {orderItems.map((item, index) => (
+        {orderProduct.map((item, index) => (
           <div className={styles.contentsWrapper} key={index}>
             {productInfos[index] && (
               <>

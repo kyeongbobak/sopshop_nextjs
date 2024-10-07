@@ -11,7 +11,7 @@ const useGetOrderList = (token) => {
     const res = await orderList(token);
     setOrderItems(res.results);
     setOrderItem(res.results.slice(0, 1));
-    const orderProducts = res.results.map((i) => i.order_items);
+    const orderProducts = res.results.map((i) => i.order_items).flat();
     setProductIds(orderProducts);
     setProductId(orderProducts.slice(0, 1));
   };
@@ -19,7 +19,7 @@ const useGetOrderList = (token) => {
   useEffect(() => {
     getOrderList();
   }, [token]);
-
+  console.log(productIds);
   return { orderItems, productIds, orderItem, productId };
 };
 
