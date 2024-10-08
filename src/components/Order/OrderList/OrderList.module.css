@@ -30,7 +30,6 @@
 /* component */
 .contents,
 .productInfoDetails {
-  padding: 150px 0;
   font-size: var(--font-md-size);
   text-align: center;
 }

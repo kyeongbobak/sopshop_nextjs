@@ -6,7 +6,8 @@
 }
 
 /* common */
-.detailTabsItem .tabsItemBtn,
+.detailTabsItem,
+.tabsItemBtn,
 .active {
   width: 100%;
 }
