@@ -1,8 +1,10 @@
+/* layout */
 .wrapper {
   width: 1280px;
   margin: 100px 0 100px 23%;
 }
 
+/* component */
 .title {
   font-size: var(--font-lg-size);
   margin-bottom: 100px;

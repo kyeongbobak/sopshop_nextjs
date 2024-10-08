@@ -1,3 +1,4 @@
+/* layout */
 .wrapper {
   width: 1400px;
   margin: 0 auto;
@@ -10,6 +11,23 @@
   gap: 50px;
 }
 
+/* typography */
+.productName,
+.productShippingInfo {
+  font-family: "Pretendard";
+}
+
+.productBrandName,
+.productShippingInfo {
+  font-size: var(--font-md-size);
+}
+
+.productName,
+.productPrice {
+  font-size: var(--font-max-size);
+}
+
+/* component */
 .productDetailInner {
   width: 600px;
   display: flex;
@@ -22,19 +40,15 @@
 
 .productBrandName {
   margin-bottom: 16px;
-  font-size: var(--font-md-size);
   font-weight: var(--font-bold);
 }
 
 .productName {
-  font-family: "Pretendard";
-  font-size: var(--font-max-size);
   font-weight: var(--font-extra-light);
 }
 
 .productPrice {
   margin-top: 20px;
-  font-size: var(--font-max-size);
 }
 
 .productPrice span {
@@ -46,8 +60,6 @@
   padding-bottom: 20px;
   margin-top: 138px;
   border-bottom: 1px solid var(--gray-color);
-  font-family: "Pretendard";
-  font-size: var(--font-md-size);
   color: var(--black-color);
 }
 

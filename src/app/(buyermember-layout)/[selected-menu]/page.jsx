@@ -25,17 +25,17 @@ export default async function selectedMenu({ params }) {
         <>
           {selectedMenu === "Notice" ? (
             <>
-              <div className={styles.noticeWrapper}>
+              <div className={styles.noticeListWrapper}>
                 <TabTitle titles={titles} style={styling} />
                 <ul className={styles.noticeList}>
-                  {notices.map((notice, index) => (
+                  {notices.map((list, index) => (
                     <li className={styles.noticeItem} key={index}>
                       <p className={styles.noticeNumber}>{index}</p>
                       <Link className={styles.noticeItemLink} href={`notice-detail/${index}`}>
-                        {notice.title}
+                        {list.title}
                       </Link>
-                      <p className={styles.noticeInfo}>{notice.writer}</p>
-                      <p className={styles.noticeInfo}>{notice.date}</p>
+                      <p className={styles.noticeInfo}>{list.writer}</p>
+                      <p className={styles.noticeInfo}>{list.date}</p>
                     </li>
                   ))}
                 </ul>

@@ -1,9 +1,22 @@
+/* layout */
 .wrapper {
   padding: 150px 70px;
 }
 
-.logoImage {
+/* typography */
+.navBar,
+.sideMenuInner {
+  font-size: var(--font-lg-size);
+}
+
+/* common */
+.logoImage,
+.navBar {
   position: absolute;
+}
+
+/* component */
+.logoImage {
   top: 100px;
   left: 0;
   right: 0;
@@ -13,12 +26,10 @@
 .navBar {
   display: flex;
   gap: 30px;
-  position: absolute;
   top: 110px;
   right: 90px;
   vertical-align: top;
   align-items: center;
-  font-size: var(--font-lg-size);
   font-weight: var(--font-light);
 }
 
@@ -39,7 +50,6 @@
 
 .sideMenuInner {
   padding: 60px 50px;
-  font-size: var(--font-lg-size);
   font-weight: var(--font-light);
 }
 

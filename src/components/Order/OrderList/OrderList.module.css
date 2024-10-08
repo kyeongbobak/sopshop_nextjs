@@ -1,3 +1,4 @@
+/* layout */
 .wrapper {
   width: 1280px;
   margin: 0 auto;
@@ -7,13 +8,29 @@
   display: flex;
   align-items: center;
   text-align: center;
-  font-family: "Pretendard";
   font-size: var(--font-md-size);
 }
 
-.contents {
-  padding: 150px 0;
+/* typography */
+.productInfoWrapper,
+.contents,
+.productInfoDetails p,
+.totalPriceCal,
+.totalPriceCal p {
   font-family: "Pretendard";
+}
+
+.productName,
+.shippingFee,
+.totalProductPrice,
+.totalPriceCal p {
+  font-weight: var(--font-semi-bold);
+}
+
+/* component */
+.contents,
+.productInfoDetails {
+  padding: 150px 0;
   font-size: var(--font-md-size);
   text-align: center;
 }
@@ -35,16 +52,10 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  font-family: "Pretendard";
 }
 
 .productInfoDetails p {
-  font-family: "Pretendard";
   padding-bottom: 20px;
-}
-
-.productName {
-  font-weight: var(--font-semi-bold);
 }
 
 .disCount {
@@ -53,12 +64,10 @@
 
 .shippingFee {
   width: 300px;
-  font-weight: var(--font-semi-bold);
 }
 
 .totalProductPrice {
   width: 300px;
-  font-weight: var(--font-semi-bold);
 }
 
 .totalPriceCal {
@@ -69,7 +78,6 @@
   border-top: 1px solid var(--black-color);
   border-bottom: 1px solid var(--black-color);
   gap: 10px;
-  font-family: "Pretendard";
 }
 
 .totalPriceCal span {
@@ -78,7 +86,5 @@
 }
 
 .totalPriceCal p {
-  font-family: "Pretendard";
   font-size: var(--font-lg-size);
-  font-weight: var(--font-semi-bold);
 }

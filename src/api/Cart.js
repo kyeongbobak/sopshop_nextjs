@@ -1,9 +1,9 @@
 import { apiDelete, apiGet, apiPost, apiPut } from "../lib/api/commonApi";
 
-// 카트 불러오기
+// 장바구니 목록 보기
 export const getCartList = (token) => apiGet(`/api/v1/cart`, token);
 
-// 장바구니에 상품 담기
+// 장바구니에 물건 넣기
 export const addToCart = (body, token) => apiPost(`/api/v1/cart`, body, token);
 
 // 장바구니 전체 삭제하기

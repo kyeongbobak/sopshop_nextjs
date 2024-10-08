@@ -1,6 +1,17 @@
+/* common */
+.tabBtn,
+.active {
+  border: 1px solid var(--gray-color);
+}
+
+.tabMenuBtns,
+.tabBtn {
+  width: 100%;
+}
+
+/* component */
 .tabMenuBtns {
   display: table;
-  width: 100%;
   font-family: "Pretendard";
   font-size: var(--font-md-size);
   text-align: center;
@@ -11,16 +22,13 @@
 }
 
 .tabBtn {
-  width: 100%;
   height: 67px;
-  border: 1px solid var(--gray-color);
   z-index: 2;
   background-color: var(--light-gray-color);
   cursor: pointer;
 }
 
 .active {
-  border: 1px solid var(--gray-color);
   border-bottom: 0;
   background-color: white;
 }

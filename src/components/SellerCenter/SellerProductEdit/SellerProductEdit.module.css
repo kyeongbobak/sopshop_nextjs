@@ -1,61 +1,77 @@
+/* layout */
 .wrapper {
   width: 1280px;
   margin: 100px 0 100px 23%;
 }
 
-.sellingProductWrapper {
+/* typography */
+.productInfoDetails p,
+.actionButtonWrapper button {
+  font-family: "Pretendard";
+}
+
+.sellingProductPrice,
+.actionButtonWrapper button {
+  font-size: var(--font-sm-size);
+}
+
+.productName,
+.sellingProductPrice p {
+  font-weight: var(--font-semi-bold);
+}
+
+/* common */
+.sellingProductWrapper,
+.sellingProductInfo,
+.productInfoDetails {
   display: flex;
-  justify-content: center;
+}
+
+.sellingProductWrapper,
+.sellingProductInfo {
   align-items: center;
+}
+
+.actionButtonWrapper,
+.sellingProductPrice,
+.sellingProductPrice p {
+  text-align: center;
+}
+
+/* component */
+.sellingProductWrapper {
+  justify-content: center;
   padding: 20px 0;
 }
 
 .actionButtonWrapper {
   width: 300px;
-  text-align: center;
 }
 
 .sellingProductInfo {
   width: 800px;
-  display: flex;
-  align-items: center;
   gap: 25px;
   padding-left: 20px;
   box-sizing: border-box;
 }
 
 .productInfoDetails {
-  display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-.productName {
-  font-weight: var(--font-semi-bold);
-}
-
 .productInfoDetails p {
-  font-family: "Pretendard";
   font-size: var(--font-md-size);
 }
 
 .sellingProductPrice {
   width: 300px;
-  text-align: center;
-}
-
-.sellingProductPrice p {
-  text-align: center;
-  font-family: "Pretendard";
-  font-size: var(--font-md-size);
-  font-weight: var(--font-semi-bold);
 }
 
 .actionButtonWrapper button {
   width: 80px;
   height: 30px;
   font-family: "Pretendard";
-  font-size: var(--font-sm-size);
 }
 
 .modifyBtn {

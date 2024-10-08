@@ -1,32 +1,48 @@
+/* layout */
 .wrapper {
   width: 1280px;
   margin: 0 auto;
 }
 
 .contentsWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 30px 0;
 }
 
 .productInfoWrapper {
   width: 600px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   gap: 30px;
-}
-
-.productInfoDetailsWrapper {
-  flex-grow: 1;
 }
 
 .orderInfoWrapper {
   width: 300px;
+}
+
+/* typography*/
+.productInfoDetailsWrapper p,
+.orderInfoWrapper p {
+  font-family: "Pretendard";
+  font-size: var(--font-md-size);
+}
+
+/* common */
+.contentsWrapper,
+.productInfoWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.productInfoDetailsWrapper,
+.orderInfoWrapper {
   flex-grow: 1;
 }
 
+.productInfoDetailsWrapper strong,
+.productInfoDetailsWrapper p {
+  padding-bottom: 10px;
+}
+
+/* component */
 .productImage {
   object-fit: cover;
   padding-left: 50px;
@@ -35,20 +51,8 @@
 .productInfoDetailsWrapper strong {
   display: inline-block;
   font-size: var(--font-min-size);
-  padding-bottom: 10px;
-}
-
-.productInfoDetailsWrapper p {
-  font-family: "Pretendard";
-  font-size: var(--font-md-size);
-  padding-bottom: 10px;
 }
 
 .orderInfoWrapper p {
-  font-family: "Pretendard";
-  font-size: var(--font-md-size);
   text-align: center;
-}
-
-.orderInfoDescription {
 }

@@ -1,9 +1,11 @@
+/* layout */
 .wrapper {
   width: 1280px;
   margin: 0 auto;
   padding-left: 11.2%;
 }
 
+/* component */
 .searchResultSummary {
   font-size: var(--font-sm-size);
 }

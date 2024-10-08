@@ -1,6 +1,6 @@
 import { apiGet, apiPut, apiPost, apiDelete } from "../lib/api/commonApi";
 
-// 판매 상품 목록 가져오기
+// 판매자 전체 상품 목록 보기
 export const sellerGetProductList = (token) => apiGet(`/api/v1/seller`, token);
 
 // 상품 수정하기

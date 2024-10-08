@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 import { orderType, userToken } from "../../recoil/atoms";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useRouter } from "next/navigation";
+import { deleteAllCartItem, deleteCartItem, modifyCartCount } from "../../api/Cart";
+import { totalProductPrice, totalShippingPrice } from "../../lib/utils/calculate";
 import Image from "next/image";
 import useGetCartProducts from "../../hook/useGetCartProducts";
 import useProductInfos from "../../hook/useProductInfos";
-import { deleteAllCartItem, deleteCartItem, modifyCartCount } from "../../api/Cart";
-import { totalProductPrice, totalShippingPrice } from "../../lib/utils/calculate";
 import AlertModal from "../Modal/AlertModal/AlertModal";
 import CountControl from "../CountControl/CountControl";
 import useAlertModal from "../../hook/useAlertModal";
@@ -19,7 +19,9 @@ export default function CartContents() {
   const [count, setCount] = useState([]);
   const [selected, setSelected] = useState([]);
   const [isActive, setIsActive] = useState("");
+
   const token = useRecoilValue(userToken);
+
   const { cartList, getShoppingCartList, productIds } = useGetCartProducts(token);
   const { productInfos } = useProductInfos(token, productIds);
   const { modalState, showModal, closeModal } = useAlertModal();

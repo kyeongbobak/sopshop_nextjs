@@ -1,12 +1,12 @@
 .title {
-  text-align: center;
   font-size: var(--font-lg-size);
   margin-bottom: 100px;
+  text-align: center;
 }
 
 .contents {
-  text-align: center;
   font-family: "Pretendard";
   font-size: var(--font-max-size);
   margin: 100px 0;
+  text-align: center;
 }

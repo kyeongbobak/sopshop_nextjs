@@ -1,5 +1,5 @@
-import ProductItem from "../../../components/ProductItem/ProductItem";
 import { getProducts } from "../../../api/Product";
+import ProductItem from "../../../components/ProductItem/ProductItem";
 import styles from "./main.module.css";
 
 export default async function main() {
@@ -9,8 +9,8 @@ export default async function main() {
   return (
     <div>
       <ul className={styles.productList}>
-        {product.map((product, index) => (
-          <ProductItem key={index} productId={product.product_id} productImage={product.image} productBrandName={product.store_name} productName={product.product_name} productPrice={product.price} />
+        {product.map((list, index) => (
+          <ProductItem key={index} productId={list.product_id} productImage={list.image} productBrandName={list.store_name} productName={list.product_name} productPrice={list.price} />
         ))}
       </ul>
     </div>

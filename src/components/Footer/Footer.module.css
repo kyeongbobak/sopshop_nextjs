@@ -1,9 +1,17 @@
+/* layout */
 .wrapper {
   margin: 0 40px 0;
-  font-family: "Pretendard";
   font-size: var(--font-sm-size);
 }
 
+/* typography */
+.wrapper,
+.bottomSection strong,
+.bottomSection p {
+  font-family: "Pretendard";
+}
+
+/* component */
 .topSection {
   display: flex;
   justify-content: space-between;
@@ -44,9 +52,4 @@
 
 .bottomSection strong {
   font-weight: var(--font-extra-bold);
-  font-family: "Pretendard";
-}
-
-.bottomSection p {
-  font-family: "Pretendard";
 }

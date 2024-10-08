@@ -8,7 +8,6 @@ import ProductDetailsActions from "../../../../components/ProductDetails/Product
 export default async function productDetail({ params }) {
   const { "product-id": productId } = params;
   const productInfo = await getProductDetail(productId);
-  console.log(productInfo);
 
   return (
     <div className={styles.wrapper}>

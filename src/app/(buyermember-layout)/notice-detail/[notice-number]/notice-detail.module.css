@@ -1,23 +1,38 @@
+/* layout */
 .wrapper {
   width: 1280px;
   margin: 15px auto;
   padding-left: 11.2%;
 }
 
-.title {
+/* typography */
+.title,
+.subTitle,
+.noticeInfo strong,
+.noticeInfo p,
+.noticeDescription {
   font-size: var(--font-md-size);
+}
+
+.subTitle,
+.noticeInfo strong,
+.noticeInfo p,
+.noticeDescription {
+  font-family: "Pretendard";
+}
+
+/* component */
+.noticeWrapper {
+  margin-bottom: 300px;
+}
+
+.title {
   margin-bottom: 50px;
 }
 
 .subTitle {
-  font-family: "Pretendard";
-  font-size: var(--font-md-size);
   padding: 20px 0 20px;
   border-top: 1px solid var(--black-color);
-}
-
-.noticeWrapper {
-  margin-bottom: 300px;
 }
 
 .noticeInfo {
@@ -26,11 +41,4 @@
   padding: 20px 0 30px;
   margin-bottom: 30px;
   border-bottom: 1px solid var(--black-color);
-}
-
-.noticeInfo strong,
-.noticeInfo p,
-.noticeDescription {
-  font-size: var(--font-md-size);
-  font-family: "Pretendard";
 }

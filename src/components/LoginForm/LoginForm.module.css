@@ -1,8 +1,16 @@
+/* layout */
 .wrapper {
   width: 550px;
   margin: 200px auto;
 }
 
+/* typography */
+.form,
+.errorMessage {
+  font-family: "Pretendard";
+}
+
+/* component */
 .logoImage {
   display: block;
   text-align: center;
@@ -19,7 +27,6 @@
   padding: 35px;
   margin-top: -1px;
   box-sizing: border-box;
-  font-family: "Pretendard";
 }
 
 .styledInput {
@@ -41,7 +48,6 @@
 
 .errorMessage {
   color: red;
-  font-family: "Pretendard";
   font-weight: var(--font-medium);
   font-size: var(--font-sm-size);
 }

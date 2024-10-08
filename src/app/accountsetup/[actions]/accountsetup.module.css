@@ -1,8 +1,10 @@
+/* layout */
 .wrapper {
   width: 550px;
   margin: 200px auto;
 }
 
+/* component */
 .logoImage {
   display: block;
   text-align: center;
@@ -42,6 +44,6 @@
 .errorMessage {
   color: red;
   font-family: "Pretendard";
-  font-weight: var(--font-medium);
   font-size: var(--font-sm-size);
+  font-weight: var(--font-medium);
 }

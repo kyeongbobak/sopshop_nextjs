@@ -3,13 +3,12 @@
 import { useRecoilValue } from "recoil";
 import { userToken } from "../../../recoil/atoms";
 import useGetOrderList from "../../../hook/useGetOrderList";
-import styles from "./MyOrderList.module.css";
+import styles from "./OrderDetails.module.css";
 
-export default function MyOrderList() {
+export default function OrderDetails() {
   const token = useRecoilValue(userToken);
 
   const { orderItem } = useGetOrderList(token);
-  console.log(orderItem);
 
   return (
     <>

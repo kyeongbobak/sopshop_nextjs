@@ -1,0 +1,48 @@
+/* layout */
+.wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* typography */
+.errorMessage,
+.errorTypography,
+.navigateBtn {
+  font-family: "Pretendard";
+}
+
+.errorMessage,
+.navigateBtn {
+  font-weight: var(--font-bold);
+}
+
+.errorTypography,
+.navigateBtn {
+  font-size: var(--font-md-size);
+}
+
+/* component */
+.errorMessageWrapper {
+  margin: 20px 0px 40px;
+}
+
+.navigateBtnWrapper {
+  display: flex;
+  justify-content: end;
+}
+
+.errorMessage {
+  font-size: var(--font-extra-size);
+}
+
+.errorTypography {
+  line-height: 20px;
+}
+
+.navigateBtn {
+  margin-top: 10px;
+  padding: 10px 0;
+  color: var(--black-color);
+}

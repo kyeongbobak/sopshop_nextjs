@@ -1,17 +1,29 @@
+/* layout */
 .wrapper {
   width: 170px;
   margin-left: 1%;
   position: fixed;
+}
+
+/* typography */
+.wrapper,
+.sideMenu {
   font-size: var(--font-md-size);
 }
 
+/* common */
+.sideMenuItem,
+.brandMenuItem,
+.brandMenuItemLink {
+  margin-top: 15px;
+}
+
+/* component */
 .sideMenu {
-  font-size: var(--font-md-size);
   padding-left: 70px;
 }
 
 .sideMenuItem {
-  margin-top: 15px;
   font-weight: var(--font-light);
 }
 
@@ -23,13 +35,8 @@
   margin: 40px 0 0 25px;
 }
 
-.brandMenuItem {
-  margin-top: 15px;
-}
-
 .brandMenuItemLink {
   color: var(--black-color);
-  margin-top: 15px;
 }
 
 .active {

@@ -1,6 +1,5 @@
+/* layout */
 .wrapper {
-  display: flex;
-  flex-direction: column;
   width: 1280px;
   margin: 0 auto;
 }
@@ -16,8 +15,6 @@
 }
 
 .productInfoWrapper {
-  display: flex;
-  flex-direction: column;
   width: 380px;
 }
 
@@ -28,7 +25,6 @@
 .TotalPriceWrapper {
   width: 300px;
   text-align: center;
-  font-family: "Pretendard";
   font-size: var(--font-md-size);
   font-weight: var(--font-semi-bold);
   position: relative;
@@ -41,10 +37,46 @@
   padding-top: 50px;
 }
 
+/* typography */
+.TotalPriceWrapper,
+.productInfoWrapper p,
+.TotalPrice,
+.totalPriceCal,
+.totalPriceCal p {
+  font-family: "Pretendard";
+}
+
+.productPrice,
+.shippingMethod .totalPrice {
+  font-weight: var(--font-semi-bold);
+}
+
+/* common */
+.wrapper,
+.productInfoWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.contents,
+.productInfoWrapper p,
+.TotalPrice,
+.totalPriceCal span {
+  font-size: var(--font-md-size);
+}
+
+.contentsWrapper button,
+.productStoreName,
+.oneOrderBtn,
+.emptyBtn,
+.actionBtnWrapper button {
+  font-size: var(--font-sm-size);
+}
+
+/* component */
 .contents {
   margin: 200px 0 30px 0;
   text-align: center;
-  font-size: var(--font-md-size);
   color: var(--gray-color);
 }
 
@@ -52,7 +84,6 @@
   margin-bottom: 300px;
   padding: 15px 30px;
   border: 1px solid #222;
-  font-size: var(--font-sm-size);
   font-weight: var(--font-medium);
 }
 
@@ -63,33 +94,18 @@
 }
 
 .productInfoWrapper p {
-  font-family: "Pretendard";
-  font-size: var(--font-md-size);
   margin-top: 20px;
 }
 
 .productStoreName {
-  font-size: var(--font-sm-size);
   font-weight: var(--font-extra-bold);
 }
 
-.productPrice {
-  font-weight: var(--font-semi-bold);
-}
-
-.shippingMethod {
-  font-weight: var(--font-semi-bold);
-}
-
 .TotalPrice {
-  font-family: "Pretendard";
-  font-size: var(--font-md-size);
-  font-weight: var(--font-semi-bold);
   margin-bottom: 28px;
 }
 
 .oneOrderBtn {
-  font-size: var(--font-sm-size);
   text-align: center;
   border: 1px solid #222;
   background-color: var(--black-color);
@@ -109,7 +125,6 @@
   margin: 30px 0 30px 0;
   justify-content: flex-end;
   padding: 15px 20px;
-  font-size: var(--font-sm-size);
 }
 
 .totalPriceCal {
@@ -120,23 +135,19 @@
   border-top: 1px solid var(--black-color);
   border-bottom: 1px solid var(--black-color);
   gap: 10px;
-  font-family: "Pretendard";
 }
 
 .totalPriceCal span {
-  font-size: var(--font-md-size);
   font-weight: var(--font-regular);
 }
 
 .totalPriceCal p {
-  font-family: "Pretendard";
   font-size: var(--font-lg-size);
   font-weight: var(--font-semi-bold);
 }
 
 .actionBtnWrapper button {
   padding: 15px 20px;
-  font-size: var(--font-sm-size);
   text-align: center;
   border: 1px solid #222;
 }

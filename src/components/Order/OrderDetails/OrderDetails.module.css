@@ -1,3 +1,4 @@
+/* layout */
 .wrapper {
   width: 450px;
   margin: 0 auto;
@@ -15,8 +16,22 @@
   padding: 20px 0;
 }
 
+/* typography */
+.detailsWrapper p,
+.productPriceWrapper p,
+.deliveryDetailsWrapper p {
+  font-family: "Pretendard";
+}
+
+.detailsWrapper p,
+.productPriceWrapper p,
+.deliveryDetailsWrapper p,
 .detailsTitle {
   font-size: var(--font-lg-size);
+}
+
+/* component */
+.detailsTitle {
   font-weight: var(--font-medium);
 }
 
@@ -25,20 +40,14 @@
 }
 
 .detailsWrapper p {
-  font-family: "Pretendard";
   padding: 3px 0;
-  font-size: var(--font-lg-size);
 }
 
 .productPriceWrapper p {
-  font-family: "Pretendard";
   padding: 20px 0;
-  font-size: var(--font-lg-size);
   margin-bottom: 25px;
 }
 
 .deliveryDetailsWrapper p {
-  font-family: "Pretendard";
   padding-top: 20px;
-  font-size: var(--font-lg-size);
 }

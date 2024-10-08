@@ -1,26 +1,4 @@
-.form {
-  display: flex;
-  flex-direction: column;
-  width: 552px;
-  border: 1px solid var(--gray-color);
-
-  padding: 35px;
-  margin-top: -1px;
-  box-sizing: border-box;
-  font-family: "Pretendard";
-}
-
-.sellerSignUpForm {
-  padding-top: 50px;
-  display: flex;
-  flex-direction: column;
-}
-
-.styledLabel {
-  padding: 12px 0;
-  font-size: var(--font-md-size);
-}
-
+/* layout */
 .inputWrapper {
   display: flex;
   gap: 8px;
@@ -29,6 +7,72 @@
 .passwordInputWrapper {
   display: flex;
   flex-direction: column;
+}
+
+.phoneNumberWrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.otherSectionWrapper {
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+  gap: 5px;
+  font-size: var(--font-min-size);
+  font-weight: var(--font-extra-light);
+}
+
+/* typography */
+.otherSectionWrapper,
+.form,
+.errorMessage,
+.signBtn {
+  font-family: "Pretendard";
+}
+
+.styledLabel,
+.userIdInput,
+.actionBtn,
+.phoneNumberInput,
+.dropDownMenu {
+  font-size: var(--font-md-size);
+}
+
+/* common */
+.phoneNumberWrapper,
+.otherSectionWrapper,
+.form,
+.sellerSignUpForm {
+  display: flex;
+}
+
+.form,
+.sellerSignUpForm {
+  flex-direction: column;
+}
+
+.actionBtn,
+.phoneNumberInput,
+.dropDownMenu li {
+  text-align: center;
+}
+
+/* component */
+.form {
+  width: 552px;
+  border: 1px solid var(--gray-color);
+  padding: 35px;
+  margin-top: -1px;
+  box-sizing: border-box;
+}
+
+.sellerSignUpForm {
+  padding-top: 50px;
+}
+
+.styledLabel {
+  padding: 12px 0;
 }
 
 .styledInput {
@@ -40,7 +84,6 @@
 
 .userIdInput {
   flex-grow: 1;
-  font-size: var(--font-md-size);
 }
 
 .passwordInputWrapper img {
@@ -50,7 +93,6 @@
 
 .errorMessage {
   color: red;
-  font-family: "Pretendard";
   font-weight: var(--font-medium);
   font-size: var(--font-sm-size);
 }
@@ -60,20 +102,12 @@
   padding: 0px 37px;
   border-radius: 5px;
   background-color: var(--main-color);
-  font-size: var(--font-md-size);
   color: var(--white-color);
-  text-align: center;
-}
-
-.phoneNumberWrapper {
-  display: flex;
-  gap: 8px;
 }
 
 .phoneNumberInput {
   width: 150px;
   text-align: center;
-  font-size: var(--font-md-size);
 }
 
 .selectBtn {
@@ -91,7 +125,6 @@
   height: 150px;
   border: 1px solid var(--gray-color);
   border-radius: 5px;
-  font-size: var(--font-md-size);
   overflow-y: auto;
   position: absolute;
   background-color: white;
@@ -113,20 +146,9 @@
 }
 
 .dropDownMenu li {
-  text-align: center;
   cursor: pointer;
   padding: 10px 0px;
   margin-left: 10px;
-}
-
-.otherSectionWrapper {
-  display: flex;
-  align-items: center;
-  padding-top: 20px;
-  gap: 5px;
-  font-family: "Pretendard";
-  font-size: var(--font-min-size);
-  font-weight: var(--font-extra-light);
 }
 
 .agreementText span {
@@ -138,7 +160,6 @@
   padding: 20px 213px;
   background-color: var(--black-color);
   color: white;
-  font-family: "GmarketSans";
   font-size: var(--font-min-size);
   font-weight: var(--font-bold);
 }

@@ -1,5 +1,11 @@
-.title {
+/* typography */
+.title,
+.searchInput {
   font-size: var(--font-sm-size);
+}
+
+/* component */
+.title {
   font-weight: var(--font-extra-light);
   position: absolute;
   margin: 80px 0 0 70px;
@@ -11,5 +17,4 @@
   padding: 10px 15px 10px 15px;
   margin: 100px 0 0 70px;
   border-bottom: 1px solid var(--black-color);
-  font-size: var(--font-sm-size);
 }

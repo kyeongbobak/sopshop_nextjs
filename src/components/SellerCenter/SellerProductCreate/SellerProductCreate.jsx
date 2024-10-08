@@ -18,8 +18,6 @@ export default function SellerProductCreate() {
   const token = useRecoilValue(userToken);
   const router = useRouter();
 
-  console.log(token);
-
   const { register, handleSubmit, getValues } = useForm();
 
   const fileInputRef = useRef(null);
