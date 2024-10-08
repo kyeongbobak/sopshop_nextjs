@@ -27,11 +27,15 @@
   font-weight: var(--font-semi-bold);
 }
 
-/* component */
 .contents,
 .productInfoDetails {
   font-size: var(--font-md-size);
   text-align: center;
+}
+
+/* component */
+.contents {
+  padding: 150px 0;
 }
 
 .productInfo {
