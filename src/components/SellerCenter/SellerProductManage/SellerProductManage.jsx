@@ -7,7 +7,7 @@ import { userToken } from "../../../recoil/atoms";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import uploadImage from "../../../../public/img/image.png";
-import styles from "./SellerProductCreate.module.css";
+import styles from "./SellerProductManage.module.css";
 import { sellerMakeProduct } from "../../../api/SellerFunction";
 
 export default function SellerProductCreate() {

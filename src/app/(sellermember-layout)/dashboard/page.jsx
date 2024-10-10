@@ -1,6 +1,6 @@
 import SellerProductEdit from "../../../components/SellerCenter/SellerProductEdit/SellerProductEdit";
 
-export default function sellerDashboard() {
+export default function dashboard() {
   return (
     <>
       <SellerProductEdit />

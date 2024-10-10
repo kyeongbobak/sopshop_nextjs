@@ -15,9 +15,12 @@ export default function notFound(props) {
           <p className={styles.errorTypography}>페이지가 존재하지 않거나 사용할 수 없는 페이지입니다.</p>
           <p className={styles.errorTypography}>웹 주소가 올바른지 확인해주세요.</p>
         </div>
-        <div>
-          <Link className={styles.navigateBtnWrapper} href="/">
+        <div className={styles.navigateBtnWrapper}>
+          <Link href="/">
             <button className={styles.navigateBtn}>메인으로</button>
+          </Link>
+          <Link href="/dashboard">
+            <button className={styles.navigateBtn}>판매자센터로 바로가기</button>
           </Link>
         </div>
       </div>

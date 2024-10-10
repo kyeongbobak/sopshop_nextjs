@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { userToken } from "../../../recoil/atoms";
 import { useRecoilValue } from "recoil";
+import { useRouter } from "next/navigation";
 import { sellerDeleteProduct, sellerGetProductList, sellerModifyProduct } from "../../../api/SellerFunction";
 import Image from "next/image";
 import TabTitle from "../../../components/TabTitle/TabTitle";
@@ -14,6 +15,7 @@ export default function SellerProductEdit() {
   const styling = [{ width: 800 }];
 
   const token = useRecoilValue(userToken);
+  const router = useRouter();
 
   const sellerProductList = async () => {
     const res = await sellerGetProductList(token);
@@ -70,7 +72,14 @@ export default function SellerProductEdit() {
               <p>{list.price.toLocaleString()} 원</p>
             </div>
             <div className={styles.actionButtonWrapper}>
-              <button type="button" className={styles.modifyBtn} onClick={() => handleModifyProduct(index)}>
+              <button
+                type="button"
+                className={styles.modifyBtn}
+                onClick={() => {
+                  router.push(`/product-manage/modify/${index}`);
+                  handleModifyProduct(index);
+                }}
+              >
                 수정
               </button>
             </div>

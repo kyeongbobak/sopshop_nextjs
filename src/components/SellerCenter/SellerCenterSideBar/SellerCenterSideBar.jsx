@@ -7,17 +7,19 @@ import styles from "./SellerCenterSideBar.module.css";
 
 export default function SellerCenterSideBar() {
   const [selected, setSelected] = useState();
+  const [isActive, setIsActive] = useState();
   const pathname = usePathname();
+
+  const actions = ["manage"];
 
   useEffect(() => {
     setSelected(pathname);
   }, [pathname]);
 
-  // 이부분 노션 정리
   return (
     <ul className={styles.sidebar}>
-      <li className={`${styles.sidebarItem} ${selected === "/seller-dashboard" ? styles.active : ""}`}>
-        <Link href="/seller-dashboard" onClick={() => setSelected("/seller-dashboard")}>
+      <li className={`${styles.sidebarItem} ${selected === "/dashboard" ? styles.active : ""}`}>
+        <Link href="/dashboard" onClick={() => setSelected("/dashboard")}>
           판매중인 상품
         </Link>
       </li>
@@ -36,7 +38,7 @@ export default function SellerCenterSideBar() {
           통계
         </Link>
       </li>
-      <li className={`${styles.sidebarItem} ${selected === "/seller-setting" ? styles.active : ""}`}>
+      <li className={`${styles.sidebarItem} ${selected === "/setting" ? styles.active : ""}`}>
         <Link
           href="/seller-center/seller-setting"
           onClick={() => {
@@ -46,22 +48,23 @@ export default function SellerCenterSideBar() {
           스토어 설정
         </Link>
       </li>
-      <li className={`${styles.sidebarItem} ${selected === "/seller-setting/notice-setting" ? styles.active : ""}`}>
+      <li className={`${styles.sidebarItem} ${selected === "/setting/notice-setting" ? styles.active : ""}`}>
         <Link
-          href={"/seller-setting/notice-setting"}
+          href={"/setting/notice-setting"}
           onClick={() => {
-            setSelected("/seller-setting/notice-setting");
+            setSelected("/setting/notice-setting");
           }}
         >
           공지사항 관리
         </Link>
       </li>
-
-      <li className={`${styles.sidebarItem} ${selected === "/seller-create" ? styles.active : ""}`}>
-        <Link href="/seller-create" onClick={() => setSelected("/seller-create")}>
-          상품 등록
-        </Link>
-      </li>
+      {actions.map((action, index) => (
+        <li key={index} className={`${styles.sidebarItem} ${selected === `/product-manage/${action}/${index}` ? styles.active : ""} ${selected === `/product-manage/${action}/${index}` || pathname === "" ? styles.active : ""}`}>
+          <Link href={`/product-manage/${action}/${index}`} onClick={() => setSelected(`/product-manage/${action}/${index}`)}>
+            상품 관리
+          </Link>
+        </li>
+      ))}
     </ul>
   );
 }
