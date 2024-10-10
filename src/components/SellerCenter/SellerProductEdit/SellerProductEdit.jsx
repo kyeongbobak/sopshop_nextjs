@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { userToken } from "../../../recoil/atoms";
 import { useRecoilValue } from "recoil";
 import { useRouter } from "next/navigation";
-import { sellerDeleteProduct, sellerGetProductList, sellerModifyProduct } from "../../../api/SellerFunction";
+import { sellerDeleteProduct, sellerGetProductList } from "../../../api/SellerFunction";
 import Image from "next/image";
 import TabTitle from "../../../components/TabTitle/TabTitle";
 import styles from "./SellerProductEdit.module.css";
@@ -26,24 +26,6 @@ export default function SellerProductEdit() {
   useEffect(() => {
     sellerProductList();
   }, [token]);
-
-  const handleModifyProduct = async (index) => {
-    const product = sellingProductList[index];
-
-    const formData = new FormData();
-    formData.append("product_name", `${product.product_name}`);
-    formData.append("image", `${product.image}`);
-    formData.append("price", `${product.price}`);
-    formData.append("shipping_method", `${product.shipping_method}`);
-    formData.append("shipping_fee", `${product.shipping_fee}`);
-    formData.append("stock", 43);
-    formData.append("product_info", "");
-    const res = await sellerModifyProduct(token, formData, sellingProductList[index].product_id);
-
-    if (res) {
-      sellerProductList();
-    }
-  };
 
   const handleDeleteProduct = async (index) => {
     const res = await sellerDeleteProduct(token, sellingProductList[index].product_id);
@@ -77,7 +59,6 @@ export default function SellerProductEdit() {
                 className={styles.modifyBtn}
                 onClick={() => {
                   router.push(`/product-manage/modify/${index}`);
-                  handleModifyProduct(index);
                 }}
               >
                 수정

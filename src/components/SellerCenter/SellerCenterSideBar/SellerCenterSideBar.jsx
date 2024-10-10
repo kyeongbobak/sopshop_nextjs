@@ -59,7 +59,10 @@ export default function SellerCenterSideBar() {
         </Link>
       </li>
       {actions.map((action, index) => (
-        <li key={index} className={`${styles.sidebarItem} ${selected === `/product-manage/${action}/${index}` ? styles.active : ""} ${selected === `/product-manage/${action}/${index}` || pathname === "" ? styles.active : ""}`}>
+        <li
+          key={index}
+          className={`${styles.sidebarItem} ${selected === `/product-manage/${action}/${index}` ? styles.active : ""} ${selected === `/product-manage/${action}/${index}` || pathname === `/product-manage/modify/${index}` ? styles.active : ""}`}
+        >
           <Link href={`/product-manage/${action}/${index}`} onClick={() => setSelected(`/product-manage/${action}/${index}`)}>
             상품 관리
           </Link>

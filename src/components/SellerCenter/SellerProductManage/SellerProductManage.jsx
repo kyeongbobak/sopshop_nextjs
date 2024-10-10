@@ -1,24 +1,51 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useRecoilValue } from "recoil";
 import { userToken } from "../../../recoil/atoms";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
+import { sellerGetProductList, sellerMakeProduct, sellerModifyProduct } from "../../../api/SellerFunction";
 import Image from "next/image";
 import uploadImage from "../../../../public/img/image.png";
 import styles from "./SellerProductManage.module.css";
-import { sellerMakeProduct } from "../../../api/SellerFunction";
 
 export default function SellerProductCreate() {
   const [productPreviewImage, setProductPreviewImage] = useState("");
   const [productImage, setProductImage] = useState(null);
   const [deliveryMethod, setDeliveryMethod] = useState("");
+  const [modifyingProduct, setModifyingProduct] = useState("");
 
   const token = useRecoilValue(userToken);
   const router = useRouter();
+  const pathname = usePathname();
 
-  const { register, handleSubmit, getValues } = useForm();
+  const [action, id] = pathname.split(`/`).slice(-2);
+
+  useEffect(() => {
+    if (action === "modify") {
+      selectedProduct();
+    }
+  }, [action]);
+
+  const selectedProduct = async () => {
+    const res = await sellerGetProductList(token);
+    const product = res.results.find((_, index) => index === Number(id));
+    setModifyingProduct(product);
+    if (product) {
+      setValue("productName", product.product_name);
+      setValue("productPrice", product.price);
+      setValue("shippingFee", product.shipping_fee);
+      setValue("productStock", product.stock);
+      setDeliveryMethod(product.shipping_method);
+      if (product.image) {
+        setProductPreviewImage(product.image);
+      }
+    }
+    return res;
+  };
+
+  const { register, handleSubmit, getValues, setValue } = useForm();
 
   const fileInputRef = useRef(null);
 
@@ -41,13 +68,10 @@ export default function SellerProductCreate() {
     }
   };
 
+  // 상품 등록하기
   const createProduct = async () => {
     const { productName, productPrice, shippingFee, productStock } = getValues();
-    console.log(productName);
-    console.log(productPrice);
-    console.log(shippingFee);
-    console.log(productStock);
-    console.log(deliveryMethod);
+
     const formData = new FormData();
     formData.append("product_name", productName);
     formData.append("image", productImage);
@@ -58,12 +82,33 @@ export default function SellerProductCreate() {
     formData.append("product_info", "앞접시나 반찬접시");
 
     const res = await sellerMakeProduct(token, formData);
-    console.log(res);
 
     if (res) {
       const productId = res.product_id;
       router.push(`/products/${productId}`);
     }
+  };
+
+  // 상품 수정하기
+  const handleModifyProduct = async () => {
+    const { productName, productPrice, shippingFee, productStock } = getValues();
+
+    const formData = new FormData();
+    formData.append("product_name", productName);
+    formData.append("image", productImage);
+    formData.append("price", productPrice);
+    formData.append("shipping_method", `${modifyingProduct.shipping_method}`);
+    formData.append("shipping_fee", shippingFee);
+    formData.append("stock", productStock);
+    formData.append("product_info", "");
+
+    const res = await sellerModifyProduct(token, formData, modifyingProduct.product_id);
+    console.log(res);
+
+    if (res) {
+      router.push(`/dashboard`);
+    }
+    return res;
   };
 
   return (
@@ -73,7 +118,7 @@ export default function SellerProductCreate() {
           <div className={styles.formInputWrapper}>
             <div className={styles.imageUploadWrapper}>
               {productPreviewImage ? (
-                <img className={styles.productImage} src={productPreviewImage} alt="" />
+                <img className={styles.productImage} src={productPreviewImage} alt="" onClick={handleUploadImage} />
               ) : (
                 <div className={styles.previewImage}>
                   <Image src={uploadImage} alt="uploadImage" onClick={handleUploadImage} />
@@ -126,9 +171,19 @@ export default function SellerProductCreate() {
               <button type="button" className={styles.cancelBtn}>
                 취소
               </button>
-              <button type="submit" className={styles.submitBtn}>
-                저장하기
-              </button>
+              {action === "modify" ? (
+                <>
+                  <button type="button" className={styles.submitBtn} onClick={() => handleModifyProduct()}>
+                    수정하기
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button type="submit" className={styles.submitBtn}>
+                    저장하기
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </form>
