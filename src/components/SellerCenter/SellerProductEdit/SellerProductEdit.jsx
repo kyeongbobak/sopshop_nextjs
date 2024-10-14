@@ -19,7 +19,6 @@ export default function SellerProductEdit() {
 
   const sellerProductList = async () => {
     const res = await sellerGetProductList(token);
-    console.log(res.results);
     setSellingProductList(res.results);
   };
 
@@ -32,7 +31,7 @@ export default function SellerProductEdit() {
     if (res.status === 200) {
       await sellerProductList();
     }
-    console.log(res);
+
     return res;
   };
 

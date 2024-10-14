@@ -1,42 +1,50 @@
 "use client";
 
-import axios from "axios";
+import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { initializeApp } from "firebase/app";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import styles from "./NoticeCreate.module.css";
 
-export default function noticeSetting() {
+const firebaseConfig = {
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+export default function NoticeSetting() {
   const { register, getValues, handleSubmit } = useForm();
   const router = useRouter();
 
   const noticePost = async () => {
     const { noticeTitle, noticeDescription } = getValues();
 
-    const currentDate = new Date().toISOString().split("T")[0];
-
     const body = {
-      title: noticeTitle,
+      date: serverTimestamp(),
       description: noticeDescription,
+      title: noticeTitle,
       writer: "SopShop",
-      date: currentDate,
     };
 
     try {
-      const res = await axios.post("/api/notices", body, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const res = await addDoc(collection(db, "notices"), body);
+      console.log(res.id);
+
       router.push(`/Notice`);
-      return res.data;
     } catch (error) {
-      console.error("Error posting notice:", error);
+      console.log(error);
     }
   };
 
   return (
     <>
-      <form action="" className={styles.form} onSubmit={handleSubmit(noticePost)}>
+      <form className={styles.form} onSubmit={handleSubmit(noticePost)}>
         <div className={styles.noticeTitle}>
           <label htmlFor="" className={styles.label}>
             Title

@@ -1,40 +1,51 @@
-import fs from "fs";
-import path from "path";
+import { db } from "../../../lib/firebase";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 
 export async function POST(req) {
-  const filePath = path.join(process.cwd(), "notices.json");
-  const newNotice = await req.json();
-
-  let notices = [];
   try {
-    const jsonData = fs.readFileSync(filePath, "utf-8");
-    notices = JSON.parse(jsonData);
+    const { title, description, writer, date } = await req.json();
+    const docRef = await addDoc(collection(db, "notices"), {
+      title,
+      description,
+      writer,
+      date,
+    });
+
+    return new Response(JSON.stringify({ id: docRef.id, title, description, writer, date }), {
+      status: 201,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   } catch (error) {
-    console.error("Error reading file:", error);
+    console.log(error);
+    return new Response(JSON.stringify({ error: "Failed to add notice" }), {
+      status: 500,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   }
-
-  notices.push(newNotice);
-
-  fs.writeFileSync(filePath, JSON.stringify(notices, null, 2), "utf-8");
-
-  return new Response(JSON.stringify(newNotice), {
-    status: 201,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
 }
 
-export async function getNotices() {
-  const filePath = path.join(process.cwd(), "notices.json");
-
+export async function GET() {
   try {
-    const jsonData = fs.readFileSync(filePath, "utf-8");
+    const querySnapshot = await getDocs(collection(db, "notices"), { source: "server" });
+    const notices = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 
-    const notices = JSON.parse(jsonData);
-    return notices;
+    return new Response(JSON.stringify(notices), {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   } catch (error) {
-    console.error("Error reading file:", error);
-    return [];
+    console.error("Error getting documents:", error);
+    return new Response(JSON.stringify({ error: "Failed to fetch notices" }), {
+      status: 500,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   }
 }

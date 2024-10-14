@@ -1,5 +1,5 @@
 import { getProducts } from "../../../api/Product";
-import { getNotices } from "../../api/notices/route";
+import { getNotices } from "../../../api/NoticeList";
 import Link from "next/link";
 import ProductItem from "../../../components/ProductItem/ProductItem";
 import TabTitle from "../../../components/TabTitle/TabTitle";
@@ -18,6 +18,13 @@ export default async function selectedMenu({ params }) {
 
   const notices = await getNotices();
 
+  const dates = notices.map((i) => new Date(i.date.seconds * 1000).toLocaleString().split(",")[0]);
+
+  const formattedDates = dates.map((date) => {
+    const [month, day, year] = date.split(`/`);
+    return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+  });
+
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.selectedMenuName}>{decodedString}</h1>
@@ -30,12 +37,12 @@ export default async function selectedMenu({ params }) {
                 <ul className={styles.noticeList}>
                   {notices.map((list, index) => (
                     <li className={styles.noticeItem} key={index}>
-                      <p className={styles.noticeNumber}>{index}</p>
+                      <p className={styles.noticeNumber}>{index + 1}</p>
                       <Link className={styles.noticeItemLink} href={`notice-detail/${index}`}>
                         {list.title}
                       </Link>
                       <p className={styles.noticeInfo}>{list.writer}</p>
-                      <p className={styles.noticeInfo}>{list.date}</p>
+                      <p className={styles.noticeInfo}>{formattedDates[index]}</p>
                     </li>
                   ))}
                 </ul>
