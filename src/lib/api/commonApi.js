@@ -13,7 +13,6 @@ export const apiGet = async (url, token) => {
   try {
     const config = createHeaders(token);
     const res = await Instance.get(url, config);
-    console.log("!!!!!", Instance);
 
     return res.data;
   } catch (error) {
