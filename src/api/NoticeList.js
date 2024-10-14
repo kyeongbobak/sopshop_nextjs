@@ -1,5 +1,4 @@
 export async function getNotices() {
-  console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/notices`, {
     cache: "no-store",
   });

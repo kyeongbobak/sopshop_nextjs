@@ -12,6 +12,7 @@ export default async function selectedMenu({ params }) {
   const styling = [{ width: 280 }, { width: 400 }];
 
   const brandProducts = await getProducts();
+  console.log(brandProducts);
   const decodedString = selectedMenu.replace(/%20/g, " ");
 
   const selectedBrandProducts = brandProducts.results.filter((i) => i.store_name === decodedString);
