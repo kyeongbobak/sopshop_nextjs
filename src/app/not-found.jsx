@@ -20,7 +20,7 @@ export default function notFound(props) {
             <button className={styles.navigateBtn}>메인으로</button>
           </Link>
           <Link href="/dashboard">
-            <button className={styles.navigateBtn}>판매자센터로 바로가기</button>
+            <button className={styles.navigateBtn}>판매자 센터로 바로가기</button>
           </Link>
         </div>
       </div>
