@@ -1,3 +1,4 @@
+// 공지사항 목록 불러오기
 export async function getNotices() {
   const res = await fetch(`${process.env.API_URL}/api/notices`, {
     cache: "no-store",
