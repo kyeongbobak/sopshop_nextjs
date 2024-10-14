@@ -3,6 +3,8 @@ export async function getNotices() {
     cache: "no-store",
   });
 
+  console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
+
   if (!res.ok) {
     console.log("error");
   }
