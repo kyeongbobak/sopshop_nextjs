@@ -9,9 +9,11 @@ const createHeaders = (token, isFormData = false) => {
 };
 
 export const apiGet = async (url, token) => {
+  console.log(url);
   try {
     const config = createHeaders(token);
     const res = await Instance.get(url, config);
+
     return res.data;
   } catch (error) {
     console.log(error);
