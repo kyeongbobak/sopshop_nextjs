@@ -4,8 +4,6 @@ export async function getNotices() {
     cache: "no-store",
   });
 
-  console.log("API URL:", process.env.API_URL);
-
   if (!res.ok) {
     console.log("error");
   }

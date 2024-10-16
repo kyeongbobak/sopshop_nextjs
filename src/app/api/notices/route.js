@@ -2,6 +2,7 @@ import { db } from "../../../lib/firebase";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 
 export async function POST(req) {
+  console.log(req);
   try {
     const { title, description, writer, date } = await req.json();
     const docRef = await addDoc(collection(db, "notices"), {

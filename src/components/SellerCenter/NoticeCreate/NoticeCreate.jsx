@@ -34,6 +34,7 @@ export default function NoticeSetting() {
 
     try {
       const res = await addDoc(collection(db, "notices"), body);
+      console.log(res);
       console.log(res.id);
 
       router.push(`/Notice`);
