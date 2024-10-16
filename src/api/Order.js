@@ -1,4 +1,4 @@
-import { apiPost, apiGet } from "../lib/api/commonApi";
+import { apiPost, apiGet } from "../lib/common-api";
 
 // 주문 생성하기
 export const order = (body, token) => apiPost(`/api/v1/order`, body, token);

@@ -1,4 +1,4 @@
-import { apiDelete, apiGet, apiPost, apiPut } from "../lib/api/commonApi";
+import { apiDelete, apiGet, apiPost, apiPut } from "../lib/common-api";
 
 // 장바구니 목록 보기
 export const getCartList = (token) => apiGet(`/api/v1/cart`, token);

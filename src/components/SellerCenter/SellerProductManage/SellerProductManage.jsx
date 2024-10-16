@@ -31,6 +31,7 @@ export default function SellerProductCreate() {
   const selectedProduct = async () => {
     const res = await sellerGetProductList(token);
     const product = res.results.find((_, index) => index === Number(id));
+
     setModifyingProduct(product);
     if (product) {
       setValue("productName", product.product_name);
@@ -103,7 +104,6 @@ export default function SellerProductCreate() {
     formData.append("product_info", "");
 
     const res = await sellerModifyProduct(token, formData, modifyingProduct.product_id);
-    console.log(res);
 
     if (res) {
       router.push(`/dashboard`);
