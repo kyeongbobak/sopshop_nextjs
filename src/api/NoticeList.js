@@ -1,11 +1,8 @@
 // 공지사항 목록 보기
-export async function getNotices() {
-  const res = await fetch(`${process.env.API_URL}/api/notices`, {
-    cache: "no-store",
-  });
+import { db } from "../lib/firebaseAdmin";
 
-  if (!res.ok) {
-    console.log("error");
-  }
-  return await res.json();
+export async function getNotices() {
+  const snapshot = await db.collection("notices").get();
+  const notices = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  return notices;
 }

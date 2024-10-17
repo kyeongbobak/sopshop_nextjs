@@ -1,5 +1,5 @@
 import { db } from "../../../lib/firebase";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, addDoc, getDocs, serverTimestamp } from "firebase/firestore";
 
 export async function POST(req) {
   console.log(req);
@@ -9,7 +9,7 @@ export async function POST(req) {
       title,
       description,
       writer,
-      date,
+      date: serverTimestamp(),
     });
 
     return new Response(JSON.stringify({ id: docRef.id, title, description, writer, date }), {

@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore"; // getDocs와 deleteDoc 추가
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,

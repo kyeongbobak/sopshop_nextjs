@@ -1,22 +1,8 @@
 "use client";
 
-import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { initializeApp } from "firebase/app";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import styles from "./NoticeCreate.module.css";
-
-const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.FIREBASE_PROJECT_ID,
-  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.FIREBASE_APP_ID,
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
 
 export default function NoticeSetting() {
   const { register, getValues, handleSubmit } = useForm();
@@ -26,20 +12,23 @@ export default function NoticeSetting() {
     const { noticeTitle, noticeDescription } = getValues();
 
     const body = {
-      date: serverTimestamp(),
       description: noticeDescription,
       title: noticeTitle,
-      writer: "SopShop",
+      writer: "sop shop",
     };
 
     try {
-      const res = await addDoc(collection(db, "notices"), body);
-      console.log(res);
-      console.log(res.id);
-
+      const res = await fetch("/api/notices", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
       router.push(`/Notice`);
+      return await res.json();
     } catch (error) {
-      console.log(error);
+      console.log("Error:", error);
     }
   };
 
