@@ -1,4 +1,4 @@
-import { getNotices } from "../../../../api/NoticeList";
+import { getNotices } from "../../../../api/Notice";
 import styles from "./notice-detail.module.css";
 
 export default async function noticeDetail({ params }) {

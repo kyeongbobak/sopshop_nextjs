@@ -2,7 +2,6 @@ import { db } from "../../../lib/firebase";
 import { collection, addDoc, getDocs, serverTimestamp } from "firebase/firestore";
 
 export async function POST(req) {
-  console.log(req);
   try {
     const { title, description, writer, date } = await req.json();
     const docRef = await addDoc(collection(db, "notices"), {
@@ -32,6 +31,7 @@ export async function POST(req) {
 export async function GET() {
   try {
     const querySnapshot = await getDocs(collection(db, "notices"), { source: "server" });
+
     const notices = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 
     return new Response(JSON.stringify(notices), {

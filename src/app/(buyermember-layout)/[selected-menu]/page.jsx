@@ -1,5 +1,5 @@
 import { getProducts } from "../../../api/Product";
-import { getNotices } from "../../../api/NoticeList";
+import { getNotices } from "../../../api/Notice";
 import Link from "next/link";
 import ProductItem from "../../../components/ProductItem/ProductItem";
 import TabTitle from "../../../components/TabTitle/TabTitle";
@@ -14,6 +14,8 @@ export default async function selectedMenu({ params }) {
   const brandProducts = await getProducts();
 
   const decodedString = selectedMenu.replace(/%20/g, " ");
+
+  console.log(decodedString);
 
   const selectedBrandProducts = brandProducts.results.filter((i) => i.store_name === decodedString);
 

@@ -8,7 +8,7 @@ export default function NoticeSetting() {
   const { register, getValues, handleSubmit } = useForm();
   const router = useRouter();
 
-  const noticePost = async () => {
+  const noticePosting = async () => {
     const { noticeTitle, noticeDescription } = getValues();
 
     const body = {
@@ -18,23 +18,24 @@ export default function NoticeSetting() {
     };
 
     try {
-      const res = await fetch("/api/notices", {
+      const res = await fetch(`/api/notices`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-type": "application/json",
         },
         body: JSON.stringify(body),
       });
       router.push(`/Notice`);
       return await res.json();
     } catch (error) {
-      console.log("Error:", error);
+      console.log("error", error);
     }
+    return res;
   };
 
   return (
     <>
-      <form className={styles.form} onSubmit={handleSubmit(noticePost)}>
+      <form className={styles.form} onSubmit={handleSubmit(noticePosting)}>
         <div className={styles.noticeTitle}>
           <label htmlFor="" className={styles.label}>
             Title
