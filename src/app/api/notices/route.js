@@ -1,5 +1,5 @@
 import { db } from "../../../lib/firebase";
-import { collection, addDoc, getDocs, serverTimestamp } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 export async function POST(req) {
   try {
@@ -20,29 +20,6 @@ export async function POST(req) {
   } catch (error) {
     console.log(error);
     return new Response(JSON.stringify({ error: "Failed to add notice" }), {
-      status: 500,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-  }
-}
-
-export async function GET() {
-  try {
-    const querySnapshot = await getDocs(collection(db, "notices"), { source: "server" });
-
-    const notices = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-
-    return new Response(JSON.stringify(notices), {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-  } catch (error) {
-    console.error("Error getting documents:", error);
-    return new Response(JSON.stringify({ error: "Failed to fetch notices" }), {
       status: 500,
       headers: {
         "Content-Type": "application/json",
