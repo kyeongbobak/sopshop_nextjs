@@ -15,8 +15,6 @@ export default async function selectedMenu({ params }) {
 
   const decodedString = selectedMenu.replace(/%20/g, " ");
 
-  console.log(decodedString);
-
   const selectedBrandProducts = brandProducts.results.filter((i) => i.store_name === decodedString);
 
   const notices = await getNotices();

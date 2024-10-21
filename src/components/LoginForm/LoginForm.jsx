@@ -62,7 +62,7 @@ export default function LoginForm() {
             required: "아이디를 입력해주세요.",
           })}
         />
-        {errors.userId && <p className={styles.errorMessage}>{errors.userId.message}</p>}
+        {errors.username && <p className={styles.errorMessage}>{errors.username.message}</p>}
         <label className="a11y-hidden" htmlFor="password">
           비밀번호
         </label>
@@ -74,7 +74,7 @@ export default function LoginForm() {
             required: "비밀번호를 입력해주세요.",
           })}
         />
-        {errors.userPassword && <p className={styles.errorMessage}>{errors.userPassword.message}</p>}
+        {errors.password && <p className={styles.errorMessage}>{errors.password.message}</p>}
         {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
         <button className={styles.submitBtn} type="submit">
           LOGIN
