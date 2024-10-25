@@ -24,6 +24,8 @@ export default function SignUpForm() {
   const token = useRecoilValue(userToken);
   console.log(token);
 
+  // 판매자 회원가입 코드 수정해서
+  // 비밀번호 일치 여부 검사하는 코드도 수정해서 재배포
   const router = useRouter();
 
   const {
@@ -69,7 +71,7 @@ export default function SignUpForm() {
     validateAccountMutation.mutate(body, token);
   };
 
-  // 휴대폰번호 유효성 검사
+  // 휴대폰 번호, 비밀번호 유효성 검사
   useEffect(() => {
     if (userMiddleNumber || userEndNumber) {
       if (!/^\d{11}$/.test(phone_number) & phone_number) {
@@ -81,7 +83,15 @@ export default function SignUpForm() {
         clearErrors("");
       }
     }
-  }, [setError, clearErrors, phone_number, userMiddleNumber, userEndNumber]);
+
+    if (userPassword && userConfirmPassword) {
+      if (userPassword !== userConfirmPassword) {
+        setError("password2", { type: "matched-password", message: "비밀번호가 일치하지 않습니다." });
+      } else {
+        clearErrors("password2");
+      }
+    }
+  }, [setError, clearErrors, phone_number, userMiddleNumber, userEndNumber, userPassword, userConfirmPassword]);
 
   // 사업자 등록번호 검증
   const verifyCompanyNumberMutation = useMutation({
@@ -173,12 +183,6 @@ export default function SignUpForm() {
             type="password"
             {...register("password2", {
               required: "비밀번호를 확인해주세요.",
-              validate: {
-                matchPassword: (value) => {
-                  const { password } = getValues();
-                  return password === value || "비밀번호가 일치하지 않습니다.";
-                },
-              },
             })}
           />
           {userConfirmPassword ? <Image src={checkOnIcon} alt="checkOnIcon" /> : <Image src={checkOffIcon} alt="checkOffIcon" priority={true} />}

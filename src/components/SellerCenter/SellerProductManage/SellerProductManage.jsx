@@ -39,9 +39,7 @@ export default function SellerProductCreate() {
       setValue("shippingFee", product.shipping_fee);
       setValue("productStock", product.stock);
       setDeliveryMethod(product.shipping_method);
-      if (product.image) {
-        setProductPreviewImage(product.image);
-      }
+      setProductPreviewImage(product.image);
     }
     return res;
   };
