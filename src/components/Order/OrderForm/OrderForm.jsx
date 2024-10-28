@@ -63,7 +63,7 @@ export default function OrderForm() {
     setValue("address", data.address);
   };
 
-  const handleOSameOrderInfo = () => {
+  const handleSameOrderInfo = () => {
     setIsSameOrderInfo(true);
     setValue("orderName", name);
     setValue("orderFirstNumber", frontNumber);
@@ -147,7 +147,7 @@ export default function OrderForm() {
         <div className={styles.deliveryInfoHeaderWrapper}>
           <h4>배송지 정보</h4>
           <div className={styles.deliveryInfoHeaderDetails}>
-            <input type="radio" onClick={() => handleOSameOrderInfo()} checked={isSameOrderInfo === true} readOnly />
+            <input type="radio" onClick={() => handleSameOrderInfo()} checked={isSameOrderInfo === true} readOnly />
             <p>주문자 정보와 동일</p>
           </div>
         </div>
