@@ -71,8 +71,7 @@ export default function OrderForm() {
     setValue("orderLastNumber", lastNumber);
   };
 
-  const onSubmitPayment = async (data) => {
-    console.log(data);
+  const onSubmitPayment = async () => {
     const { orderName, frontNumber, secondNumber, lastNumber, postCode, address, additionalAddress, addressMessage } = getValues();
     const phoneNumber = [...frontNumber, secondNumber, lastNumber].join("");
     const deliveryAddress = [...postCode, address, additionalAddress].join("");
