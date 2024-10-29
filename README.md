@@ -8,6 +8,20 @@
 - Next.js의 파일 기반 라우팅과 App Directory 구조를 통해 프로젝트 폴더 구조를 더 직관적이고 일관되게 재구성하여 유지보수성 향상
 - Next.js의 이미지 최적화 기능을 통해 사용자 경험을 향상
 
+## [SopShop](https://sop-shop.netlify.app/)
+
+**서비스 이용을 위한 계정** <br/>
+
+**구매자 계정**
+
+- ID : buyer1 <br/>
+- PASSWORD : hodu0910
+
+**판매자 계정**
+
+- ID : seller1 <br/>
+- PASSWORD : hodu0910
+
 ## 마이그레이션 기간
 
 - 기간 : 2024년 8월 12일 ~ 2024년 10월 07일
