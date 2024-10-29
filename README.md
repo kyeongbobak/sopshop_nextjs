@@ -320,7 +320,7 @@ export default function notFound(props) {
 }
 ```
 
-### 5. Dynamic Route을 통핸 간편한 URL 매개변수 사용
+### 5. Dynamic Route을 통한 URL 매개변수 사용
 
 Next.js 14의 App Router는 파일 시스템 기반의 Dynamic Route를 지원하여 [actions]와 같은 폴더와 파일명을 통해 URL 매개변수를 자동으로 params 객체로 전달받을 수 있어 이를 통해 params.actions 값을 활용하여 URL에 따라 <LoginForm /> 또는 <SignUpForm /> 컴포넌트를 손쉽게 조건부 렌더링 하도록 구현, 이로 인해 코드가 이전보다 더욱 간결해지고, 유지보수가 쉬워지며, 중복 코드를 줄여 전체적인 코드 품질이 향상
 
