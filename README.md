@@ -8,7 +8,7 @@
 - Next.js의 파일 기반 라우팅과 App Directory 구조를 통해 프로젝트 폴더 구조를 더 직관적이고 일관되게 재구성하여 유지보수성 향상
 - Next.js의 이미지 최적화 기능을 통해 사용자 경험을 향상
 
-## [SopShop](https://sop-shop.netlify.app/)
+## [SopShop](https://sopshop.vercel.app/)
 
 **서비스 이용을 위한 계정** <br/>
 
@@ -122,41 +122,46 @@
 
 - 클라이언트 사이드에서 직접적으로 사용할 수 없는 Public 환경변수를 고려하여, 서버 컴포넌트를 유지하면서 **Firebase**와 직접 통신하여 데이터를 처리할 수 있도록 도와주는 **FireBase Admin SDK** 사용
 
-#### **FireBase Amin SDK의 장점**
+#### **FireBase Admin SDK를 통한 데이터 처리**
 
-- Firebase Admin SDK는 관리 권한을 가진 도구로, 서버에서만 처리함으로써 민감한 데이터를 안전하게 보호
-- 클라이언트를 거치지 않고 서버에서 직접 데이터를 처리하기 때문에 데이터 전송 과정에 발생할 수 있는 지연을 최소화,
-  이러한 최적화는 사용자 경험을 개선, 애플리케이션 성능을 높이는데 기여
+이번 프로젝트에서는 클라이언트 사이드에서 직접적으로 사용할 수 없는 **public** 환경 변수를 고려하여, **Firebase**와의 안전한 통신을 위해 **Firebase Admin SDK**를 사용했습니다. 이를 통해 다음과 같은 장점을 얻었습니다.
 
-  ```javascript
-  import admin from "firebase-admin";
+1. **Firebase Admin SDK**는 관리 권한을 가진 도구로, 서버에서만 처리함으로써 민감한 데이터를 안전하게 보호할 수 있습니다. 이를 통해 보안성을 높이고, 데이터 유출의 위험을 최소화했습니다.
+2. 클라이언트를 거치지 않고 서버에서 직접 데이터를 처리함으로써, 데이터 전송 과정에서 발생할 수 있는 지연을 최소화했습니다. 이 최적화는 사용자 경험을 개선하고, 애플리케이션 성능을 높이는데 크게 기여했습니다.
 
-  const serviceAccount = {
-    projectId: process.env.FIREBASE_PROJECT_ID,
-    clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-    privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"),
-  };
+#### **환경변수 관리**
 
-  if (!admin.apps.length) {
-    admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount),
-    });
-  }
+- 비공식 환경 변수 : Firebase Admin SDK를 사용하기 위해 필요한 환경 변수를 .env 파일에 저장했습니다. 이 파일은 FIREBASE_PROJECT_ID, FIREBASE_CLIENT_EMAIL, FIREBASE_PRIVATE_KEY와 같은 민감함 정보가 포함되어 있습니다. 이 정보는 서버에서만 사용되며 클라이언트에게 노출되지 않도록 설정했습니다.
 
-  export const db = admin.firestore();
-  ```
+```javascript
+import admin from "firebase-admin";
 
-  ```javascript
-  Notice.js;
+const serviceAccount = {
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+  privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+};
 
-  import { db } from "../lib/firebaseAdmin";
+if (!admin.apps.length) {
+  admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+  });
+}
 
-  export const getNotices = async () => {
-    const snapshot = await db.collection("notices").get();
-    const notices = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-    return notices;
-  };
-  ```
+export const db = admin.firestore();
+```
+
+```javascript
+Notice.js;
+
+import { db } from "../lib/firebaseAdmin";
+
+export const getNotices = async () => {
+  const snapshot = await db.collection("notices").get();
+  const notices = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  return notices;
+};
+```
 
 ## 최적화와 기능 개선
 
