@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "https://openmarket.aroxima.dev";
+const URL = "https://cpkdfn74v2qz32wmb425milbxy0caivk.lambda-url.ap-northeast-2.on.aws";
 
 export const Instance = axios.create({
   baseURL: URL,

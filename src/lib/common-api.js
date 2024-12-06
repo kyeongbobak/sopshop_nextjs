@@ -20,6 +20,10 @@ export const apiGet = async (url, token) => {
 };
 
 export const apiPost = async (url, body, token, isFormData = false) => {
+  console.log(token);
+  console.log(body);
+  console.log(url);
+  console.log(isFormData);
   try {
     const config = createHeaders(token, isFormData);
     const res = await Instance.post(url, body, config);

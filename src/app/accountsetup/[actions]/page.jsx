@@ -6,6 +6,7 @@ import logoImage from "../../../../public/img/Logo-SopShop.png";
 import styles from "./accountsetup.module.css";
 
 export default function accountSetup({ params }) {
+  console.log(params);
   return (
     <div className={styles.wrapper}>
       <StyledLink className={styles.logoImage} href={"/"}>
