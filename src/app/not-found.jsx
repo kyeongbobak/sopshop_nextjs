@@ -6,7 +6,6 @@ export const metadata = {
 };
 
 export default function notFound(props) {
-  console.log(props);
   return (
     <>
       <div className={styles.wrapper}>

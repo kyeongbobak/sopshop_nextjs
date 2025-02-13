@@ -12,7 +12,6 @@ export const apiGet = async (url, token) => {
   try {
     const config = createHeaders(token);
     const res = await Instance.get(url, config);
-
     return res.data;
   } catch (error) {
     console.log(error);
@@ -20,10 +19,6 @@ export const apiGet = async (url, token) => {
 };
 
 export const apiPost = async (url, body, token, isFormData = false) => {
-  console.log(token);
-  console.log(body);
-  console.log(url);
-  console.log(isFormData);
   try {
     const config = createHeaders(token, isFormData);
     const res = await Instance.post(url, body, config);
@@ -37,9 +32,7 @@ export const apiDelete = async (url, token) => {
   console.log(token);
   try {
     const config = createHeaders(token);
-    const res = await Instance.delete(url, config);
-    console.log(res);
-    return res;
+    await Instance.delete(url, config);
   } catch (error) {
     console.log(error);
   }

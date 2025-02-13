@@ -217,9 +217,7 @@ API 호출 코드를 리팩토링 하여 가독성과 유지보수성을 높임,
     console.log(token);
     try {
       const config = createHeaders(token);
-      const res = await Instance.delete(url, config);
-      console.log(res);
-      return res;
+      await Instance.delete(url, config);
     } catch (error) {
       console.log(error);
     }

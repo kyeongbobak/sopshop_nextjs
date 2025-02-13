@@ -101,12 +101,11 @@ export default function SellerProductCreate() {
     formData.append("stock", productStock);
     formData.append("product_info", "");
 
-    const res = await sellerModifyProduct(token, formData, modifyingProduct.product_id);
+    await sellerModifyProduct(token, formData, modifyingProduct.product_id);
 
     if (res) {
       router.push(`/dashboard`);
     }
-    return res;
   };
 
   return (

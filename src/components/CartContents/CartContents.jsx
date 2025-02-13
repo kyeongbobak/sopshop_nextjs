@@ -53,9 +53,8 @@ export default function CartContents() {
       product_id: `${cartList[index].product_id}`,
       quantity: `${newCount}`,
     };
-    const res = await modifyCartCount(cartList[index].cart_item_id, body, token);
+    await modifyCartCount(cartList[index].cart_item_id, body, token);
     getShoppingCartList();
-    return res;
   };
 
   // 개별 구매하기
@@ -65,8 +64,7 @@ export default function CartContents() {
       quantity: `${cartList[index].quantity}`,
       is_active: true,
     };
-    const res = await modifyCartCount(cartList[index].cart_item_id, body, token);
-    console.log(res);
+    await modifyCartCount(cartList[index].cart_item_id, body, token);
     router.push(`/order`);
     setOrderType("cart_one_order");
   };
@@ -82,8 +80,7 @@ export default function CartContents() {
       return modifyCartCount(list.cart_item_id, body, token);
     });
 
-    const res = await Promise.all(promises);
-    console.log(res);
+    await Promise.all(promises);
     router.push(`/order`);
     setOrderType("cart_order");
   };
@@ -107,18 +104,16 @@ export default function CartContents() {
       return getShoppingCartList();
     } else {
       const cartItemId = selected.map((index) => cartList[index].cart_item_id);
-      const res = await deleteCartItem(cartItemId, token);
+      await deleteCartItem(cartItemId, token);
       setSelected([]);
       getShoppingCartList();
-      return res;
     }
   };
 
   // 전체 삭제
   const deleteAllCartList = async () => {
-    const res = await deleteAllCartItem(token);
+    await deleteAllCartItem(token);
     getShoppingCartList();
-    return res;
   };
 
   return (

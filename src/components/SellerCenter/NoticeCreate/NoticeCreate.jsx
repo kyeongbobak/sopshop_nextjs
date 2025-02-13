@@ -30,7 +30,6 @@ export default function NoticeSetting() {
     } catch (error) {
       console.log("error", error);
     }
-    return res;
   };
 
   return (
